@@ -21,4 +21,9 @@ android {
 dependencies {
     //compile 'com.android.support:support-v4:22.0.0'
     compile files('libs/android-support-v13.jar')
+    compile 'com.jjoe64:graphview:4.0.0'
+}
+
+configurations {
+    all*.exclude group: 'com.android.support', module: 'support-v4'
 }

@@ -5,6 +5,10 @@ import java.text.NumberFormat;
 
 import com.example.arrowpoint.R;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.ActivityManager;
@@ -20,11 +24,16 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+
+import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
+import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
 
 public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
@@ -37,8 +46,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	boolean simulateMode = false;
-	DatagramReceiver myDatagramReceiver = null;
-	
+	public DatagramReceiver myDatagramReceiver = null;
+
 	Handler handler;
 	
 	int defaultTextColour = 0;
@@ -90,7 +99,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-	}
+
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,20 +180,22 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	
 	
     private Runnable updateValues = new Runnable() {
+
+        private double graphLastXValue = 5d;
+        private final Handler mHandler = new Handler();
+        private LineGraphSeries<DataPoint> mSeries;
+
         public void run() {
         	
         	NumberFormat formatterWithDecimal = new DecimalFormat("#0.00");
+
+            mSeries = new LineGraphSeries<DataPoint>();
         	        
             if (myDatagramReceiver == null) return;
-            
-            
-            
-	            
-	            
-	            
+
 	            
 	            // **************** Dashboard Detail ***************	            
-	            
+
 	            TextView speedTxt=(TextView)findViewById(R.id.Speed);
 	            //Button speedTarget=(Button)findViewById(R.id.btnTargetSpeed);	            
 	            TextView powerTxt=(TextView)findViewById(R.id.Power);
@@ -216,7 +228,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		            minCellVTxt.setText(formatterWithDecimal.format((double)myDatagramReceiver.getLastMinimumCellV()/1000) + "v");
 		            
 		            lastLockedSOCTxt.setText("Last Locked SOC:" + formatterWithDecimal.format(myDatagramReceiver.getLastLockedSOC()));
-		            
+
+
 	            }
 		            
 	            // **************** Power Detail ***************
@@ -279,7 +292,19 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	            TextView maxBattery  = (TextView)findViewById(R.id.txtMaxBattery);
 	            TextView maxBatteryTemp  = (TextView)findViewById(R.id.txtMaxBatteryTemp);
 	            TextView twelveVolt  = (TextView)findViewById(R.id.txt12VoltDetail);
-	            
+
+                GraphView graph = (GraphView)findViewById(R.id.graph);
+
+                if (graph!=null) {
+
+                    mSeries = (LineGraphSeries)graph.getSeries().get(0);
+                    graphLastXValue += 1d;
+                    mSeries.appendData(new DataPoint(graphLastXValue, myDatagramReceiver.getLastBusPower()) , true, 600);
+                    //mHandler.postDelayed(this, 200);
+
+                }
+
+
 	            if ( state != null) {	            	            	
 	            	
 	            	if ( myDatagramReceiver.isIdle()) state.setText("Idle");

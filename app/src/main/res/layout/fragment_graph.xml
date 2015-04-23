@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GraphTableMaster"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="bottom">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/graphSpinner"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+            <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/graph"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+                />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
