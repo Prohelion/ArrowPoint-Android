@@ -1,0 +1,322 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PowerDetailsFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:stretchColumns="0,1,2,3"
+    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="5dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblItemHeader"
+            android:text="@string/itemHeader"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArrayVoltageHeader"
+            android:text="@string/voltageHeader"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArrayCurrentHeader"
+            android:text="@string/currentHeader"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArrayPowerHeader"
+            android:text="@string/powerHeader"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArray1"
+            android:text="@string/array1"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingRight="23dp" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray1Voltage"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray1Current"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray1Power"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArray2"
+            android:text="@string/array2"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingRight="23dp" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray2Voltage"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray2Current"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray2Power"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblArray3"
+            android:text="@string/array3"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingRight="23dp" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray3Voltage"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray3Current"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtArray3Power"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblController"
+            android:text="@string/controller"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtControllerVoltage"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtControllerCurrent"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtControllerPower"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:layout_column="0"
+            android:id="@+id/lblTotalArrayPower"
+            android:text="@string/totalInputPowerHeader"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="20px"
+            android:layout_weight="2" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:layout_column="3"
+            android:id="@+id/txtTotalArrayPower"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:editable="false"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="30dp" />
+
+    <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+        android:layout_column="0"
+        android:id="@+id/lblNetPowerPosition"
+        android:text="@string/netPowerPositionHeader"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/lblBattery"
+
+
+            android:text="@string/battery"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtBatteryVoltage"
+
+
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtBatteryCurrent"
+
+
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:id="@+id/txtBatteryPower"
+
+
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left" />
+    </LinearLayout>
+
+
+</TableLayout>

@@ -1,0 +1,2 @@
+C:\Users\bharris\AndroidStudioProjects\Tablet\app\build\intermediates\classes\debug
+C:\Users\bharris\AndroidStudioProjects\Tablet\app\build\intermediates\pre-dexed\debug\android-support-v13-467f225771154e304de7a105732abbf2a8ab6b99.jar
