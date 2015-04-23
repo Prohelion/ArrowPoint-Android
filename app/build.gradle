@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.arrowpoint"
-        minSdkVersion 16
-        targetSdkVersion 16
+        minSdkVersion 19
+        targetSdkVersion 19
     }
 
     buildTypes {
