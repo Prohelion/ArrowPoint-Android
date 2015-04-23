@@ -63,7 +63,12 @@
 	<string name="twelveVolt">Twelve Volt System (v):</string>	
 	
 	<string name="zero">0</string>	    
-	<string name="lastLockedSOC">Last Locked SOC: N/A</string>	    
-    
+	<string name="lastLockedSOC">Last Locked SOC: N/A</string>
+
+    <string name="chk_Speed">Speed</string>
+    <string name="chk_BusPower">Bus Power</string>
+    <string name="chk_ArrayPower">Array Power</string>
+    <string name="chk_MotorPower">Motor Power</string>
+    <string name="chk_MotorTemp">Motor Temp</string>
 
 </resources>

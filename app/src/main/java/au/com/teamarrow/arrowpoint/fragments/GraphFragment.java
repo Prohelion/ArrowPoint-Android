@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,11 @@ public class GraphFragment extends Fragment {
     private LineGraphSeries<DataPoint> mSeries;
     private double graphLastXValue = 5d;
 
-
+    public static final int SPEED = 0;
+    public static final int BUS_POWER = 1;
+    public static final int ARRAY_POWER = 2;
+    public static final int MOTOR_POWER = 3;
+    public static final int MOTOR_TEMP = 4;
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -49,25 +54,43 @@ public class GraphFragment extends Fragment {
     public GraphFragment() {
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_graph,
                 container, false);
+
         GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
-        mSeries = new LineGraphSeries<DataPoint>();
-        graph.addSeries(mSeries);
+
+        // Speed
+        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
+
+        // Bus Power
+        graph.addSeries(new LineGraphSeries<DataPoint>());
+
+        // Array Power
+        graph.addSeries(new LineGraphSeries<DataPoint>());
+
+        // Motor Power
+        graph.addSeries(new LineGraphSeries<DataPoint>());
+
+        // Motor Temp
+        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
+
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(600);
         graph.getViewport().setScrollable(true);
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(20);
+
         graph.setTitle("Power(kw)");
         graph.getGridLabelRenderer().setVerticalAxisTitle("Power(kw)");
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
+        // Doing this to prompt it to render
+        mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.SPEED);
+        mSeries.appendData(new DataPoint(0, 0), true, 600);
 
         return rootView;
     }

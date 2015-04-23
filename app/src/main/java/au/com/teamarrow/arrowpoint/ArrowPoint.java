@@ -27,8 +27,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
@@ -176,9 +178,15 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
     	}
     	
     }
-    
-	
-	
+
+
+
+    public void onVelocityClicked(View view){
+        Toast.makeText(ArrowPoint.this, "Velocity Added", Toast.LENGTH_SHORT).show();
+    }
+
+
+
     private Runnable updateValues = new Runnable() {
 
         private double graphLastXValue = 5d;
@@ -297,9 +305,24 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
                 if (graph!=null) {
 
-                    mSeries = (LineGraphSeries)graph.getSeries().get(0);
+
+
                     graphLastXValue += 1d;
-                    mSeries.appendData(new DataPoint(graphLastXValue, myDatagramReceiver.getLastBusPower()) , true, 600);
+
+                    CheckBox velocity = (CheckBox)findViewById(R.id.chkSpeed);
+                    CheckBox busPower = (CheckBox)findViewById(R.id.chkBusPower);
+
+                    if (velocity.isChecked()) {
+                        mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.SPEED);
+                        mSeries.appendData(new DataPoint(graphLastXValue, myDatagramReceiver.getLastSpeed()), true, 600);
+                    }
+
+                    if (busPower.isChecked()) {
+                        mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.BUS_POWER);
+                        mSeries.appendData(new DataPoint(graphLastXValue, myDatagramReceiver.getLastBusPower()), true, 600);
+                    }
+
+
                 }
 
 

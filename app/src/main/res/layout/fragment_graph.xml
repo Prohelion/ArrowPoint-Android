@@ -15,6 +15,45 @@
         android:paddingRight="10dp"
         android:layout_gravity="bottom">
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/chkSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_Speed" />
+
+            <CheckBox
+                android:id="@+id/chkBusPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_BusPower"  />
+
+            <CheckBox
+                android:id="@+id/chkArrayPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_ArrayPower" />
+
+            <CheckBox
+                android:id="@+id/chkMotorPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_MotorPower" />
+
+            <CheckBox
+                android:id="@+id/chkMotorTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_MotorTemp" />
+
+        </LinearLayout>
+
+
+
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
