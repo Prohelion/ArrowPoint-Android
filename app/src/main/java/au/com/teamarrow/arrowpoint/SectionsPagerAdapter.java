@@ -11,6 +11,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import au.com.teamarrow.arrowpoint.fragments.DashboardFragment;
 import au.com.teamarrow.arrowpoint.fragments.SystemsDetailFragment;
 import au.com.teamarrow.arrowpoint.fragments.PowerDetailFragment;
+import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
 import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
 
 
@@ -20,47 +21,50 @@ import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-	private Context context;
-	
-	public SectionsPagerAdapter(FragmentManager fm, Context context) {
-		super(fm);
-		this.context = context;
-	}
+    private Context context;
 
-	@Override
-	public Fragment getItem(int position) {
-		// getItem is called to instantiate the fragment for the given page.
-		// Return a PlaceholderFragment (defined as a static inner class
-		// below).
-		
-		switch (position) {
-		
-		case 0: return new DashboardFragment();
-		case 1: return new PowerDetailFragment();
-		case 2: return new SystemsDetailFragment();
-		
-		}
-		
-		return PlaceholderFragment.newInstance(position + 1);
-	}
+    public SectionsPagerAdapter(FragmentManager fm, Context context) {
+        super(fm);
+        this.context = context;
+    }
 
-	@Override
-	public int getCount() {
-		// Show 2 total pages.
-		return 3;
-	}
+    @Override
+    public Fragment getItem(int position) {
+        // getItem is called to instantiate the fragment for the given page.
+        // Return a PlaceholderFragment (defined as a static inner class
+        // below).
 
-	@Override
-	public CharSequence getPageTitle(int position) {
-		Locale l = Locale.getDefault();
-		switch (position) {
-		case 0:			
-			return context.getResources().getString(R.string.title_section1).toUpperCase(l);
-		case 1:		
-			return context.getResources().getString(R.string.title_section2).toUpperCase(l);
-		case 2:		
-			return context.getResources().getString(R.string.title_section3).toUpperCase(l);			
-		}
-		return null;
-	}
+        switch (position) {
+
+            case 0: return new DashboardFragment();
+            case 1: return new PowerDetailFragment();
+            case 2: return new SystemsDetailFragment();
+            case 3: return new GraphFragment();
+
+        }
+
+        return PlaceholderFragment.newInstance(position + 1);
+    }
+
+    @Override
+    public int getCount() {
+        // Show 2 total pages.
+        return 4;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        Locale l = Locale.getDefault();
+        switch (position) {
+            case 0:
+                return context.getResources().getString(R.string.title_section1).toUpperCase(l);
+            case 1:
+                return context.getResources().getString(R.string.title_section2).toUpperCase(l);
+            case 2:
+                return context.getResources().getString(R.string.title_section3).toUpperCase(l);
+            case 3:
+                return context.getResources().getString(R.string.title_section4).toUpperCase(l);
+        }
+        return null;
+    }
 }

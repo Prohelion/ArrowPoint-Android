@@ -300,8 +300,6 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
                     mSeries = (LineGraphSeries)graph.getSeries().get(0);
                     graphLastXValue += 1d;
                     mSeries.appendData(new DataPoint(graphLastXValue, myDatagramReceiver.getLastBusPower()) , true, 600);
-                    //mHandler.postDelayed(this, 200);
-
                 }
 
 
