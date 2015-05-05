@@ -22,10 +22,15 @@ import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
+    private Fragment currentFragment;
 
     public SectionsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
+    }
+
+    public Fragment getCurrentFragment() {
+        return currentFragment;
     }
 
     @Override
@@ -36,10 +41,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
 
-            case 0: return new DashboardFragment();
-            case 1: return new PowerDetailFragment();
-            case 2: return new SystemsDetailFragment();
-            case 3: return new GraphFragment();
+            case 0: currentFragment = new DashboardFragment(); return currentFragment;
+            case 1: currentFragment = new PowerDetailFragment(); return currentFragment;
+            case 2: currentFragment = new SystemsDetailFragment(); return currentFragment;
+            case 3: currentFragment = new GraphFragment(); return currentFragment;
 
         }
 

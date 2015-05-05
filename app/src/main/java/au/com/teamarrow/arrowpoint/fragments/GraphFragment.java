@@ -4,9 +4,14 @@ import com.example.arrowpoint.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import au.com.teamarrow.canbus.comms.DatagramReceiver;
 
+import au.com.teamarrow.arrowpoint.ArrowPoint;
+import au.com.teamarrow.canbus.comms.DatagramReceiver;
+import au.com.teamarrow.canbus.model.CarData;
+
+import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -15,15 +20,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class GraphFragment extends Fragment {
+public class GraphFragment extends UpdateableFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -31,14 +39,16 @@ public class GraphFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private final Handler mHandler = new Handler();
     private Runnable mTimer;
-    private LineGraphSeries<DataPoint> mSeries;
-    private double graphLastXValue = 5d;
 
-    public static final int SPEED = 0;
-    public static final int BUS_POWER = 1;
-    public static final int ARRAY_POWER = 2;
-    public static final int MOTOR_POWER = 3;
-    public static final int MOTOR_TEMP = 4;
+    LineGraphSeries<DataPoint> seriesSpeed;
+    LineGraphSeries<DataPoint> seriesBusPower;
+    LineGraphSeries<DataPoint> seriesArrayPower;
+    LineGraphSeries<DataPoint> seriesMotorPower;
+    LineGraphSeries<DataPoint> seriesMotorTemp;
+
+    private double graphLastXValue;
+
+    View rootView;
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -55,57 +65,101 @@ public class GraphFragment extends Fragment {
     }
 
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+
+    @Override
+    public void Update(View fragmentView, CarData carData) {
+
+        if (fragmentView != null){
+
+            graphLastXValue += 1d;
+
+            CheckBox velocity = (CheckBox) fragmentView.findViewById(R.id.chkSpeed);
+            CheckBox busPower = (CheckBox) fragmentView.findViewById(R.id.chkBusPower);
+            CheckBox arrayPower = (CheckBox) fragmentView.findViewById(R.id.chkArrayPower);
+            CheckBox motorPower = (CheckBox) fragmentView.findViewById(R.id.chkMotorPower);
+            CheckBox motorTemp = (CheckBox) fragmentView.findViewById(R.id.chkMotorTemp);
+
+            try {
+                if (velocity.isChecked()) {
+                    seriesSpeed.appendData(new DataPoint(graphLastXValue, carData.getLastSpeed()), true, 49);
+                }
+
+                if (busPower.isChecked()) {
+                    seriesBusPower.appendData(new DataPoint(graphLastXValue, carData.getLastBusPower()), true, 49);
+                }
+
+                if (arrayPower.isChecked()) {
+                    seriesArrayPower.appendData(new DataPoint(graphLastXValue, carData.getLastArrayTotalPower()), true, 50);
+                }
+
+                if (motorPower.isChecked()) {
+                    seriesMotorPower.appendData(new DataPoint(graphLastXValue, carData.getLastMotorPowerSetpoint()), true, 50);
+                }
+
+                if (motorTemp.isChecked()) {
+                    seriesMotorTemp.appendData(new DataPoint(graphLastXValue, carData.getLastMotorTemp()), true, 50);
+                }
+            } catch (Exception ex) {
+            }
+        }
+
+    };
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_graph,
+        rootView = inflater.inflate(R.layout.fragment_graph,
                 container, false);
 
         GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
 
         // Speed
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
+        seriesSpeed = new LineGraphSeries<DataPoint>();
+        graph.getSecondScale().addSeries(seriesSpeed);
+        seriesSpeed.setColor(Color.RED);
 
         // Bus Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
+        seriesBusPower = new LineGraphSeries<DataPoint>();
+        graph.addSeries(seriesBusPower);
+        seriesBusPower.setColor(Color.BLUE);
 
         // Array Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
+        seriesArrayPower = new LineGraphSeries<DataPoint>();
+        graph.addSeries(seriesArrayPower);
+        seriesArrayPower.setColor(Color.BLACK);
 
         // Motor Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
+        seriesMotorPower = new LineGraphSeries<DataPoint>();
+        graph.addSeries(seriesMotorPower);
+        seriesMotorPower.setColor(Color.YELLOW);
 
         // Motor Temp
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
+        seriesMotorTemp = new LineGraphSeries<DataPoint>();
+        graph.getSecondScale().addSeries(seriesMotorTemp);
+        seriesMotorTemp.setColor(Color.GREEN);
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(600);
+        graph.getViewport().setMaxX(50);
+        graph.getSecondScale().setMinY(0);
+        graph.getSecondScale().setMaxY(120);
         graph.getViewport().setScrollable(true);
 
-        graph.setTitle("Power(kw)");
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Power(kw)");
+        graph.setTitle("Graphed Information");
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
+        graphLastXValue = 1d;
+
         // Doing this to prompt it to render
-        mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.SPEED);
-        mSeries.appendData(new DataPoint(0, 0), true, 600);
+        seriesBusPower.appendData(new DataPoint(0, 0), true, 50);
 
         return rootView;
-    }
-
-    public void onResume() {
-        super.onResume();
-        /* mTimer = new Runnable() {
-            @Override
-            public void run() {
-               // graphLastXValue += 1d;
-               // mSeries.appendData(new DataPoint(graphLastXValue, 10+(5*Math.sin(graphLastXValue))), true, 40);
-               // mHandler.postDelayed(this, 200);
-            }
-        };
-        mHandler.postDelayed(mTimer, 1000); */
     }
 
 
