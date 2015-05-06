@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends UpdateableFragment {
+public class PlaceholderFragment extends Fragment {
 	/**
 	 * The fragment argument representing the section number for this
 	 * fragment.
