@@ -18,16 +18,10 @@ android {
     }
 }
 
-repositories {
-    maven { url "https://jitpack.io" }
-}
-
-
 dependencies {
     //compile 'com.android.support:support-v4:22.0.0'
     compile files('libs/android-support-v13.jar')
     compile 'com.jjoe64:graphview:4.0.0'
-    compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
 }
 
 configurations {

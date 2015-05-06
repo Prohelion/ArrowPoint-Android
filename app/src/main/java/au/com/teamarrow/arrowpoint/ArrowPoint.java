@@ -18,12 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.concurrent.locks.ReentrantLock;
 
 
-import java.util.concurrent.locks.Lock;
-
-import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
+import au.com.teamarrow.arrowpoint.fragments.UpdateableFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
 import au.com.teamarrow.canbus.model.CarData;
 
@@ -36,9 +33,6 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	 * becomes too memory intensive, it may be best to switch to a
 	 * {@link android.support.v13.app.FragmentStatePagerAdapter}.
 	 */
-
-	private static int REFRESH_MILLI = 100;
-
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	boolean simulateMode = false;
 	public DatagramReceiver myDatagramReceiver = null;
@@ -119,22 +113,19 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 	private final Runnable sendData = new Runnable(){
 		public void run(){
-
-			ReentrantLock lock = new ReentrantLock();
-
 			try {
-				lock.lock();
-				UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
+				//prepare and send the data here..
+
+				UpdateableFragment activeFragment = (UpdateableFragment)mSectionsPagerAdapter.getCurrentFragment();
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
-				lock.unlock();
+				handler.postDelayed(this, 1000);
 			}
 			catch (Exception e) {
 				e.printStackTrace();
-			} finally {
-				handler.postDelayed(this, REFRESH_MILLI);
 			}
 		}
 	};
+
 
 
 	@Override

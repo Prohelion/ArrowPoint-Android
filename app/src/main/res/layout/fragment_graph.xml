@@ -56,7 +56,7 @@
                 android:layout_weight="1"
                 android:layout_marginBottom="15dp">
 
-                <!-- <com.jjoe64.graphview.GraphView
+                <com.jjoe64.graphview.GraphView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/graph"
@@ -65,16 +65,7 @@
                         android:layout_alignParentBottom="true"
                     android:layout_gravity="center_horizontal|bottom"
                     android:padding="15dp"
-                    android:paddingLeft="30dp" /> -->
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:padding="15dp"
-                    android:paddingLeft="30dp"/>
-
+                    android:paddingLeft="30dp" />
             </FrameLayout>
 
         </LinearLayout>

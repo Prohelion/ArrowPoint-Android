@@ -8,34 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import au.com.teamarrow.arrowpoint.utils.TextHelper;
-import au.com.teamarrow.canbus.model.CarData;
-
-public class DashboardFragment extends UpdateablePlaceholderFragment {
+public class DashboardFragment extends Fragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
-
-
-	public DashboardFragment() {
-	}
-
-
-	@Override
-	public void Update(View fragmentView, CarData carData) {
-
-		// **************** Dashboard Detail ***************
-
-		TextHelper textHelper = new TextHelper(fragmentView);
-
-		textHelper.setText(R.id.Speed, carData.getLastSpeed());
-		textHelper.setText(R.id.txtMotorTemp, carData.getLastMotorTemp(),"#0.0' c'");
-		textHelper.setText(R.id.txtMinCellV, (double)carData.getLastMinimumCellV()/1000,"#0.0' v'");
-		textHelper.setText(R.id.txtLastLockedSOC, carData.getLastLockedSOC());
-		textHelper.setText(R.id.Power, carData.getLastBusPower());
-		textHelper.setProgressBar(R.id.Battery, R.id.BatteryText, (int) carData.getLastSOC());
-		textHelper.setProgressBar(R.id.pbSetpoint, R.id.pbSetpointText, carData.getLastMotorPowerSetpoint());
-
-	}
 
 	/**
 	 * Returns a new instance of this fragment for the given section number.
@@ -48,6 +23,8 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 		return fragment;
 	}
 
+	public DashboardFragment() {
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

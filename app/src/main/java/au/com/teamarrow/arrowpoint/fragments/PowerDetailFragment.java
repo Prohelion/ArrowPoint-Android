@@ -13,10 +13,9 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
-import au.com.teamarrow.arrowpoint.utils.TextHelper;
 import au.com.teamarrow.canbus.model.CarData;
 
-public class PowerDetailFragment extends UpdateablePlaceholderFragment {
+public class PowerDetailFragment extends UpdateableFragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -37,28 +36,52 @@ public class PowerDetailFragment extends UpdateablePlaceholderFragment {
 
 	@Override
 	public void Update(View fragmentView, CarData carData) {
-
 		// **************** Power Detail ***************
 
-		TextHelper textHelper = new TextHelper(fragmentView);
+		NumberFormat formatterWithDecimal = new DecimalFormat("#0.00");
 
 		// Solar Detail Data
-		textHelper.setText(R.id.txtArray1Voltage,carData.getLastArray1Volts());
-		textHelper.setText(R.id.txtArray2Voltage,carData.getLastArray2Volts());
-		textHelper.setText(R.id.txtArray3Voltage,carData.getLastArray3Volts());
-		textHelper.setText(R.id.txtArray1Current,carData.getLastArray1Amps());
-		textHelper.setText(R.id.txtArray2Current,carData.getLastArray2Amps());
-		textHelper.setText(R.id.txtArray3Current,carData.getLastArray3Amps());
-		textHelper.setText(R.id.txtArray1Power,carData.getLastArray1Power());
-		textHelper.setText(R.id.txtArray2Power,carData.getLastArray2Power());
-		textHelper.setText(R.id.txtArray3Power,carData.getLastArray3Power());
-		textHelper.setText(R.id.txtTotalArrayPower,carData.getLastArrayTotalPower());
-		textHelper.setText(R.id.txtControllerVoltage,carData.getLastBusVolts());
-		textHelper.setText(R.id.txtControllerCurrent,carData.getLastBusAmps());
-		textHelper.setText(R.id.txtControllerPower,carData.getLastBusPower()*-1000);
-		textHelper.setText(R.id.txtBatteryVoltage,carData.getLastBatteryVolts());
-		textHelper.setText(R.id.txtBatteryCurrent,carData.getLastBatteryAmps());
-		textHelper.setText(R.id.txtBatteryPower,carData.getLastArrayTotalPower()-(carData.getLastBusPower()*1000));
+		TextView array1Volts = (TextView)fragmentView.findViewById(R.id.txtArray1Voltage);
+		TextView array2Volts = (TextView)fragmentView.findViewById(R.id.txtArray2Voltage);
+		TextView array3Volts = (TextView)fragmentView.findViewById(R.id.txtArray3Voltage);
+		TextView array1Amps = (TextView)fragmentView.findViewById(R.id.txtArray1Current);
+		TextView array2Amps = (TextView)fragmentView.findViewById(R.id.txtArray2Current);
+		TextView array3Amps = (TextView)fragmentView.findViewById(R.id.txtArray3Current);
+		TextView array1Power = (TextView)fragmentView.findViewById(R.id.txtArray1Power);
+		TextView array2Power = (TextView)fragmentView.findViewById(R.id.txtArray2Power);
+		TextView array3Power = (TextView)fragmentView.findViewById(R.id.txtArray3Power);
+		TextView totalArrayPower = (TextView)fragmentView.findViewById(R.id.txtTotalArrayPower);
+		TextView controllerVolts = (TextView)fragmentView.findViewById(R.id.txtControllerVoltage);
+		TextView controllerAmps = (TextView)fragmentView.findViewById(R.id.txtControllerCurrent);
+		TextView controllerPower = (TextView)fragmentView.findViewById(R.id.txtControllerPower);
+		TextView batteryVolts = (TextView)fragmentView.findViewById(R.id.txtBatteryVoltage);
+		TextView batteryAmps = (TextView)fragmentView.findViewById(R.id.txtBatteryCurrent);
+		TextView batteryPower = (TextView)fragmentView.findViewById(R.id.txtBatteryPower);
+
+		if ( array1Volts != null ) {
+			// Setup solar detail
+			array1Volts.setText(formatterWithDecimal.format(carData.getLastArray1Volts()));
+			array2Volts.setText(formatterWithDecimal.format(carData.getLastArray2Volts()));
+			array3Volts.setText(formatterWithDecimal.format(carData.getLastArray3Volts()));
+			array1Amps.setText(formatterWithDecimal.format(carData.getLastArray1Amps()));
+			array2Amps.setText(formatterWithDecimal.format(carData.getLastArray2Amps()));
+			array3Amps.setText(formatterWithDecimal.format(carData.getLastArray3Amps()));
+			array1Power.setText(formatterWithDecimal.format(carData.getLastArray1Power()));
+			array2Power.setText(formatterWithDecimal.format(carData.getLastArray2Power()));
+			array3Power.setText(formatterWithDecimal.format(carData.getLastArray3Power()));
+			totalArrayPower.setText(formatterWithDecimal.format(carData.getLastArrayTotalPower()));
+
+			// Setup controller detail
+			controllerVolts.setText(formatterWithDecimal.format(carData.getLastBusVolts()));
+			controllerAmps.setText(formatterWithDecimal.format(carData.getLastBusAmps()));
+			controllerPower.setText(formatterWithDecimal.format(carData.getLastBusPower()*-1000));
+
+			// Setup battery detail
+			batteryVolts.setText(formatterWithDecimal.format(carData.getLastBatteryVolts()));
+			batteryAmps.setText(formatterWithDecimal.format(carData.getLastBatteryAmps()));
+			batteryPower.setText(formatterWithDecimal.format(carData.getLastArrayTotalPower()-(carData.getLastBusPower()*1000)));
+
+		}
 	}
 
 	@Override

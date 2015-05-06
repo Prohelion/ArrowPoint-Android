@@ -8,7 +8,7 @@ import au.com.teamarrow.canbus.model.CarData;
 /**
  * Created by ctuesley on 5/05/2015.
  */
-public class UpdateablePlaceholderFragment extends PlaceholderFragment {
+public class UpdateableFragment extends Fragment {
 
     public void Update(View view, CarData carData) {
         return;
