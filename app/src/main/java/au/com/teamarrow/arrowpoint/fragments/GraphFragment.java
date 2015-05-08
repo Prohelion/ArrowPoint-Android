@@ -29,9 +29,6 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private final Handler mHandler = new Handler();
-    private Runnable mTimer;
-    private LineGraphSeries<DataPoint> mSeries;
     private double graphLastXValue = 5d;
 
     private Spinner primary_Spinner;
@@ -107,12 +104,10 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(120);
 
-        //graph.getViewport().setScrollable(true);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getSecondScale().setMaxY(100);
         graph.getSecondScale().setMinY(0);
-
 
         graph.getGridLabelRenderer().setVerticalAxisTitle("");
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
@@ -120,12 +115,6 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
 
 
         graph.getGridLabelRenderer().setVerticalLabelsSecondScaleColor(Color.RED);
-
-        // Doing this to prompt it to render
-        //mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.GRAPH_1);
-        //mSeries.appendData(new DataPoint(0, 0), false, 60);
-
-
 
         // Modify Primary Spinner to a dialog box display
         setSpinnerDialogBox(rootView);
@@ -140,21 +129,6 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
     }
 
 
-    // public void addItemsOnSpinner(){
-    //    Spinner primary_Spinner = (Spinner) findViewById(R.id.primarySpinner);
-    //    List<String> list = new ArrayList<String>();
-    //    list.add("Speed");
-    //    list.add("Bus Power");
-    //    list.add("Array Power");
-///
-    //    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-    //             android.R.layout.simple_spinner_item,list);
-    //     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    //      primary_Spinner.setAdapter(dataAdapter);
-    // }
-
-
-
     public void addListenerOnSpinnerItemSelection(View view){
         //Primary data display option menu
 
@@ -165,24 +139,6 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
         Spinner secondary_Spinner = (Spinner) view.findViewById(R.id.secondarySpinner);
         secondary_Spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
-
-/*
-    public void addListenerOnButton(View view) {
-        Spinner primary_Spinner = (Spinner) view.findViewById(R.id.primarySpinner);
-        Button btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick (View view){
-                Spinner primary_Spinner = (Spinner) view.findViewById(R.id.primarySpinner);
-                Toast.makeText(activity,
-                        "OnClickListener : " +
-                                "\nPrimary Spinner : " + String.valueOf(primary_Spinner.getSelectedItem()),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-*/
 
     public void setSpinnerDialogBox(View view){
         //Set primary dialog box
@@ -198,15 +154,6 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
 
     public void onResume() {
         super.onResume();
-        /* mTimer = new Runnable() {
-            @Override
-            public void run() {
-               // graphLastXValue += 1d;
-               // mSeries.appendData(new DataPoint(graphLastXValue, 10+(5*Math.sin(graphLastXValue))), true, 40);
-               // mHandler.postDelayed(this, 200);
-            }
-        };
-        mHandler.postDelayed(mTimer, 1000); */
     }
 
 
