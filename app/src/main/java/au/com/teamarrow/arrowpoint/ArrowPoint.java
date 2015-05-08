@@ -18,9 +18,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.concurrent.locks.ReentrantLock;
 
 
-import au.com.teamarrow.arrowpoint.fragments.UpdateableFragment;
+import java.util.concurrent.locks.Lock;
+
+import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
 import au.com.teamarrow.canbus.model.CarData;
 
@@ -33,14 +36,17 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	 * becomes too memory intensive, it may be best to switch to a
 	 * {@link android.support.v13.app.FragmentStatePagerAdapter}.
 	 */
+
+	private static int REFRESH_MILLI = 100;
+
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	boolean simulateMode = false;
 	public DatagramReceiver myDatagramReceiver = null;
 
 	Handler handler;
 
-    CarData carData;
-	
+	CarData carData;
+
 	int defaultTextColour = 0;
 	int currentTab = 0;
 
@@ -53,10 +59,10 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		handler = new Handler();
-        carData = new CarData();
-		
+		carData = new CarData();
+
 		setContentView(R.layout.activity_arrow_point);
 
 		// Set up the action bar.
@@ -96,12 +102,12 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		super.onCreate(savedInstanceState);
 		handler.post(sendData);
 
-    }
+	}
 
 
-    public CarData getCarData() {
-        return carData;
-    }
+	public CarData getCarData() {
+		return carData;
+	}
 
 
 	@Override
@@ -113,26 +119,29 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 	private final Runnable sendData = new Runnable(){
 		public void run(){
-			try {
-				//prepare and send the data here..
 
-				UpdateableFragment activeFragment = (UpdateableFragment)mSectionsPagerAdapter.getCurrentFragment();
+			ReentrantLock lock = new ReentrantLock();
+
+			try {
+				lock.lock();
+				UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
-				handler.postDelayed(this, 1000);
+				lock.unlock();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				handler.postDelayed(this, REFRESH_MILLI);
 			}
 		}
 	};
-
 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.arrow_point, menu);
-        menu.getItem(1);
+		menu.getItem(1);
 
 
 		return true;
@@ -146,15 +155,15 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		int id = item.getItemId();
 		if (id == R.id.debug_mode) {
 			simulateMode = !simulateMode;
-            myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
-            myDatagramReceiver.start();
+			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
+			myDatagramReceiver.start();
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
+							  FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		currentTab = tab.getPosition();
@@ -165,51 +174,51 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
+								FragmentTransaction fragmentTransaction) {
 	}
 
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
+								FragmentTransaction fragmentTransaction) {
 	}
-	
-	
-    protected void onResume() {
-    	super.onResume();
-        myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
-        myDatagramReceiver.start();
-       
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
-
-    protected void onPause() {
-    	super.onPause();
-        myDatagramReceiver.kill();
-        
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }	
-	
-	
-    
-    private void  setColourStatus(TextView textView, boolean status) {
-    	
-    	// Run this once and once only to get the origional colour
-    	if (defaultTextColour == 0) defaultTextColour = textView.getCurrentTextColor();
-    	
-    	if ( status ) {
-    		textView.setTypeface(Typeface.DEFAULT_BOLD);
-    		textView.setTextColor(Color.RED);
-    	} else {
-    		textView.setTypeface(Typeface.DEFAULT);
-    		textView.setTextColor(defaultTextColour);
-    	}
-    	
-    }
 
 
-    public void onVelocityClicked(View view){
-        Toast.makeText(ArrowPoint.this, "Velocity Added", Toast.LENGTH_SHORT).show();
-    }
+	protected void onResume() {
+		super.onResume();
+		myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
+		myDatagramReceiver.start();
+
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
+	protected void onPause() {
+		super.onPause();
+		myDatagramReceiver.kill();
+
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
+
+
+	private void  setColourStatus(TextView textView, boolean status) {
+
+		// Run this once and once only to get the origional colour
+		if (defaultTextColour == 0) defaultTextColour = textView.getCurrentTextColor();
+
+		if ( status ) {
+			textView.setTypeface(Typeface.DEFAULT_BOLD);
+			textView.setTextColor(Color.RED);
+		} else {
+			textView.setTypeface(Typeface.DEFAULT);
+			textView.setTextColor(defaultTextColour);
+		}
+
+	}
+
+
+	public void onVelocityClicked(View view){
+		Toast.makeText(ArrowPoint.this, "Velocity Added", Toast.LENGTH_SHORT).show();
+	}
 
 
 

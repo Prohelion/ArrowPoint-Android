@@ -2,6 +2,9 @@ package au.com.teamarrow.arrowpoint.utils;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,72 +16,67 @@ import java.text.NumberFormat;
  */
 public class TextHelper {
 
-    private Fragment myFragment = null;
-    private Activity myActivity = null;
+    private View myView = null;
+    private int defaultTextColour = 0;
 
-    public TextHelper(Activity activity) {
-        myActivity = activity;
+    public TextHelper(View myView) {
+        this.myView = myView;
     }
 
-    public TextHelper(Fragment fragment) {
-        myFragment = fragment;
+    public void setText(int view, String text) {
+
+        TextView textView = (TextView) myView.findViewById(view);
+
+        if (textView != null) textView.setText(text);
     }
 
-    private void setText(int view, String text) {
+    public void setText(int view, Integer number) {
 
-        TextView textView;
+        TextView textView = (TextView) myView.findViewById(view);
 
-        if ( myActivity != null) textView = (TextView) myActivity.findViewById(view);
-        else textView = (TextView) myFragment.getView().findViewById(view);
-
-        textView.setText(text);
+        if (textView != null) textView.setText(number.toString());
     }
 
-    private void setText(int view, Integer number) {
-
-        TextView textView;
-
-        if ( myActivity != null) textView = (TextView) myActivity.findViewById(view);
-        else textView = (TextView) myFragment.getView().findViewById(view);
-
-        textView.setText(number.toString());
-    }
-
-    private void setText(int view, Double number, String format) {
+    public void setText(int view, Double number, String format) {
         NumberFormat formatterWithDecimal = new DecimalFormat(format);
-        TextView textView;
+        TextView textView = (TextView) myView.findViewById(view);
 
-        if ( myActivity != null) textView = (TextView) myActivity.findViewById(view);
-        else textView = (TextView) myFragment.getView().findViewById(view);
-
-        textView.setText(formatterWithDecimal.format(number));
+        if (textView != null) textView.setText(formatterWithDecimal.format(number));
     }
 
-    private void setText(int view, Double number) {
+    public void setText(int view, Double number) {
         setText(view, number, "#0.00");
     }
 
-    private void setProgressBar(int viewBar, int viewTxt, Integer value ) {
+    public void setProgressBar(int viewBar, int viewTxt, Integer value ) {
+        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
 
-        ProgressBar progressBar;
-        TextView progressText;
-
-        if ( myActivity != null) progressBar = (ProgressBar) myActivity.findViewById(viewBar);
-        else progressBar = (ProgressBar) myFragment.getView().findViewById(viewBar);
-
-        progressBar.setProgress(value);
-        setText(viewTxt, value + "%");
+        if  (progressBar != null) { progressBar.setProgress(value); setText(viewTxt, value + "%"); }
     }
 
-    private void setProgressBar(int viewBar, Integer value ) {
-        ProgressBar progressBar;
+    public void setProgressBar(int viewBar, Integer value ) {
+        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
 
-        if ( myActivity != null) progressBar = (ProgressBar) myActivity.findViewById(viewBar);
-        else progressBar = (ProgressBar) myFragment.getView().findViewById(viewBar);
-
-        progressBar.setProgress(value);
+        if  (progressBar != null) { progressBar.setProgress(value); }
     }
 
+    public void setColourStatus(int view, boolean status) {
+        TextView textView = (TextView) myView.findViewById(view);
+
+        if (textView == null) return;
+
+        // Run this once and once only to get the origional colour
+        //if (defaultTextColour == 0) defaultTextColour = textView.getCurrentTextColor();
+
+        if ( status ) {
+            textView.setTypeface(Typeface.DEFAULT_BOLD);
+            textView.setTextColor(Color.RED);
+        } else {
+            textView.setTypeface(Typeface.DEFAULT);
+            textView.setTextColor(Color.BLACK);
+        }
+
+    }
 
 
 }
