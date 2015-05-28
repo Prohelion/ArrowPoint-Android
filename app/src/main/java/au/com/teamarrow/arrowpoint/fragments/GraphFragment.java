@@ -1,5 +1,11 @@
 package au.com.teamarrow.arrowpoint.fragments;
 
+import com.androidplot.xy.BoundaryMode;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.PointLabelFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
+import com.androidplot.xy.XYSeries;
 import com.example.arrowpoint.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -16,6 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import java.util.Arrays;
+
 import au.com.teamarrow.canbus.model.CarData;
 
 
@@ -29,15 +38,15 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private double graphLastXValue = 5d;
 
-    private Spinner primary_Spinner;
-    private Spinner secondary_Spinner;
+    private static Spinner primary_Spinner;
+    private static Spinner secondary_Spinner;
 
-    public static final int GRAPH_1 = 0;
-    public static final int GRAPH_2 = 1;
+    private static GraphHandler graph_handler_1;
+    private static GraphHandler graph_handler_2;
 
-    public GraphHandler graph_handler_1 = new GraphHandler();
+    private static XYPlot graph1;
+    private static XYPlot graph2;
 
 
     /**
@@ -54,29 +63,12 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
     public GraphFragment() {
     }
 
-
-
     @Override
     public void Update(View fragmentView, CarData carData) {
 
-        GraphView graph = (GraphView)fragmentView.findViewById(R.id.graph);
-
-        if (graph!=null) {
-
-            //All checks on graph happen her
-            primary_Spinner = (Spinner) fragmentView.findViewById(R.id.primarySpinner);
-            secondary_Spinner = (Spinner) fragmentView.findViewById(R.id.secondarySpinner);
-
-            graph_handler_1.addData(graph, carData, graphLastXValue, primary_Spinner.getSelectedItemPosition(),true);
-            graph_handler_1.addData(graph, carData, graphLastXValue, secondary_Spinner.getSelectedItemPosition(), false);
-
-            graphLastXValue += 1d;
-            if (graphLastXValue == 120d) {
-                graphLastXValue = 0;
-                graph_handler_1.resetAllGraph(graph);
-            }
-
-        }
+        //Update Graphs
+        graph_handler_1.addData(graph1, carData, primary_Spinner.getSelectedItemPosition());
+        graph_handler_2.addData(graph2, carData, secondary_Spinner.getSelectedItemPosition());
 
     }
 
@@ -87,76 +79,26 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
         View rootView = inflater.inflate(R.layout.fragment_graph,
                 container, false);
 
+            // New instances of GraphHandler for each graph
+            graph_handler_1 = new GraphHandler();
+            graph_handler_2 = new GraphHandler();
 
+            //Setup Spinners
+            secondary_Spinner = (Spinner) rootView.findViewById(R.id.secondarySpinner);
+            primary_Spinner = (Spinner) rootView.findViewById(R.id.primarySpinner);
 
-        GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
+            //Setup Graphs
+            graph1 = (XYPlot) rootView.findViewById(R.id.graph1);
+            graph2 = (XYPlot) rootView.findViewById(R.id.graph2);
+            graph_handler_1.setupGraph(graph1, "Primary Graph");
+            graph_handler_2.setupGraph(graph2, "Secondary Graph");
 
-        // Primary Scale
-        graph.addSeries(new LineGraphSeries<DataPoint>());
-
-        // Secondary Scale
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
-
-        // Secondary Scale
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
-
-
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(120);
-
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getSecondScale().setMaxY(100);
-        graph.getSecondScale().setMinY(0);
-
-        graph.getGridLabelRenderer().setVerticalAxisTitle("");
-        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("1 Minute Scale");
-
-
-        graph.getGridLabelRenderer().setVerticalLabelsSecondScaleColor(Color.RED);
-
-        // Modify Primary Spinner to a dialog box display
-        setSpinnerDialogBox(rootView);
-
-        //Add listeners to each spinner
-        addListenerOnSpinnerItemSelection(rootView);
+            super.onCreate(savedInstanceState);
 
         return rootView;
-
-
-
     }
-
-
-    public void addListenerOnSpinnerItemSelection(View view){
-        //Primary data display option menu
-
-        Spinner primary_Spinner = (Spinner) view.findViewById(R.id.primarySpinner);
-        primary_Spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-
-        //Secondary data display option menu
-        Spinner secondary_Spinner = (Spinner) view.findViewById(R.id.secondarySpinner);
-        secondary_Spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-    }
-
-    public void setSpinnerDialogBox(View view){
-        //Set primary dialog box
-
-
-        //Set secondary dialog box
-        Spinner secondary_Spinner = (Spinner) view.findViewById(R.id.secondarySpinner);
-        ArrayAdapter<String> secondary_dataAdapter = (ArrayAdapter<String>) secondary_Spinner.getAdapter();
-        secondary_dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        secondary_Spinner.setAdapter(secondary_dataAdapter);
-    }
-
-
-    public void onResume() {
-        super.onResume();
-    }
-
 
 }
+
 
 

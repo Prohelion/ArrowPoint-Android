@@ -6,33 +6,73 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
     <TableLayout
-        android:layout_weight="3"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="0">
+
+        <TableRow
+            android:layout_weight="1"
+            android:id="@+id/tableRow8"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <com.androidplot.xy.XYPlot
+                android:id="@+id/graph1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+                androidPlot.titleWidget.labelPaint.textSize="@dimen/title_font_size"
+                androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
+                androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
+                androidPlot.graphWidget.marginTop="10dp"
+                androidPlot.graphWidget.marginLeft="10dp"
+                androidPlot.graphWidget.marginBottom="0dp"
+                androidPlot.graphWidget.marginRight="25dp"
+                androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="1"
+            android:id="@+id/tableRow89"
+            android:orientation="vertical"
+            >
+
+            <com.androidplot.xy.XYPlot
+                android:id="@+id/graph2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+                androidPlot.titleWidget.labelPaint.textSize="@dimen/title_font_size"
+                androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
+                androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
+                androidPlot.graphWidget.marginTop="10dp"
+                androidPlot.graphWidget.marginLeft="10dp"
+                androidPlot.graphWidget.marginBottom="0dp"
+                androidPlot.graphWidget.marginRight="25dp"
+                androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_weight="5"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:stretchColumns="*">
 
-        <TableRow
-            android:layout_weight="0.1"
-            android:id="@+id/tableRow1"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView android:text="Vehicle Componentry"
-                android:layout_height="fill_parent"
-                android:layout_width="fill_parent"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/heading"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:clickable="false"
-                android:layout_span="2" />
-        </TableRow>
-
 
         <TableRow
-            android:layout_weight="0.02"
+            android:layout_weight="1"
             android:id="@+id/tableRow2"
             android:orientation="vertical">
 
@@ -56,9 +96,10 @@
         <TableRow
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
-            android:layout_weight="0.05"
+            android:layout_weight="1"
             android:id="@+id/tableRow4"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
             <TableRow
                 android:layout_height="fill_parent"
@@ -73,7 +114,11 @@
                     style = "@style/Widget.AppCompat.Base.Spinner.spinner_style"
                     android:spinnerMode="dialog"
                     android:entries="@array/Prime_Options"
-                    android:prompt="@string/Spinner_Prime_Prompt"/>
+                    android:prompt="@string/Spinner_Prime_Prompt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
             </TableRow>
             <TableRow
                 android:layout_height="fill_parent"
@@ -88,48 +133,18 @@
 
                     android:entries="@array/Sec_Options"
                     android:prompt="@string/Spinner_Sec_Prompt"
-                    android:spinnerMode="dialog"/>
+                    android:spinnerMode="dialog"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
 
             </TableRow>
 
         </TableRow>
 
 
-        <TableRow
-            android:layout_height="fill_parent"
-            android:layout_width="fill_parent"
-            android:layout_weight="0.3"
-            android:id="@+id/tableRow7"
-            android:orientation="vertical">
-        </TableRow>
-
-
-
     </TableLayout>
-
-
-    <TableLayout
-        android:layout_weight="2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:stretchColumns="0">
-
-        <TableRow
-            android:layout_weight="1"
-            android:id="@+id/tableRow8"
-            android:orientation="vertical"
-            >
-
-            <com.jjoe64.graphview.GraphView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/graph"
-                android:paddingRight="30dp"
-                />
-        </TableRow>
-
-    </TableLayout>
-
 
 
 </LinearLayout>
