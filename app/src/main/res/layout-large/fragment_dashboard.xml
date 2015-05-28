@@ -161,7 +161,7 @@
                     <FrameLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:id="@+id/currentCruiseFrame"
+                        android:id="@+id/currentSetPointFrame"
                         android:layout_weight="1"
                         android:background="@drawable/frame_bg"
                         android:layout_margin="@dimen/ap_frame_margin">
@@ -170,7 +170,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Current Set Point"
-                            android:id="@+id/currentCruiseLabel"
+                            android:id="@+id/currentSetPointLabel"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@color/ap_text"
                             android:textSize="@dimen/ap_frame_header_text" />
@@ -180,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="0"
-                            android:id="@+id/currentCruiseValue"
+                            android:id="@+id/currentSetPointValue"
                             android:textColor="@color/ap_text"
                             android:layout_gravity="center"
                             android:textSize="@dimen/ap_value_text" />

@@ -35,7 +35,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         TextView powerTxt = (TextView) view.findViewById(R.id.netPowerPositionValue);
         ProgressBar batteryBar = (ProgressBar) view.findViewById(R.id.batteryPercentageBar);
         TextView batteryTxt = (TextView) view.findViewById(R.id.batteryValue);
-        TextView setPointBarTxt = (TextView) view.findViewById(R.id.currentCruiseValue);
+        TextView currentSetPointTxt = (TextView) view.findViewById(R.id.currentSetPointValue);
         TextView currentDriveModeTxt = (TextView) view.findViewById(R.id.currentDriveModeValue);
         TextView powerDrawTxt = (TextView) view.findViewById(R.id.powerDrawValue);
         //Button speedTargetBtn =(Button)findViewById(R.id.btnTargetSpeed);
@@ -59,13 +59,13 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         if (speedTxt != null) {
 
             // Quick Stats
+            currentSetPointTxt.setText(Integer.toString(carData.getLastMotorPowerSetpoint()));
             speedTxt.setText(Integer.toString(carData.getLastSpeed()));
             powerTxt.setText(formatterWithDecimal.format(carData.getLastBusPower()));
             batteryBar.setProgress((int) carData.getLastSOC());
             batteryTxt.setText(String.valueOf(carData.getLastSOC()));
             currentDriveModeTxt.setText(carData.getDriveMode());
             powerDrawTxt.setText(formatterWithDecimal.format(carData.getLastBusPower()));
-            //setPointBarTxt.setText(carData.getLastMotorPowerSetpoint());
 
             // Solar Power
             minCellVTxt.setText(formatterWithDecimal.format((double) carData.getLastMinimumCellV() / 1000));
@@ -77,7 +77,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 
             // Temperature
             motorTempTxt.setText(formatterWithDecimal.format(carData.getLastMotorTemp()));
-            batteryHighestTempTxt.setText(formatterWithDecimal.format((carData.getLastMaxCellTemp()))); // clarify
+            batteryHighestTempTxt.setText(formatterWithDecimal.format((carData.getLastMaxCellTemp() / 10))); // clarify
             arrayTempTxt.setText(formatterWithDecimal.format((carData.getLastControllerTemp())));
 
         }
