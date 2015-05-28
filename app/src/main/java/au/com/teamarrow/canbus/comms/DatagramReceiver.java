@@ -10,6 +10,8 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import android.os.Handler;
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.canbus.model.CarData;
@@ -27,7 +29,7 @@ public class DatagramReceiver extends Thread {
 	private CarData carData;
 
     private boolean simulate;
-    private int[] SIMULATE_IDS = { 770,771,773,1281 };
+    private int[] SIMULATE_IDS = { 770,771,773,1281,785,789,793 };
     
 
     public DatagramReceiver(CarData carData, boolean simulate) {
@@ -59,35 +61,36 @@ public class DatagramReceiver extends Thread {
         UdpPacketDeserializer udpDeserializer = new UdpPacketDeserializer();
         CanPacketSplitter canPacketSplitter = new CanPacketSplitter();
         List<CanPacket> canPackets = null;
-        
+
         boolean timeout;
-        
+
         try {
-				addr = InetAddress.getByName("239.255.60.60");
-		} catch (UnknownHostException e1) {			
-				e1.printStackTrace();
-		}
-        
+            addr = InetAddress.getByName("239.255.60.60");
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        }
+
         DatagramPacket packet = new DatagramPacket(lmessage, lmessage.length);
 
+
         try {
-        	
-        	//Need to use a multicast socket apparently
-        	MulticastSocket socket = new MulticastSocket(UDP_SERVER_PORT); // must bind receive side
-        	socket.joinGroup(addr);    
-        	socket.setSoTimeout(100);
+
+            //Need to use a multicast socket apparently
+            MulticastSocket socket = new MulticastSocket(UDP_SERVER_PORT); // must bind receive side
+            socket.joinGroup(addr);
+            socket.setSoTimeout(100);
 
             while(bKeepRunning) {
-            	
-            	timeout = false;
-            	
-            	try {
-            		socket.receive(packet);
-            	} catch (SocketTimeoutException ex) { timeout = true; };
-                
-            	try {
-            	
-	                if (timeout == false || simulate == true) {
+
+                timeout = false;
+
+                try {
+                    socket.receive(packet);
+                } catch (SocketTimeoutException ex) { timeout = true; };
+
+                try {
+
+                    if (timeout == false || simulate == true) {
 	                                    
 	                    // Deserialize the packet
 	                	if ( simulate == false) {
@@ -103,6 +106,7 @@ public class DatagramReceiver extends Thread {
 	                		                		
 	                		int choice = SIMULATE_IDS[(int)(Math.random() * SIMULATE_IDS.length)];
 	                		byte[] byteArray = new byte[8];
+                                new Random().nextBytes(byteArray);
 	                	
 	                		CanPacket canPacket = new CanPacket(ByteBuffer.allocate(4).putInt(choice).array(),false, false, (byte)8 , byteArray);                		                		
 	                		canPackets.add(canPacket);

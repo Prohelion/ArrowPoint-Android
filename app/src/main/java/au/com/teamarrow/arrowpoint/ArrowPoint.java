@@ -144,7 +144,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		menu.getItem(1);
 
 
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override

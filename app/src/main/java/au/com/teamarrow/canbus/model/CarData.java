@@ -40,6 +40,14 @@ public class CarData {
     private boolean brakes = false;
     private boolean horn = false;
 
+    public String getDriveMode() {
+        if (idle) return "Idle";
+        if (reverse) return "R";
+        if (neutral) return "N";
+        if (drive) return "D";
+        return "ERROR";
+    }
+
     public boolean isBrakes() {
         return brakes;
     }

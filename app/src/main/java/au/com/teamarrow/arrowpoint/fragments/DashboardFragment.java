@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import au.com.teamarrow.arrowpoint.utils.TextHelper;
 import au.com.teamarrow.canbus.model.CarData;
@@ -19,10 +24,68 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 	public DashboardFragment() {
 	}
 
+    private void handleDriverView(View view, CarData carData) {
+        NumberFormat formatterWithDecimal = new DecimalFormat("#0.00");
 
+        /**
+         * Text view Declarations
+         */
+        // ----- Quick Stats -----
+        TextView speedTxt = (TextView) view.findViewById(R.id.currentSpeedValue);
+        TextView powerTxt = (TextView) view.findViewById(R.id.netPowerPositionValue);
+        ProgressBar batteryBar = (ProgressBar) view.findViewById(R.id.batteryPercentageBar);
+        TextView batteryTxt = (TextView) view.findViewById(R.id.batteryValue);
+        TextView setPointBarTxt = (TextView) view.findViewById(R.id.currentCruiseValue);
+        TextView currentDriveModeTxt = (TextView) view.findViewById(R.id.currentDriveModeValue);
+        TextView powerDrawTxt = (TextView) view.findViewById(R.id.powerDrawValue);
+        //Button speedTargetBtn =(Button)findViewById(R.id.btnTargetSpeed);
+
+        // ------ Solar Power -----
+        TextView minCellVTxt = (TextView) view.findViewById(R.id.lowestCellVoltageValue);
+        TextView totalPowerFromArrayTxt = (TextView) view.findViewById(R.id.totalPowerValue);
+        TextView lowestCellVoltageTxt = (TextView) view.findViewById(R.id.lowestCellVoltageValue);
+        TextView array1PowerTxt = (TextView) view.findViewById(R.id.array1PowerValue);
+        TextView array2PowerTxt = (TextView) view.findViewById(R.id.array2PowerValue);
+        TextView array3PowerTxt = (TextView) view.findViewById(R.id.array3PowerValue);
+
+        // ----- Temperature -----
+        TextView motorTempTxt = (TextView) view.findViewById(R.id.motorTempValue);
+        TextView batteryHighestTempTxt = (TextView) view.findViewById(R.id.batteryHighestTempValue);
+        TextView arrayTempTxt = (TextView) view.findViewById(R.id.arrayTempValue);
+
+        /**
+         * Setting Values
+         */
+        if (speedTxt != null) {
+
+            // Quick Stats
+            speedTxt.setText(Integer.toString(carData.getLastSpeed()));
+            powerTxt.setText(formatterWithDecimal.format(carData.getLastBusPower()));
+            batteryBar.setProgress((int) carData.getLastSOC());
+            batteryTxt.setText(String.valueOf(carData.getLastSOC()));
+            currentDriveModeTxt.setText(carData.getDriveMode());
+            powerDrawTxt.setText(formatterWithDecimal.format(carData.getLastBusPower()));
+            //setPointBarTxt.setText(carData.getLastMotorPowerSetpoint());
+
+            // Solar Power
+            minCellVTxt.setText(formatterWithDecimal.format((double) carData.getLastMinimumCellV() / 1000));
+            totalPowerFromArrayTxt.setText(formatterWithDecimal.format((double)carData.getLastArrayTotalPower()));
+            lowestCellVoltageTxt.setText(formatterWithDecimal.format((double) (carData.getLastMinimumCellV()/ 1000)));
+            array1PowerTxt.setText(formatterWithDecimal.format((carData.getLastArray1Power())));
+            array2PowerTxt.setText(formatterWithDecimal.format((carData.getLastArray2Power())));
+            array3PowerTxt.setText(formatterWithDecimal.format((carData.getLastArray3Power())));
+
+            // Temperature
+            motorTempTxt.setText(formatterWithDecimal.format(carData.getLastMotorTemp()));
+            batteryHighestTempTxt.setText(formatterWithDecimal.format((carData.getLastMaxCellTemp()))); // clarify
+            arrayTempTxt.setText(formatterWithDecimal.format((carData.getLastControllerTemp())));
+
+        }
+    }
 	@Override
 	public void Update(View fragmentView, CarData carData) {
 
+        handleDriverView(fragmentView, carData);
 		// **************** Dashboard Detail ***************
 
 		TextHelper textHelper = new TextHelper(fragmentView);
