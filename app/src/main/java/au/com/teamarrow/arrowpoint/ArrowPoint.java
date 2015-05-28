@@ -123,10 +123,10 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 			ReentrantLock lock = new ReentrantLock();
 
 			try {
-				lock.lock();
+				//lock.lock();
 				UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
-				lock.unlock();
+				//lock.unlock();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
