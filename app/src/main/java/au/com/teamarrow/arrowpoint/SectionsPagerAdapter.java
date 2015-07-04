@@ -23,12 +23,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
 
-    DashboardFragment dashboardFragment;
-    PowerDetailFragment powerdetailsFragment;
-    SystemsDetailFragment systemsDetailFragment;
-    GraphFragment graphFragment;
-    Fragment currentFragment;
-
     public SectionsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
@@ -42,24 +36,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
 
-            case 0: if (dashboardFragment==null) dashboardFragment = new DashboardFragment();
-                currentFragment = dashboardFragment; break;
-            case 1: if (powerdetailsFragment==null) powerdetailsFragment = new PowerDetailFragment();
-                currentFragment = powerdetailsFragment; break;
-            case 2: if (systemsDetailFragment==null) systemsDetailFragment = new SystemsDetailFragment();
-                currentFragment = systemsDetailFragment; break;
-            case 3: if (graphFragment==null) graphFragment = new GraphFragment();
-                currentFragment = graphFragment; break;
+            case 0: return new DashboardFragment();
+            case 1: return new PowerDetailFragment();
+            case 2: return new SystemsDetailFragment();
+            case 3: return new GraphFragment();
 
         }
 
-        return currentFragment;
-
+        return PlaceholderFragment.newInstance(position + 1);
     }
 
     @Override
     public int getCount() {
-        // Show 4 total pages.
+        // Show 2 total pages.
         return 4;
     }
 

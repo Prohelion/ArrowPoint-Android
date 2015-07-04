@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">ArrowPointTablet</string>
-	<string name="title_section1">Dashboard</string>
-	<string name="title_section2">Power Detail</string>
-	<string name="title_section3">Systems Detail</string>
-	<string name="title_section4">Graph</string>
-	<string name="action_settings">Settings</string>
-	<string name="debug_mode">Toggle Debug</string>
+    <string name="app_name">ArrowPointTablet</string>
+    <string name="title_section1">Dashboard</string>
+    <string name="title_section2">Power Detail</string>
+    <string name="title_section3">Systems Detail</string>
+    <string name="title_section4">Graph</string>
+    <string name="action_settings">Settings</string>
+    <string name="debug_mode">Toggle Debug</string>
 
-	<string name="speed">0</string>
-	<string name="power">0</string>
-	<string name="kph">kph</string>
-	<string name="kw">kw</string>
-	<string name="percent">0%</string>
-	<string name="message">There is currently no message</string>
-	<string name="ok">OK</string>
-	<string name="cruise_control">Cruise Control</string>
-	<string name="target_speed"></string>
-	<string name="target_power"></string>
-	<string name="start_service">Start CanBus Connection</string>
+ 	<string name="speed">0</string>
+    <string name="power">0</string>
+    <string name="kph">kph</string>
+    <string name="kw">kw</string>
+    <string name="percent">0%</string>
+    <string name="message">There is currently no message</string>
+    <string name="ok">OK</string>    
+    <string name="cruise_control">Cruise Control</string>
+    <string name="target_speed"></string>
+    <string name="target_power"></string>
+    <string name="start_service">Start CanBus Connection</string>
 	<string name="stop_service">Stop CanBus Connection</string>
 	<string name="left_blinker">Left Blinker</string>
 	<string name="right_blinker">Right Blinker</string>
@@ -27,77 +27,48 @@
 	<string name="refresh">refresh</string>
 	<string name="showDetail">Show Detail</string>
 	<string name="highDetail">Hide Detail</string>
-
+	
 	<string name="itemHeader">Component</string>
 	<string name="voltageHeader">Voltage</string>
 	<string name="currentHeader">Current</string>
 	<string name="powerHeader">Power</string>
 	<string name="totalInputPowerHeader">Total Input (W)</string>
 	<string name="netPowerPositionHeader">Net Power Position</string>
-
+	
 	<string name="array1">Array 1</string>
 	<string name="array2">Array 2</string>
 	<string name="array3">Array 3</string>
-
+	
 	<string name="controller">Controller</string>
-
+	
 	<string name="battery">Battery</string>
-
+	
 	<string name="start">Start</string>
 	<string name="reverse">Reverse</string>
 	<string name="netural">Netural</string>
 	<string name="drive">Drive</string>
 	<string name="idle">Idle</string>
-
+	
 
 	<string name="run">Run</string>
 	<string name="regen">Regen</string>
 	<string name="brakes">Brakes</string>
 	<string name="horn">Horn</string>
-
+	
 	<string name="controllerTemp">Controller Temp:</string>
 	<string name="motorTemp">Motor Temp:</string>
 	<string name="minCellV">Min Cell (> 2.5v):</string>
 	<string name="maxCellV">Max Cell (v):</string>
 	<string name="maxBatteryTemp">Max Battery Temp:</string>
-	<string name="twelveVolt">Twelve Volt System (v):</string>
-
-	<string name="zero">0</string>
+	<string name="twelveVolt">Twelve Volt System (v):</string>	
+	
+	<string name="zero">0</string>	    
 	<string name="lastLockedSOC">Last Locked SOC: N/A</string>
 
-	<string name="chk_Speed">Speed</string>
-	<string name="chk_BusPower">Bus Power</string>
-	<string name="chk_ArrayPower">Array Power</string>
-	<string name="chk_MotorPower">Motor Power</string>
-	<string name="chk_MotorTemp">Motor Temp</string>
-	<string name="chk_MaxCellV">Max Cell(V)</string>
-	<string name="chk_MinCellV">Min Cell(V)</string>
-	<string name="chk_MaxCellTemp">Max Cell Temp</string>
-	<string name="chk_ControllerTemp">Cont. Temp</string>
-
-	<string name="Spinner_Prime_Prompt">Primary Data</string>
-	<string name="Spinner_Sec_Prompt">Secondary Data</string>
-
-	<string-array name="Prime_Options">
-		<item>Vehicle Speed</item>
-		<item>Bus Power</item>
-		<item>Array Power</item>
-		<item>Motor Temp</item>
-		<item>Max Cell Temp</item>
-		<item>Controller Temp</item>
-		<item>Min Cell Voltage</item>
-		<item>Max Cell Voltage</item>
-	</string-array>
-
-	<string-array name="Sec_Options">
-		<item>Vehicle Speed</item>
-		<item>Bus Power</item>
-		<item>Array Power</item>
-		<item>Motor Temp</item>
-		<item>Max Cell Temp</item>
-		<item>Controller Temp</item>
-		<item>Min Cell Voltage</item>
-		<item>Max Cell Voltage</item>
-	</string-array>
+    <string name="chk_Speed">Speed</string>
+    <string name="chk_BusPower">Bus Power</string>
+    <string name="chk_ArrayPower">Array Power</string>
+    <string name="chk_MotorPower">Motor Power</string>
+    <string name="chk_MotorTemp">Motor Temp</string>
 
 </resources>
