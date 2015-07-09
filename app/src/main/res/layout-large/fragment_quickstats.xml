@@ -6,7 +6,7 @@
         android:layout_gravity="center"
         tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
     android:rowCount="1"
-    android:columnCount="2"
+    android:columnCount="1"
     android:background="@android:color/background_dark">
 
 
@@ -27,7 +27,15 @@
             android:id="@+id/quickStatsTable"
             android:background="@color/ap_table">
 
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Quick Stats"
+                android:id="@+id/driverQuickStatsLabel"
+                android:layout_gravity="center"
+                android:textColor="@color/ap_text"
+                android:textSize="@dimen/ap_table_header_text" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -74,6 +82,33 @@
                             android:textSize="@dimen/ap_value_text" />
                     </FrameLayout>
 
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/setCruisePointFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_margin="@dimen/ap_frame_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Cruise Point"
+                            android:id="@+id/setCruisePointLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="BUTTON?"
+                            android:id="@+id/setCruisePointValue"
+                            android:layout_gravity="center"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_value_text" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -84,6 +119,44 @@
                     android:id="@+id/quickStatsColumn2"
                     android:padding="@dimen/ap_column_padding"
                     android:background="@color/ap_column">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/currentSpeedFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Current Speed"
+                            android:id="@+id/currentSpeedLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:id="@+id/currentSpeedValue"
+                            android:layout_gravity="center"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_value_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="km/h"
+                            android:id="@+id/currentSpeedMeasurement"
+                            android:layout_gravity="right|center_vertical"
+                            android:textColor="@color/ap_text" />
+
+                    </FrameLayout>
 
                     <FrameLayout
                         android:layout_width="fill_parent"
@@ -210,6 +283,67 @@
                     </FrameLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/quickStatsColumn4"
+                    android:padding="@dimen/ap_column_padding"
+                    android:background="@color/ap_column">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/batteryPercentageFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Battery ProgressBare"
+                            android:id="@+id/batteryLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <ProgressBar
+                            android:id="@+id/batteryPercentageBar"
+                            style="@style/Widget.ProgressBar.Vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:gravity="right"
+                            android:progress="60"
+                            android:paddingTop="20dp"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingBottom="50dp"
+                            android:indeterminate="false" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.21 GW"
+                            android:id="@+id/batteryValue"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_value_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%"
+                            android:id="@+id/batteryValueMeasurement"
+                            android:layout_gravity="bottom|center_horizontal|right"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_value_text" />
+                    </FrameLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -227,8 +361,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Speed"
-                android:id="@+id/speedLabel"
+                android:text="Solar Power"
+                android:id="@+id/solarPowerLabel"
                 android:layout_gravity="center"
                 android:textColor="@color/ap_text"
                 android:background="@color/ap_table"
@@ -249,6 +383,81 @@
                     android:padding="@dimen/ap_column_padding"
                     android:background="@color/ap_column">
 
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/totalPowerFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Power from Array"
+                            android:id="@+id/totalPowerLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:id="@+id/totalPowerValue"
+                            android:textColor="@color/ap_text"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/ap_value_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="w"
+                            android:id="@+id/totalPowerMeasurement"
+                            android:layout_gravity="right|center_vertical"
+                            android:textColor="@color/ap_text" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/lowestCellVoltageFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lowest Cell Voltage"
+                            android:id="@+id/lowestCellVoltageLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:id="@+id/lowestCellVoltageValue"
+                            android:textColor="@color/ap_text"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/ap_value_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="v"
+                            android:id="@+id/lowestCellVoltageMeasurement"
+                            android:layout_gravity="right|center_vertical"
+                            android:textColor="@color/ap_text" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -272,6 +481,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Array 1"
+                            android:id="@+id/array1PowerLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="0"
                             android:id="@+id/array1PowerValue"
@@ -291,101 +509,18 @@
 
                 </LinearLayout>
 
-                <LinearLayout android:id="@+id/solarPowerColumn4"
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/ap_column_padding"
-                    android:background="@color/ap_column">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:id="@+id/linearLayout2"
-                        android:padding="@dimen/ap_column_padding"
-                        android:background="@color/ap_column"
-                        android:layout_gravity="center_horizontal">
-
-                        <FrameLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:id="@+id/frameLayout2"
-                            android:background="@drawable/frame_bg"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/ap_frame_margin"
-                            android:padding="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Battery ProgressBare"
-                                android:id="@+id/textView17"
-                                android:layout_gravity="center_horizontal"
-                                android:textColor="@color/ap_text"
-                                android:textSize="@dimen/ap_frame_header_text" />
-
-                            <ProgressBar
-                                style="@style/Widget.ProgressBar.Vertical"
-                                android:id="@+id/progressBar2"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:max="100"
-                                android:gravity="right"
-                                android:progress="60"
-                                android:paddingTop="20dp"
-                                android:paddingRight="10dp"
-                                android:paddingLeft="10dp"
-                                android:paddingBottom="50dp"
-                                android:indeterminate="false" />
-                        </FrameLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/temperatureTable"
-            android:background="@color/ap_table"
-            android:layout_weight="3"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Temperature"
-                android:id="@+id/temperatureLabel"
-                android:layout_gravity="center"
-                android:textColor="@color/ap_text"
-                android:background="@color/ap_table"
-                android:textSize="@dimen/ap_table_header_text" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/temperatureColumns">
-
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:id="@+id/temperatureColumn1"
+                    android:id="@+id/solarPowerColumn3"
                     android:padding="@dimen/ap_column_padding"
-                    android:background="@color/ap_column" >
+                    android:background="@color/ap_column">
 
-                    <FrameLayout
+                    <FrameLayout android:id="@+id/array2PowerFrame"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:id="@+id/batteryHighestTempFrame"
                         android:background="@drawable/frame_bg"
                         android:layout_weight="1"
                         android:layout_margin="@dimen/ap_frame_margin"
@@ -394,8 +529,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Max Battery Temp"
-                            android:id="@+id/maxBatteryTempLabel"
+                            android:text="Array 2"
+                            android:id="@+id/array2PowerLabel"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@color/ap_text"
                             android:textSize="@dimen/ap_frame_header_text" />
@@ -405,7 +540,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="0"
-                            android:id="@+id/batteryHighestTempValue"
+                            android:id="@+id/array2PowerValue"
                             android:textColor="@color/ap_text"
                             android:layout_gravity="center"
                             android:textSize="@dimen/ap_value_text" />
@@ -414,15 +549,62 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="c"
-                            android:id="@+id/batteryHighestTempMeasurement"
+                            android:text="w"
+                            android:id="@+id/array2PowerMeasurement"
                             android:layout_gravity="right|center_vertical"
                             android:textColor="@color/ap_text" />
                     </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/solarPowerColumn4"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/ap_column_padding"
+                    android:background="@color/ap_column">
+
+                    <FrameLayout android:id="@+id/array3PowerFrame"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Array 3"
+                            android:id="@+id/array3PowerLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text"
+                            android:textSize="@dimen/ap_frame_header_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:id="@+id/array3PowerValue"
+                            android:textColor="@color/ap_text"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/ap_value_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="w"
+                            android:id="@+id/array3PowerMeasurement"
+                            android:layout_gravity="right|center_vertical"
+                            android:textColor="@color/ap_text" />
+                    </FrameLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -472,8 +654,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Max Battery Temp"
-                            android:id="@+id/maxBatteryTempLabel"
+                            android:text="Battery Highest Temp"
+                            android:id="@+id/batteryHighestTempLabel"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@color/ap_text"
                             android:textSize="@dimen/ap_frame_header_text" />
@@ -520,8 +702,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Motor Temp"
-                            android:id="@+id/motorTempLabel"
+                            android:text="Array Temp"
+                            android:id="@+id/arrayTempLabel"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@color/ap_text"
                             android:textSize="@dimen/ap_frame_header_text" />
@@ -568,8 +750,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Minimum Battery Voltage"
-                            android:id="@+id/minBatteryLabel"
+                            android:text="Motor Temp"
+                            android:id="@+id/motorTempLabel"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@color/ap_text"
                             android:textSize="@dimen/ap_frame_header_text" />
@@ -604,11 +786,104 @@
                     android:padding="@dimen/ap_column_padding"
                     android:background="@color/ap_column">
 
+                    <FrameLayout
+                        android:id="@+id/blankFrame"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/otherTable"
+            android:background="@color/ap_table"
+            android:layout_weight="2"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Other"
+                android:id="@+id/otherLabel"
+                android:layout_gravity="center"
+                android:textColor="@color/ap_text"
+                android:textSize="@dimen/ap_table_header_text" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/otherColumns">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:id="@+id/otherColumn1"
+                    android:padding="@dimen/ap_column_padding"
+                    android:background="@color/ap_column" >
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/tyrePressureFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tyre Pressure"
+                            android:id="@+id/tyrePressureLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/otherColumn2"
+                    android:padding="@dimen/ap_column_padding"
+                    android:background="@color/ap_column" >
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/driverMessagesFrame"
+                        android:background="@drawable/frame_bg"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/ap_frame_margin"
+                        android:padding="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Messages to Driver"
+                            android:id="@+id/driverMessagesLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/ap_text" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

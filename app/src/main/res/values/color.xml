@@ -9,6 +9,13 @@ Organized by: Willie Tsang
     <!-- Android style -->
     <color name="android_green">#A4C639</color>
 
+    <color name="ap_background">#000000</color>
+    <color name="ap_table">#ff141414</color>
+    <color name="ap_column">#ff141414</color>
+    <color name="ap_frame">#000000</color>
+
+    <color name="ap_text">#ffffffff</color>
+
     <!-- Windows 8 style -->
     <color name="win8_magenta">#FF0097</color>
     <color name="win8_purple">#A200FF</color>

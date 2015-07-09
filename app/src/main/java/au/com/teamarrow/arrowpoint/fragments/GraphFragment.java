@@ -1,12 +1,20 @@
 package au.com.teamarrow.arrowpoint.fragments;
 
+import com.androidplot.xy.BoundaryMode;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.PointLabelFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
+import com.androidplot.xy.XYSeries;
 import com.example.arrowpoint.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import au.com.teamarrow.canbus.comms.DatagramReceiver;
 
-import android.app.Fragment;
+import au.com.teamarrow.arrowpoint.CustomOnItemSelectedListener;
+import au.com.teamarrow.arrowpoint.utils.GraphHandler;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -14,31 +22,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.CheckBox;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
+import au.com.teamarrow.canbus.model.CarData;
+
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class GraphFragment extends Fragment {
+public class GraphFragment extends UpdateablePlaceholderFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private final Handler mHandler = new Handler();
-    private Runnable mTimer;
-    private LineGraphSeries<DataPoint> mSeries;
-    private double graphLastXValue = 5d;
 
-    public static final int SPEED = 0;
-    public static final int BUS_POWER = 1;
-    public static final int ARRAY_POWER = 2;
-    public static final int MOTOR_POWER = 3;
-    public static final int MOTOR_TEMP = 4;
+    private static Spinner primary_Spinner;
+    private static Spinner secondary_Spinner;
+
+    private static GraphHandler graph_handler_1;
+    private static GraphHandler graph_handler_2;
+
+    private static XYPlot graph1;
+    private static XYPlot graph2;
+
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -54,6 +63,14 @@ public class GraphFragment extends Fragment {
     public GraphFragment() {
     }
 
+    @Override
+    public void Update(View fragmentView, CarData carData) {
+
+        //Update Graphs
+        graph_handler_1.addData(graph1, carData, primary_Spinner.getSelectedItemPosition());
+        graph_handler_2.addData(graph2, carData, secondary_Spinner.getSelectedItemPosition());
+
+    }
 
 
     @Override
@@ -62,53 +79,24 @@ public class GraphFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_graph,
                 container, false);
 
-        GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
+        // New instances of GraphHandler for each graph
+        graph_handler_1 = new GraphHandler();
+        graph_handler_2 = new GraphHandler();
 
-        // Speed
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
+        //Setup Spinners
+        secondary_Spinner = (Spinner) rootView.findViewById(R.id.secondarySpinner);
+        primary_Spinner = (Spinner) rootView.findViewById(R.id.primarySpinner);
 
-        // Bus Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
+        //Setup Graphs
+        graph1 = (XYPlot) rootView.findViewById(R.id.graph1);
+        graph2 = (XYPlot) rootView.findViewById(R.id.graph2);
+        graph_handler_1.setupGraph(graph1, "Primary Graph");
+        graph_handler_2.setupGraph(graph2, "Secondary Graph");
 
-        // Array Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
-
-        // Motor Power
-        graph.addSeries(new LineGraphSeries<DataPoint>());
-
-        // Motor Temp
-        graph.getSecondScale().addSeries(new LineGraphSeries<DataPoint>());
-
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(600);
-        graph.getViewport().setScrollable(true);
-
-        graph.setTitle("Power(kw)");
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Power(kw)");
-        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-
-        // Doing this to prompt it to render
-        mSeries = (LineGraphSeries) graph.getSeries().get(GraphFragment.SPEED);
-        mSeries.appendData(new DataPoint(0, 0), true, 600);
+        super.onCreate(savedInstanceState);
 
         return rootView;
     }
 
-    public void onResume() {
-        super.onResume();
-        /* mTimer = new Runnable() {
-            @Override
-            public void run() {
-               // graphLastXValue += 1d;
-               // mSeries.appendData(new DataPoint(graphLastXValue, 10+(5*Math.sin(graphLastXValue))), true, 40);
-               // mHandler.postDelayed(this, 200);
-            }
-        };
-        mHandler.postDelayed(mTimer, 1000); */
-    }
-
-
 }
-
 

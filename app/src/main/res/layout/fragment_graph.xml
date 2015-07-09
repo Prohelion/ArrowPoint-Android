@@ -1,78 +1,152 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/GraphTableMaster"
+    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
-    >
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_gravity="bottom">
+    <TableLayout
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="0">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
+        <TableRow
+            android:layout_weight="1"
+            android:id="@+id/tableRow8"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
-            <CheckBox
-                android:id="@+id/chkSpeed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_Speed" />
+            <com.androidplot.xy.XYPlot
+                android:id="@+id/graph1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
 
-            <CheckBox
-                android:id="@+id/chkBusPower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_BusPower"  />
-
-            <CheckBox
-                android:id="@+id/chkArrayPower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_ArrayPower" />
-
-            <CheckBox
-                android:id="@+id/chkMotorPower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_MotorPower" />
-
-            <CheckBox
-                android:id="@+id/chkMotorTemp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chk_MotorTemp" />
-
-        </LinearLayout>
-
-
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/graphSpinner"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-            <com.jjoe64.graphview.GraphView
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:id="@+id/graph"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentBottom="true"
+                androidPlot.titleWidget.labelPaint.textSize="@dimen/title_font_size"
+                androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
+                androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
+                androidPlot.graphWidget.marginTop="10dp"
+                androidPlot.graphWidget.marginLeft="10dp"
+                androidPlot.graphWidget.marginBottom="0dp"
+                androidPlot.graphWidget.marginRight="25dp"
+                androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"
                 />
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="1"
+            android:id="@+id/tableRow89"
+            android:orientation="vertical"
+            >
+
+            <com.androidplot.xy.XYPlot
+                android:id="@+id/graph2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+                androidPlot.titleWidget.labelPaint.textSize="@dimen/title_font_size"
+                androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
+                androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
+                androidPlot.graphWidget.marginTop="10dp"
+                androidPlot.graphWidget.marginLeft="10dp"
+                androidPlot.graphWidget.marginBottom="0dp"
+                androidPlot.graphWidget.marginRight="25dp"
+                androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
+                androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_weight="5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="*">
 
 
-    </RelativeLayout>
+        <TableRow
+            android:layout_weight="1"
+            android:id="@+id/tableRow2"
+            android:orientation="vertical">
+
+            <TextView android:text="Primary Data"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/text1"
+                android:textColor="#333333"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:clickable="false"/>
+
+            <TextView android:text="Secondary Data"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/text2"
+                android:textColor="#333333"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:clickable="false"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:id="@+id/tableRow4"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <TableRow
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tableRow5"
+                android:orientation="vertical">
 
 
-</RelativeLayout>
+                <Spinner
+                    android:id="@+id/primarySpinner"
+                    style = "@style/Widget.AppCompat.Base.Spinner.spinner_style"
+                    android:spinnerMode="dialog"
+                    android:entries="@array/Prime_Options"
+                    android:prompt="@string/Spinner_Prime_Prompt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+            </TableRow>
+            <TableRow
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tableRow6"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/secondarySpinner"
+                    style = "@style/Widget.AppCompat.Base.Spinner.spinner_style"
+
+                    android:entries="@array/Sec_Options"
+                    android:prompt="@string/Spinner_Sec_Prompt"
+                    android:spinnerMode="dialog"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+
+            </TableRow>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</LinearLayout>
+
 

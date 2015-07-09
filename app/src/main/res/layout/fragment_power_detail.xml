@@ -177,6 +177,49 @@
             android:gravity="left" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="20px"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:layout_column="0"
+            android:id="@+id/lblTotalArrayPower"
+            android:text="@string/totalInputPowerHeader"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="20px"
+            android:layout_weight="2" />
+
+        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
+            android:layout_column="3"
+            android:id="@+id/txtTotalArrayPower"
+            android:text="@string/zero"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:editable="false"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="30dp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -216,45 +259,6 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content" />
     </LinearLayout>
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="30dp" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
-            android:layout_column="0"
-            android:id="@+id/lblTotalArrayPower"
-            android:text="@string/totalInputPowerHeader"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-
-        <Space
-            android:layout_width="20px"
-            android:layout_height="20px"
-            android:layout_weight="2" />
-
-        <au.com.teamarrow.arrowpoint.utils.AutoResizeTextView
-            android:layout_column="3"
-            android:id="@+id/txtTotalArrayPower"
-            android:text="@string/zero"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="right"
-            android:editable="false"
-            android:gravity="center" />
-
-    </LinearLayout>
-
 
     <Space
         android:layout_width="20px"

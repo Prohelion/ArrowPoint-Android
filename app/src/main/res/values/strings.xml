@@ -3,9 +3,10 @@
 
     <string name="app_name">ArrowPointTablet</string>
     <string name="title_section1">Dashboard</string>
-    <string name="title_section2">Power Detail</string>
-    <string name="title_section3">Systems Detail</string>
-    <string name="title_section4">Graph</string>
+	<string name="title_section2">Quickstats</string>
+    <string name="title_section3">Power Detail</string>
+    <string name="title_section4">Systems Detail</string>
+    <string name="title_section5">Graph</string>
     <string name="action_settings">Settings</string>
     <string name="debug_mode">Toggle Debug</string>
 
@@ -70,5 +71,30 @@
     <string name="chk_ArrayPower">Array Power</string>
     <string name="chk_MotorPower">Motor Power</string>
     <string name="chk_MotorTemp">Motor Temp</string>
+
+	<string name="Spinner_Prime_Prompt">Primary Data</string>
+	<string name="Spinner_Sec_Prompt">Secondary Data</string>
+
+	<string-array name="Prime_Options">
+		<item>Vehicle Speed</item>
+		<item>Bus Power</item>
+		<item>Array Power</item>
+		<item>Motor Temp</item>
+		<item>Max Cell Temp</item>
+		<item>Controller Temp</item>
+		<item>Min Cell Voltage</item>
+		<item>Max Cell Voltage</item>
+	</string-array>
+
+	<string-array name="Sec_Options">
+		<item>Vehicle Speed</item>
+		<item>Bus Power</item>
+		<item>Array Power</item>
+		<item>Motor Temp</item>
+		<item>Max Cell Temp</item>
+		<item>Controller Temp</item>
+		<item>Min Cell Voltage</item>
+		<item>Max Cell Voltage</item>
+	</string-array>
 
 </resources>
