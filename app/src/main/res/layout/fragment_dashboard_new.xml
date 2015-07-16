@@ -1,0 +1,325 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DashboardTableMaster"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background_color"
+        android:layout_gravity="bottom"
+        android:measureWithLargestChild="false">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/driver_message_height"
+                    android:text="@string/message"
+                    android:id="@+id/txtAlert"
+                    android:textColor="@color/driver_message_color"
+                    android:textSize="@dimen/text_size_medium"
+                    android:gravity="center_horizontal" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/table_color"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/lblMotorTemp"
+                    android:text="@string/motorTemp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/frame_dash"
+                    android:layout_margin="@dimen/frame_layout_margin">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:id="@+id/txtMotorTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/zero"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/text_size_medium"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/degree"
+                            android:id="@+id/lblMotorTemp"
+                            android:textSize="@dimen/text_size_small"
+                            android:textColor="@color/text_color"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setpointHeader"
+                    android:id="@+id/lblSetpointTitle"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="bottom|center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/frame_dash"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:layout_gravity="bottom">
+
+                    <!-- Commented out Setpoint Progrssebar
+                    <ProgressBar
+                        android:id="@+id/pbSetpoint"
+                        style="@style/Widget.ProgressBar.Vertical"
+                        android:layout_width="100dp"
+                        android:layout_height="fill_parent"
+                        android:max="100"
+                        android:progress="60"
+                        android:layout_gravity="center" /> -->
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtSetpoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:background="#00000000"
+                            android:gravity="center"
+                            android:text="@string/zero"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/percent"
+                            android:id="@+id/lblSetPoint"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/text_size_small"
+                            android:gravity="left|center_vertical" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.75">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speedHeader"
+                    android:id="@+id/lblSpeedTitle"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="bottom|center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/frame_dash"
+                    android:layout_margin="@dimen/margin_medium">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/zero"
+                            android:textSize="@dimen/text_size_large"
+                            android:textColor="@color/text_color" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/kph"
+                            android:id="@+id/lblSpeed"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/text_size_small"
+                            android:gravity="left|center_vertical" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buspowerHeader"
+                    android:id="@+id/lblPowerTitle"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="bottom|center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/frame_dash"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:layout_gravity="bottom">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtPower"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/zero"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textColor="@color/text_color"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/kw"
+                            android:id="@+id/lblPower"
+                            android:textSize="@dimen/text_size_small"
+                            android:textColor="@color/text_color"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stateHeader"
+                    android:id="@+id/lblStateTitle"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_small"
+                    android:gravity="center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/frame_dash"
+                    android:layout_margin="@dimen/frame_layout_margin">
+
+
+                    <TextView
+                        android:id="@+id/txtState"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:text="@string/idle"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textColor="@color/text_color" />
+
+                    </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/table_color">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/table_color"
+                android:layout_margin="@dimen/margin_medium">
+
+                <ProgressBar
+                    android:id="@+id/pbBattery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/progress_red"
+                    android:max="100"
+                    android:progress="50"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/txtBattery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:gravity="center"
+                    android:text="@string/percent"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_medium" />
+
+
+                </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</GridLayout>

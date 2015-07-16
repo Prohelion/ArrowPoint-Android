@@ -86,11 +86,15 @@ public class DatagramReceiver extends Thread {
 
 				try {
 					socket.receive(packet);
-				} catch (SocketTimeoutException ex) { timeout = true; };
+				} catch (SocketTimeoutException ex) {
+                    carData.setMsSinceLastPacket(carData.getMsSinceLastPacket()+100); // Add 100ms to the LastPacket Timer
+                    timeout = true; };
 
 				try {
 
 					if (timeout == false || simulate == true) {
+
+                        carData.setMsSinceLastPacket(0);// reset LastPacket Timer
 
 						// Deserialize the packet
 						if ( simulate == false) {
@@ -101,6 +105,7 @@ public class DatagramReceiver extends Thread {
 							canPackets = canPacketSplitter.extractCanPackets(udpPacket);
 
 						} else {
+
 							// Dummy up at list of can packets to keep the logic flowing
 							canPackets = new ArrayList<CanPacket>();
 

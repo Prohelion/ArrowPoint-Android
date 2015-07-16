@@ -39,13 +39,37 @@ public class CarData {
     private boolean regen = false;
     private boolean brakes = false;
     private boolean horn = false;
+    private int msSinceLastPacket = 0;
+    private String alerts = new String();
+
+    public int getMsSinceLastPacket() {
+        return msSinceLastPacket;
+    }
+
+    public void setMsSinceLastPacket(int msSinceLastPacket) {
+        this.msSinceLastPacket = msSinceLastPacket;
+
+        // Prevents the counter becoming too big
+        if (this.msSinceLastPacket > 10000){
+            this.msSinceLastPacket = 9000;
+        }
+    }
+
+    public String getAlerts() {
+        return alerts;
+    }
+
+    public void setAlerts(String Alerts) {
+        alerts = Alerts;
+    }
+
 
     public String getDriveMode() {
         if (idle) return "Idle";
-        if (reverse) return "R";
-        if (neutral) return "N";
-        if (drive) return "D";
-        return "ERROR";
+        else if (reverse) return "Reverse";
+        else if (neutral) return "Neutral";
+        else if (drive) return "Drive";
+        else return "None";
     }
 
     public boolean isBrakes() {

@@ -59,12 +59,14 @@ public class PowerDetailFragment extends UpdateablePlaceholderFragment {
 		textHelper.setText(R.id.txtBatteryVoltage,carData.getLastBatteryVolts());
 		textHelper.setText(R.id.txtBatteryCurrent,carData.getLastBatteryAmps());
 		textHelper.setText(R.id.txtBatteryPower,carData.getLastArrayTotalPower()-(carData.getLastBusPower()*1000));
+
+
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_power_detail,
+		View rootView = inflater.inflate(R.layout.fragment_power_detail_new,
 				container, false);
 		return rootView;
 	}

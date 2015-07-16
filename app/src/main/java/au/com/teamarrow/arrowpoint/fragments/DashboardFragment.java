@@ -27,18 +27,16 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 
 		TextHelper textHelper = new TextHelper(fragmentView);
 
-		textHelper.setText(R.id.Speed, carData.getLastSpeed());
-		textHelper.setText(R.id.txtMotorTemp, carData.getLastMotorTemp(),"#0.0' c'");
-		textHelper.setText(R.id.txtMinCellV, (double)carData.getLastMinimumCellV()/1000,"#0.0' v'");
-		//textHelper.setText(R.id.txtLastLockedSOC, "Last Locked SOC:" + carData.getLastLockedSOC());
-		textHelper.setText(R.id.Power, carData.getLastBusPower());
-		textHelper.setProgressBar(R.id.Battery, R.id.BatteryText, (int) carData.getLastSOC());
-		textHelper.setProgressBar(R.id.pbSetpoint, R.id.pbSetpointText, carData.getLastMotorPowerSetpoint());
+		textHelper.setText(R.id.txtSpeed, carData.getLastSpeed());
+		textHelper.setText(R.id.txtPower, carData.getLastBusPower());
+        textHelper.setText(R.id.txtState, carData.getDriveMode());
+        textHelper.setText(R.id.txtAlert,carData.getAlerts());
+        textHelper.setText(R.id.txtMotorTemp, carData.getLastMotorTemp());
+		textHelper.setProgressBar(R.id.pbBattery, R.id.txtBattery, (int) carData.getLastSOC());
+		//textHelper.setProgressBar(R.id.pbSetpoint, R.id.tbSetpoint, carData.getLastMotorPowerSetpoint());
+        textHelper.setText(R.id.txtSetpoint, carData.getLastMotorPowerSetpoint());
 
-        if (carData.isIdle()) textHelper.setText(R.id.lblState,"Idle");
-        if (carData.isReverse()) textHelper.setText(R.id.lblState,"Reverse");
-        if (carData.isNeutral()) textHelper.setText(R.id.lblState,"Neutral");
-        if (carData.isDrive()) textHelper.setText(R.id.lblState,"Drive");
+;
 	}
 
 	/**
@@ -56,7 +54,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_dashboard,
+		View rootView = inflater.inflate(R.layout.fragment_dashboard_new,
 				container, false);
 		return rootView;
 	}

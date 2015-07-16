@@ -1,48 +1,17 @@
 package au.com.teamarrow.arrowpoint.utils;
 
-        import android.graphics.Paint;
-        import android.nfc.Tag;
-        import android.util.Log;
-        import au.com.teamarrow.arrowpoint.ArrowPoint;
-        import au.com.teamarrow.arrowpoint.CustomOnItemSelectedListener;
-        import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
-        import au.com.teamarrow.canbus.comms.DatagramReceiver;
-
-        import android.app.Fragment;
         import android.graphics.Color;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.Spinner;
-        import android.widget.CheckBox;
-        import android.widget.Toast;
-        import android.view.View;
-        import android.view.View.OnClickListener;
-        import android.app.Activity;
 
-        import com.androidplot.Plot;
         import com.androidplot.xy.SimpleXYSeries;
-        import com.androidplot.xy.XYSeries;
         import com.androidplot.xy.*;
         import com.example.arrowpoint.R;
 
-        import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
-        import au.com.teamarrow.canbus.comms.DatagramReceiver;
-        import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
-        import au.com.teamarrow.arrowpoint.ArrowPoint;
         import au.com.teamarrow.canbus.model.CarData;
-
-        import java.util.Arrays;
-        import java.util.Calendar;
 
 /**
  * Created by Admin on 3/05/2015.
  */
-public class GraphHandler {
+public class GraphHandler{
 
     //Spinner Index
     static final int VEHICLE_SPEED = 0;
@@ -53,6 +22,8 @@ public class GraphHandler {
     static final int CONTROLLER_TEMP = 5;
     static final int MIN_CELL_VOLTAGE = 6;
     static final int MAX_CELL_VOLTAGE = 7;
+    static final int BATTERY_VOLTAGE = 8;
+    static final int BATTERY_AMPS = 9;
 
     // Private Variables
     private static int MAX_X_Values = 500;
@@ -60,14 +31,14 @@ public class GraphHandler {
     private int currentItem = 0;
 
 
-    public void setupGraph(XYPlot graph, String label){
+    public void setupGraph(XYPlot graph, String label,int text_color, int line_color){
 
         // Add series to graph
         series = new SimpleXYSeries(label);
         series.useImplicitXVals();
-        graph.addSeries(series, new LineAndPointFormatter(Color.RED, null, null, null));
+        graph.addSeries(series, new LineAndPointFormatter(line_color, null, null, null));
 
-
+         int color = R.color.text_color;
         // Layout And Styling
         graph.getLayoutManager().remove(graph.getLegendWidget());
         graph.getLayoutManager().remove(graph.getDomainLabelWidget());
@@ -75,21 +46,22 @@ public class GraphHandler {
         graph.setBorderStyle(XYPlot.BorderStyle.NONE, null, null);
         graph.getGraphWidget().getGridBackgroundPaint().setColor(Color.TRANSPARENT);
         graph.getGraphWidget().getDomainLabelPaint().setColor(Color.TRANSPARENT);
-        graph.getGraphWidget().getDomainOriginLabelPaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getDomainOriginLinePaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getDomainGridLinePaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getRangeGridLinePaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getRangeOriginLabelPaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getRangeOriginLinePaint().setColor(Color.BLACK);
-        graph.getGraphWidget().getRangeLabelPaint().setColor(Color.RED);
-        graph.getRangeLabelWidget().getLabelPaint().setColor(Color.BLACK);
-        graph.getTitleWidget().getLabelPaint().setColor(Color.BLACK);
+        graph.getGraphWidget().getDomainOriginLabelPaint().setColor(text_color);
+        graph.getGraphWidget().getDomainOriginLinePaint().setColor(text_color);
+        graph.getGraphWidget().getDomainGridLinePaint().setColor(text_color);
+        graph.getGraphWidget().getRangeGridLinePaint().setColor(text_color);
+        graph.getGraphWidget().getRangeOriginLabelPaint().setColor(text_color);
+        graph.getGraphWidget().getRangeOriginLinePaint().setColor(text_color);
+        graph.getGraphWidget().getRangeLabelPaint().setColor(line_color);
+        graph.getRangeLabelWidget().getLabelPaint().setColor(text_color);
+        graph.getTitleWidget().getLabelPaint().setColor(text_color);
 
 
-        graph.setRangeBoundaries(0, 130, BoundaryMode.FIXED);
+
+        graph.setRangeBoundaries(0, 120, BoundaryMode.FIXED);
         graph.setDomainBoundaries(0, MAX_X_Values, BoundaryMode.FIXED);
         graph.setDomainStepValue(5);
-        graph.setRangeStepValue(5);
+        graph.setRangeStepValue(13);
         graph.setRangeLabel("Initial Title");
         graph.getRangeLabelWidget().pack();
         resetGraph(graph, "Vehicle Speed", "Velocity (Km/h)");
@@ -97,9 +69,10 @@ public class GraphHandler {
     }
 
 
-    private void setScale(XYPlot graph, int minY, int maxY) {
+    private void setScale(XYPlot graph, int minY, int maxY, int stepVal) {
 
         graph.setRangeBoundaries(minY, maxY, BoundaryMode.FIXED);
+        graph.setRangeStepValue(stepVal);
 
     }
 
@@ -117,58 +90,70 @@ public class GraphHandler {
         if (itemIndex == VEHICLE_SPEED) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Vehicle Speed", "Velocity (Km/h)");
-                setScale(graph, 0, 130);
+                setScale(graph, 0, 120, 13);
             }
             lastValue = carData.getLastSpeed();
 
         } else if (itemIndex == BUS_POWER) {
             if (currentItem != itemIndex) {
-               resetGraph(graph, "Bus Power", "Watts (W)");
-               setScale(graph, -5, 5);
+                resetGraph(graph, "Bus Power", "Watts (W)");
+                setScale(graph, -5, 5, 11);
             }
             lastValue = carData.getLastBusPower();
 
         } else if (itemIndex == ARRAY_POWER) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Array Power", "Watts (W)");
-                setScale(graph, -5, 5);
+                setScale(graph, 0, 800, 9);
             }
-            lastValue = carData.getLastArrayTotalPower() / 1000;
+            lastValue = carData.getLastArrayTotalPower();
 
         } else if (itemIndex == MOTOR_TEMP) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Motor Temp", "Celsius (C)");
-                setScale(graph, 0, 100);
+                setScale(graph, 0, 100, 11);
             }
             lastValue = carData.getLastMotorTemp() / 10;
 
         } else if (itemIndex == MAX_CELL_TEMP) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Maximum Cell Temp", "Celsius (C)");
-                setScale(graph, 0, 100);
+                setScale(graph, 0, 100, 11);
             }
             lastValue = carData.getLastMaxCellTemp() / 10;
 
         } else if (itemIndex == CONTROLLER_TEMP) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Controller Temp", "Celsius (C)");
-                setScale(graph, 0, 100);
+                setScale(graph, 0, 100, 11);
             }
             lastValue = carData.getLastControllerTemp() / 10;
 
         } else if (itemIndex == MIN_CELL_VOLTAGE) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Minimum Cell Voltage", "Volts (V)");
-                setScale(graph, 2, 4);
+                setScale(graph, 0, 5, 6);
             }
             lastValue = carData.getLastMinimumCellV() / 1000;
 
         } else if (itemIndex == MAX_CELL_VOLTAGE) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Maximum Cell Voltage", "Volts (V)");
-                setScale(graph, 2, 4);
+                setScale(graph, 0, 5, 6);
             }
             lastValue = carData.getLastMaximumCellV() / 1000;
+        }else if (itemIndex == BATTERY_VOLTAGE) {
+            if (currentItem != itemIndex) {
+                resetGraph(graph, "Battery Voltage", "Volts (V)");
+                setScale(graph, 0, 200, 5);
+            }
+            lastValue = carData.getLastBatteryVolts();
+        }else if (itemIndex == BATTERY_AMPS) {
+            if (currentItem != itemIndex) {
+                resetGraph(graph, "Battery Current", "Amps (A)");
+                setScale(graph, -60, 70, 14);
+            }
+            lastValue = carData.getLastBatteryAmps();
         }
 
         // add the latest data sample to corresponding series
@@ -176,8 +161,16 @@ public class GraphHandler {
         series.addLast(null, lastValue);
 
         //Redraw Graph
-            graph.redraw();
+        graph.redraw();
 
+    }
+
+
+    public void clearGraph(){
+        int series_size = series.size();
+        for(int i = 0; i < series_size; i ++){
+            series.removeFirst();
+        }
     }
 
     private void resetGraph(XYPlot graph, String label, String units) {

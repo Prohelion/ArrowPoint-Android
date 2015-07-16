@@ -6,6 +6,7 @@ import com.example.arrowpoint.R;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -41,6 +42,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	 * {@link android.support.v13.app.FragmentStatePagerAdapter}.
 	 */
 
+
 	private static int REFRESH_MILLI = 100;
 
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -72,6 +74,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -128,11 +131,11 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 			ArrowPointRulesEngine rulesEngine = new ArrowPointRulesEngine();
 
 			try {
-				//carData.setMessage(rulesEngine.checkRules(carData));
-				//lock.lock();
-				UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
+				carData.setAlerts(rulesEngine.checkRules(carData, simulateMode));
+				lock.lock();
+                UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
-				//lock.unlock();
+				lock.unlock();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -158,9 +161,18 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		int id = item.getItemId();
 		if (id == R.id.debug_mode) {
 			simulateMode = !simulateMode;
+            myDatagramReceiver.kill();
 			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 			myDatagramReceiver.start();
-		}
+		} /*else if (id == R.id.change_theme){
+            currentTheme = !currentTheme;
+            if (currentTheme){
+                this.setTheme(R.style.DarkTheme);
+            }else {
+                this.setTheme(R.style.WhiteTheme);
+            }
+
+        }*/
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -199,23 +211,6 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		myDatagramReceiver.kill();
 
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-	}
-
-
-
-	private void  setColourStatus(TextView textView, boolean status) {
-
-		// Run this once and once only to get the origional colour
-		if (defaultTextColour == 0) defaultTextColour = textView.getCurrentTextColor();
-
-		if ( status ) {
-			textView.setTypeface(Typeface.DEFAULT_BOLD);
-			textView.setTextColor(Color.RED);
-		} else {
-			textView.setTypeface(Typeface.DEFAULT);
-			textView.setTextColor(defaultTextColour);
-		}
-
 	}
 
 

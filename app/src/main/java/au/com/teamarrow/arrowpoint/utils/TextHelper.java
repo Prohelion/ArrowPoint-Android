@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.arrowpoint.R;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -17,7 +19,9 @@ import java.text.NumberFormat;
 public class TextHelper {
 
     private View myView = null;
-    private int defaultTextColour = 0;
+    private int highlightColour = Color.RED;
+    private int normalColour  = Color.WHITE;
+
 
     public TextHelper(View myView) {
         this.myView = myView;
@@ -70,13 +74,22 @@ public class TextHelper {
 
         if ( status ) {
             textView.setTypeface(Typeface.DEFAULT_BOLD);
-            textView.setTextColor(Color.RED);
+            textView.setTextColor(highlightColour);
+
         } else {
             textView.setTypeface(Typeface.DEFAULT);
-            textView.setTextColor(Color.BLACK);
+            textView.setTextColor(normalColour);
         }
 
     }
 
+    public void setColour(int view, int colour) {
+        TextView textView = (TextView) myView.findViewById(view);
+
+        if (textView == null) return;
+
+        textView.setTextColor(colour);
+
+    }
 
 }
