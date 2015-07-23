@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'Tablet'
             keyPassword 'teamarrow'
-            storeFile file('C:/Users/Jason/Documents/TeamArrow/Keystore/Arrow_androidKey.jks')
+            storeFile file('Arrow_androidKey.jks')
             storePassword 'teamarrow'
         }
     }
