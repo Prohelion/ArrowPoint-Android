@@ -45,12 +45,15 @@
     <string name="brakes">Brakes</string>
     <string name="horn">Horn</string>
 
-    <string name="controllerTemp">Controller Temp:</string>
+    <string name="LeftBlinker">L</string>
+    <string name="RightBlinker">R</string>
+    <string name="CruiseControl">Cruise\nControl</string>
+    <string name="controllerTemp">Controller Temp</string>
     <string name="motorTemp">Motor Temp</string>
-    <string name="minCellV">Min Cell (v):</string>
-    <string name="maxCellV">Max Cell (v):</string>
-    <string name="maxBatteryTemp">Max Battery Temp:</string>
-    <string name="twelveVolt">12 Volt System (v):</string>
+    <string name="minCellV">Min Cell (v)</string>
+    <string name="maxCellV">Max Cell (v)</string>
+    <string name="maxBatteryTemp">Battery Temp</string>
+    <string name="twelveVolt">12 Volt System (v)</string>
     <string name="lastLockedSOC">Last Locked SOC: N/A</string>
 
     <!-- Units and default values-->

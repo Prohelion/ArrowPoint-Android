@@ -42,7 +42,7 @@
             android:layout_height="fill_parent"
             android:background="@color/table_color"
             android:baselineAligned="false"
-            android:layout_weight="1">
+            android:layout_weight="0.75">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -136,35 +136,13 @@
                     android:gravity="bottom|center_horizontal"
                     android:height="@dimen/text_size_small" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                    android:layout_width="@dimen/text_size_medium"
-                    android:layout_height="@dimen/text_size_medium"
-                    android:id="@+id/imSPCruise"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/accelerator"
-                        android:contentDescription="SetPointCruiseImage" />
-
-                    <ImageView
-                        android:layout_width="@dimen/text_size_medium"
-                        android:layout_height="@dimen/text_size_medium"
-                        android:id="@+id/imSpeedCruise"
-                        android:layout_gravity="bottom"
-                        android:background="@drawable/cruisecontrol"
-                        android:contentDescription="SpeedCruiseImage" />
-                </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="0.5">
 
                 <FrameLayout
                     android:layout_width="fill_parent"
@@ -178,7 +156,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/text_size_small">
 
                         <TextView
                             android:id="@+id/txtSpeed"
@@ -200,7 +179,21 @@
 
                     </LinearLayout>
 
-
+                    <au.com.teamarrow.arrowpoint.utils.ArcProgress
+                        android:id="@+id/arc_progress"
+                        android:background="@android:color/transparent"
+                        android:layout_height="fill_parent"
+                        android:layout_width="fill_parent"
+                        android:scaleType="centerInside"
+                        custom:arc_progress="0"
+                        custom:arc_bottom_text=""
+                        custom:arc_angle="@integer/arc_angle"
+                        custom:arc_stroke_width="@dimen/setPointStroke"
+                        custom:arc_unfinished_color="@color/frame_secondary_color"
+                        custom:arc_finished_color="@color/IntegralRed_color"
+                        custom:arc_color1="@color/IntegralRed_color"
+                        custom:arc_color2="@color/ClenergyGreen_color"
+                        android:layout_gravity="center" />
 
                     <FrameLayout
                         android:layout_width="fill_parent"
@@ -260,6 +253,65 @@
                         android:layout_gravity="bottom|center_horizontal"
                         android:textColor="@color/background_color"
                         android:textSize="@dimen/text_size_small" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:baselineAligned="false"
+                        android:layout_marginBottom="@dimen/text_size_small">
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="0.5">
+                            <ImageView
+                            android:layout_width="@dimen/setPointStroke"
+                            android:layout_height="@dimen/setPointStroke"
+                            android:id="@+id/imLeftBlinker"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="@drawable/left1"
+                            android:contentDescription="LeftBlinkerImage" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="0.5">
+
+                            <ImageView
+                                android:layout_width="@dimen/setPointStroke"
+                                android:layout_height="@dimen/setPointStroke"
+                                android:id="@+id/imRightBlinker"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/right1"
+                                android:contentDescription="RightBlinkerImage" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                        android:layout_width="@dimen/text_size_medium"
+                        android:layout_height="@dimen/text_size_medium"
+                        android:id="@+id/imSPCruise"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/accelerator"
+                            android:contentDescription="SetPointCruiseImage" />
+
+                        <ImageView
+                            android:layout_width="@dimen/text_size_medium"
+                            android:layout_height="@dimen/text_size_medium"
+                            android:id="@+id/imSpeedCruise"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/cruisecontrol"
+                            android:contentDescription="SpeedCruiseImage" />
+                    </LinearLayout>
 
                 </FrameLayout>
 
@@ -353,39 +405,6 @@
                     android:textSize="@dimen/text_size_small"
                     android:gravity="bottom|center_horizontal" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <FrameLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="@dimen/text_size_medium"
-                            android:layout_height="@dimen/text_size_medium"
-                            android:id="@+id/imLeftBlinker"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="@drawable/left1"
-                            android:contentDescription="LeftBlinkerImage" />
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:layout_width="@dimen/text_size_medium"
-                            android:layout_height="@dimen/text_size_medium"
-                            android:id="@+id/imRightBlinker"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="@drawable/right1"
-                            android:contentDescription="RightBlinkerImage" />
-                    </FrameLayout>
-                </LinearLayout>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -395,7 +414,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/table_color"
-            android:layout_weight="0.75">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -443,22 +462,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <au.com.teamarrow.arrowpoint.utils.ArcProgress
-        android:id="@+id/arc_progress"
-        android:background="@android:color/transparent"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:scaleType="centerInside"
-        custom:arc_progress="0"
-        custom:arc_bottom_text=""
-        custom:arc_angle="@integer/arc_angle"
-        custom:arc_stroke_width="@dimen/setPointStroke"
-        custom:arc_unfinished_color="@color/frame_secondary_color"
-        custom:arc_finished_color="@color/IntegralRed_color"
-        custom:arc_color1="@color/IntegralRed_color"
-        custom:arc_color2="@color/ClenergyGreen_color"
-        android:layout_gravity="center" />
 
 
 </GridLayout>

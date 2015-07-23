@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 	int defaultTextColour = 0;
 	int currentTab = 0;
+    boolean currentTheme = false;
 
 
 	/**
@@ -164,15 +166,9 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
             myDatagramReceiver.kill();
 			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 			myDatagramReceiver.start();
-		} /*else if (id == R.id.change_theme){
-            currentTheme = !currentTheme;
-            if (currentTheme){
-                this.setTheme(R.style.DarkTheme);
-            }else {
-                this.setTheme(R.style.WhiteTheme);
-            }
+		} else if (id == R.id.change_theme){
 
-        }*/
+        }
 		return super.onOptionsItemSelected(item);
 	}
 

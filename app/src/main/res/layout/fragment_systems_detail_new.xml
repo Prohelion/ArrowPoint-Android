@@ -304,7 +304,7 @@
                     android:text="@string/message"
                     android:id="@+id/txtAlerts"
                     android:textSize="@dimen/text_size_small"
-                    android:textColor="@color/driver_message_color" />
+                    android:textColor="@color/IntegralRed_color" />
             </FrameLayout>
 
         </LinearLayout>

@@ -27,6 +27,8 @@ public class CarData {
     private int lastMaxCellTemp = (int) 0;
     private int lastMotorPowerSetpoint = 0;
     private boolean cruiseControl = false;
+    private boolean setPointCruiseControl = false;
+    private boolean speedCruiseControl = false;
     private int cruiseTargetSpeed = 0;
     private boolean leftBlinker = false;
     private boolean rightBlinker = false;
@@ -82,6 +84,24 @@ public class CarData {
 
     public boolean isCruiseControl() {
         return cruiseControl;
+    }
+
+    public boolean isSetPointCruiseControl() {
+        return setPointCruiseControl;
+    }
+
+    public void setSetPointCruiseControl(boolean setPointCruiseControl) {
+        setCruiseControl(setPointCruiseControl);
+        this.setPointCruiseControl = setPointCruiseControl;
+    }
+
+    public boolean isSpeedCruiseControl() {
+        return speedCruiseControl;
+    }
+
+    public void setSpeedCruiseControl(boolean speedCruiseControl) {
+        setCruiseControl(speedCruiseControl);
+        this.speedCruiseControl = speedCruiseControl;
     }
 
     public void setCruiseControl(boolean cruiseControl) {

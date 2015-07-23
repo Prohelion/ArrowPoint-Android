@@ -6,9 +6,9 @@
         android:color="@color/frame_border_color"
         />
     <gradient
-        android:startColor="@color/frame_primary_color"
+        android:startColor="@color/background_color"
         android:centerY="1"
-        android:centerColor="@color/frame_secondary_color"
+        android:centerColor="@color/background_color"
         android:angle="270"
         />
 

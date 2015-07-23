@@ -19,7 +19,8 @@
         <color name="frame_secondary_color">#808080</color>
         <color name="table_color">#ff141414</color>
         <color name="text_color">#ffffffff</color>
-        <color name="driver_message_color">#D82030</color>
+        <color name="IntegralRed_color">#D82030</color>
+        <color name="ClenergyGreen_color">#ff43b02a</color>
 
 
 

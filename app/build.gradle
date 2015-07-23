@@ -1,19 +1,28 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'Tablet'
+            keyPassword 'teamarrow'
+            storeFile file('C:/Users/Jason/Documents/TeamArrow/Keystore/Arrow_androidKey.jks')
+            storePassword 'teamarrow'
+        }
+    }
     compileSdkVersion 19
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.example.arrowpoint"
         minSdkVersion 17
         targetSdkVersion 17
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -22,7 +31,7 @@ dependencies {
     //compile 'com.android.support:support-v4:22.0.0'
     compile files('libs/android-support-v13.jar')
     compile 'com.jjoe64:graphview:4.0.0'
-    compile "com.androidplot:androidplot-core:0.6.1"
+    compile 'com.androidplot:androidplot-core:0.6.1'
 }
 
 

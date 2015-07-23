@@ -29,7 +29,7 @@ public class DatagramReceiver extends Thread {
 	private CarData carData;
 
 	private boolean simulate;
-	private int[] SIMULATE_IDS = { 770,771,773,1281,785,789,793 };
+	private int[] SIMULATE_IDS = { 770,771,773,1281,785,789,793, 776, 508 };
 
 
 	public DatagramReceiver(CarData carData, boolean simulate) {
@@ -198,6 +198,21 @@ public class DatagramReceiver extends Thread {
 							case 1785: carData.setLastMaxCellTemp((int)canPackets.get(0).getTwoDataSegmentsAsInt(2));
 								break;
 
+                            case 508:
+
+                                switch ( canPackets.get(0).getDataSegmentAsInt(7) ) {
+                                    case 0: carData.setSpeedCruiseControl(false);
+                                        carData.setSetPointCruiseControl(false);
+                                        break;
+                                    case 1: carData.setSpeedCruiseControl(true);
+                                        carData.setSetPointCruiseControl(false);
+                                        break;
+                                    case 2: carData.setSetPointCruiseControl(true);
+                                        carData.setSpeedCruiseControl(false);
+                                        break;
+                                }
+
+                                break;
 						}
 
 					} else {

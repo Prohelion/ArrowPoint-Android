@@ -19,7 +19,7 @@
         <shape>
             <corners android:radius="6dp" />
             <solid
-                android:color="@color/driver_message_color" />
+                android:color="@color/ClenergyGreen_color" />
         </shape>
     </clip>
 </item>

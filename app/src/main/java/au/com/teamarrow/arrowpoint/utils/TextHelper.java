@@ -5,6 +5,10 @@ import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -63,6 +67,45 @@ public class TextHelper {
 
         if  (progressBar != null) { progressBar.setProgress(value); }
     }
+
+    public void setFlicker(int view, boolean isOn ) {
+        TextView textView = (TextView) myView.findViewById(view);
+
+        if  (!isOn) {
+            textView.setVisibility(View.INVISIBLE);
+        }else {
+            Animation anim = new AlphaAnimation(0, 1);
+            anim.setDuration(50); //You can manage the blinking time with this parameter
+            anim.setInterpolator(new LinearInterpolator());
+            anim.setRepeatMode(Animation.REVERSE);
+            anim.setRepeatCount(Animation.INFINITE);
+            textView.startAnimation(anim);
+        }
+    }
+
+    public void setVisibility(int view, boolean isVisible ) {
+        TextView textView = (TextView) myView.findViewById(view);
+
+        if  (isVisible) {
+            textView.setVisibility(View.VISIBLE);
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setImageVisibility(int view, boolean isVisible ) {
+        ImageView imageView = (ImageView) myView.findViewById(view);
+
+        if  (isVisible) {
+            imageView.setVisibility(View.VISIBLE);
+        }else {
+            imageView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
+
+
 
     public void setColourStatus(int view, boolean status) {
         TextView textView = (TextView) myView.findViewById(view);

@@ -10,6 +10,7 @@
     <dimen name="driver_message_height">70sp</dimen>
     <dimen name="margin_small">2sp</dimen>
     <dimen name="margin_medium">5sp</dimen>
+    <dimen name="setPointStroke">30dp</dimen>
 
     <!--Graph Dimensions-->
     <dimen name="pie_segment_label_font_size">10sp</dimen>
