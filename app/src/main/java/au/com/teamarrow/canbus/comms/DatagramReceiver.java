@@ -162,8 +162,8 @@ public class DatagramReceiver extends Thread {
 							case 776:   carData.setRegen(canPackets.get(0).getBit(2,0) !=0);
 								carData.setBrakes(canPackets.get(0).getBit(0,4) !=0);
 								carData.setHorn(canPackets.get(0).getBit(2,2) != 0);
-								carData.setLeftBlinker(canPackets.get(0).getBit(3,1) != 0);
-								carData.setRightBlinker(canPackets.get(0).getBit(3,2) != 0);
+								carData.setLeftBlinker(canPackets.get(0).getBit(3,2) != 0);
+								carData.setRightBlinker(canPackets.get(0).getBit(3,1) != 0);
 
 								// todo: Should this be state of charge or throttle position?
 								if (canPackets.get(0).getBit(2,7) != 0) {
