@@ -35,13 +35,29 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         textHelper.setText(R.id.txtState, carData.getDriveMode());
         textHelper.setText(R.id.txtAlert, carData.getAlerts());
         textHelper.setText(R.id.txtMotorTemp, carData.getLastMotorTemp());
-        textHelper.setText(R.id.txtMaxBatteryTemp, carData.getLastMaxCellTemp() / 10);
+        textHelper.setText(R.id.txtMaxBatteryTemp, (double)(carData.getLastMaxCellTemp() / 10));
         textHelper.setProgressBar(R.id.pbBattery, R.id.txtBattery, (int) carData.getLastSOC());
         textHelper.setText(R.id.txtSetpoint, carData.getLastMotorPowerSetpoint());
         textHelper.setImageVisibility(R.id.imSPCruise, carData.isSetPointCruiseControl());
         textHelper.setImageVisibility(R.id.imSpeedCruise, carData.isSpeedCruiseControl());
         textHelper.setImageVisibility(R.id.imLeftBlinker, carData.isLeftBlinker());
         textHelper.setImageVisibility(R.id.imRightBlinker, carData.isRightBlinker());
+
+        if (carData.isTestLayout()){ //Used for layout testing, see if text sizes and positions are correct
+            setpointAcr.setProgress(95, true);
+            textHelper.setText(R.id.txtSpeed, 89);
+            textHelper.setText(R.id.txtPower, -6.03);
+            textHelper.setText(R.id.txtState, "N");
+            textHelper.setText(R.id.txtAlert, "Layout Test");
+            textHelper.setText(R.id.txtMotorTemp, (double)(25.65));
+            textHelper.setText(R.id.txtMaxBatteryTemp, (double)(35.34));
+            textHelper.setProgressBar(R.id.pbBattery, R.id.txtBattery, 85);
+            textHelper.setText(R.id.txtSetpoint, 95);
+            textHelper.setImageVisibility(R.id.imSPCruise, true);
+            textHelper.setImageVisibility(R.id.imSpeedCruise, true);
+            textHelper.setImageVisibility(R.id.imLeftBlinker, true);
+            textHelper.setImageVisibility(R.id.imRightBlinker, true);
+        }
 
     }
 	/**

@@ -23,31 +23,31 @@ public class ArrowPointRulesEngine {
         }
 
         if (carData.getLastMotorTemp() > 80) {
-            alertString += "Alert- Motor Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMotorTemp())+"c\n";
+            alertString += "Motor Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMotorTemp())+"\u2103\n";
         }
 
         if (carData.getLastMaxCellTemp()/ 10 > 40) {
-            alertString += "Alert- Battery Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMaxCellTemp()/ 10)+"c\n";
+            alertString += "Battery Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMaxCellTemp()/ 10)+"\u2103\n";
         }
 
         if (carData.getLastControllerTemp() > 50) {
-            alertString += "Alert- Controller Temp @ "+new DecimalFormat("#0.0").format(carData.getLastControllerTemp())+"c\n";
+            alertString += "Controller Temp @ "+new DecimalFormat("#0.0").format(carData.getLastControllerTemp())+"\u2103\n";
         }
 
         if (carData.getLastMinimumCellV() < 3) {
-            alertString += "Alert- Min Cell Voltage @ "+new DecimalFormat("#0.0").format(carData.getLastMinimumCellV())+"V\n";
+            alertString += "Min Cell Voltage @ "+new DecimalFormat("#0.0").format(carData.getLastMinimumCellV())+"V\n";
         }
 
-        if (carData.getLastArray1Power() < 50) {
-            alertString += "Alert- Low Array 1 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray1Power())+"w\n";
+        if (carData.getLastArray1Power()/carData.getLastArrayTotalPower() < 0.15) {
+            alertString += "Low Array 1 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray1Power())+"W\n";
         }
 
-        if (carData.getLastArray2Power() < 50) {
-            alertString += "Alert- Low Array 2 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray2Power())+"w\n";
+        if (carData.getLastArray2Power()/carData.getLastArrayTotalPower() < 0.15) {
+            alertString += "Low Array 2 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray2Power())+"W\n";
         }
 
-        if (carData.getLastArray3Power() < 50) {
-            alertString += "Alert- Low Array 3 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray3Power())+"w\n";
+        if (carData.getLastArray3Power()/carData.getLastArrayTotalPower() < 0.15) {
+            alertString += "Low Array 3 Power @ "+new DecimalFormat("#0.0").format(carData.getLastArray3Power())+"W\n";
         }
 
 

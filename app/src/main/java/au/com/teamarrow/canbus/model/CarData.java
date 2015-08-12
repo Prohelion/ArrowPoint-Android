@@ -41,6 +41,7 @@ public class CarData {
     private boolean regen = false;
     private boolean brakes = false;
     private boolean horn = false;
+    private boolean testLayout = false; // Only used to test the layout sizes and positioning
     private int msSinceLastPacket = 0;
     private String alerts = new String();
 
@@ -68,9 +69,9 @@ public class CarData {
 
     public String getDriveMode() {
         if (idle) return "Idle";
-        else if (reverse) return "Reverse";
-        else if (neutral) return "Neutral";
-        else if (drive) return "Drive";
+        else if (reverse) return "R";
+        else if (neutral) return "N";
+        else if (drive) return "D";
         else return "None";
     }
 
@@ -378,6 +379,14 @@ public class CarData {
 
     public double getLastArrayTotalPower() {
         return getLastArray1Power() + getLastArray2Power() + getLastArray3Power();
+    }
+
+    public boolean isTestLayout() {
+        return testLayout;
+    }
+
+    public void setTestLayout(boolean testLayout) {
+        this.testLayout = testLayout;
     }
 
 

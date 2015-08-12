@@ -1,13 +1,17 @@
 <resources>
 
         <!--Layout Dimensions-->
-    <dimen name="text_size_large">150sp</dimen>
-    <dimen name="text_size_medium">60sp</dimen>
+    <dimen name="text_size_large">155sp</dimen>
+    <dimen name="text_height_large">170sp</dimen>
+    <dimen name="text_size_medium">65sp</dimen>
+    <dimen name="text_height_medium">80sp</dimen>
     <dimen name="text_size_small">20sp</dimen>
+    <dimen name="text_size_power_details">35sp</dimen>
+    <dimen name="text_size_system_details">35sp</dimen>
     <dimen name="frame_layout_margin">5sp</dimen>
     <dimen name="frame_layout_padding">5sp</dimen>
     <dimen name="table_layout_margin">5sp</dimen>
-    <dimen name="driver_message_height">70sp</dimen>
+    <dimen name="driver_message_height">80sp</dimen>
     <dimen name="margin_small">2sp</dimen>
     <dimen name="margin_medium">5sp</dimen>
     <dimen name="setPointStroke">30dp</dimen>

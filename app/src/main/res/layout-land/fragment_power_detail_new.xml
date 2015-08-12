@@ -37,7 +37,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/lblArrayVoltageHeader"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/txtArray1Voltage"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/txtArray2Voltage"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/txtArray3Voltage"
@@ -222,7 +222,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/txtControllerVoltage"
@@ -317,7 +317,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color"
-                    android:layout_weight="0.85" />
+                    android:layout_weight="0.75" />
 
                 <TextView
                     android:id="@+id/txtBatteryVoltage"

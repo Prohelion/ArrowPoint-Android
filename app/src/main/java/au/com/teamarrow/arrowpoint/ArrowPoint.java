@@ -166,8 +166,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
             myDatagramReceiver.kill();
 			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 			myDatagramReceiver.start();
-		} else if (id == R.id.change_theme){
-
+		} else if (id == R.id.test_layout){
+            carData.setTestLayout(!carData.isTestLayout());
         }
 		return super.onOptionsItemSelected(item);
 	}

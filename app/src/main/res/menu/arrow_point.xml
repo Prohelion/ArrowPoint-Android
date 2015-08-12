@@ -13,8 +13,8 @@
         android:showAsAction="never"
         android:title="@string/debug_mode"/>
     <item
-        android:id="@+id/change_theme"
+        android:id="@+id/test_layout"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/change_theme"/>
+        android:title="@string/test_layout"/>
 </menu>

@@ -198,7 +198,8 @@ public class DatagramReceiver extends Thread {
 							case 1785: carData.setLastMaxCellTemp((int)canPackets.get(0).getTwoDataSegmentsAsInt(2));
 								break;
 
-                            case 508:
+                            // Cruise control state (x508)
+                            case 1288:
 
                                 switch ( canPackets.get(0).getDataSegmentAsInt(7) ) {
                                     case 0: carData.setSpeedCruiseControl(false);

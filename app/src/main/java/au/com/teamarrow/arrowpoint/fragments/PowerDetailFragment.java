@@ -55,7 +55,7 @@ public class PowerDetailFragment extends UpdateablePlaceholderFragment {
 		textHelper.setText(R.id.txtTotalArrayPower,carData.getLastArrayTotalPower());
 		textHelper.setText(R.id.txtControllerVoltage,carData.getLastBusVolts());
 		textHelper.setText(R.id.txtControllerCurrent,carData.getLastBusAmps());
-		textHelper.setText(R.id.txtControllerPower,carData.getLastBusPower()*-1000);
+		textHelper.setText(R.id.txtControllerPower,(int)(carData.getLastBusPower()*-1000));
 		textHelper.setText(R.id.txtBatteryVoltage,carData.getLastBatteryVolts());
 		textHelper.setText(R.id.txtBatteryCurrent,carData.getLastBatteryAmps());
 		textHelper.setText(R.id.txtBatteryPower,carData.getLastArrayTotalPower()-(carData.getLastBusPower()*1000));
