@@ -1,0 +1,28 @@
+<resources>
+
+        <!--Layout Dimensions-->
+    <dimen name="text_size_large">155sp</dimen>
+    <dimen name="text_height_large">170sp</dimen>
+    <dimen name="text_size_medium">65sp</dimen>
+    <dimen name="text_height_medium">80sp</dimen>
+    <dimen name="text_size_small">20sp</dimen>
+    <dimen name="text_size_power_details">35sp</dimen>
+    <dimen name="text_size_system_details">35sp</dimen>
+    <dimen name="frame_layout_margin">5sp</dimen>
+    <dimen name="frame_layout_padding">5sp</dimen>
+    <dimen name="table_layout_margin">5sp</dimen>
+    <dimen name="driver_message_height">80sp</dimen>
+    <dimen name="margin_small">2sp</dimen>
+    <dimen name="margin_medium">5sp</dimen>
+    <dimen name="setPointStroke">30dp</dimen>
+
+    <!--Graph Dimensions-->
+    <dimen name="pie_segment_label_font_size">10sp</dimen>
+    <dimen name="title_font_size">15sp</dimen>
+    <dimen name="domain_label_font_size">0sp</dimen>
+    <dimen name="range_label_font_size">15sp</dimen>
+    <dimen name="range_tick_label_font_size">15sp</dimen>
+    <dimen name="domain_tick_label_font_size">0sp</dimen>
+    <dimen name="legend_text_font_size">10dp</dimen>
+
+</resources>

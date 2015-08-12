@@ -27,6 +27,8 @@ public class CarData {
     private int lastMaxCellTemp = (int) 0;
     private int lastMotorPowerSetpoint = 0;
     private boolean cruiseControl = false;
+    private boolean setPointCruiseControl = false;
+    private boolean speedCruiseControl = false;
     private int cruiseTargetSpeed = 0;
     private boolean leftBlinker = false;
     private boolean rightBlinker = false;
@@ -39,13 +41,38 @@ public class CarData {
     private boolean regen = false;
     private boolean brakes = false;
     private boolean horn = false;
+    private boolean testLayout = false; // Only used to test the layout sizes and positioning
+    private int msSinceLastPacket = 0;
+    private String alerts = new String();
+
+    public int getMsSinceLastPacket() {
+        return msSinceLastPacket;
+    }
+
+    public void setMsSinceLastPacket(int msSinceLastPacket) {
+        this.msSinceLastPacket = msSinceLastPacket;
+
+        // Prevents the counter becoming too big
+        if (this.msSinceLastPacket > 10000){
+            this.msSinceLastPacket = 9000;
+        }
+    }
+
+    public String getAlerts() {
+        return alerts;
+    }
+
+    public void setAlerts(String Alerts) {
+        alerts = Alerts;
+    }
+
 
     public String getDriveMode() {
         if (idle) return "Idle";
-        if (reverse) return "R";
-        if (neutral) return "N";
-        if (drive) return "D";
-        return "ERROR";
+        else if (reverse) return "R";
+        else if (neutral) return "N";
+        else if (drive) return "D";
+        else return "None";
     }
 
     public boolean isBrakes() {
@@ -58,6 +85,24 @@ public class CarData {
 
     public boolean isCruiseControl() {
         return cruiseControl;
+    }
+
+    public boolean isSetPointCruiseControl() {
+        return setPointCruiseControl;
+    }
+
+    public void setSetPointCruiseControl(boolean setPointCruiseControl) {
+        setCruiseControl(setPointCruiseControl);
+        this.setPointCruiseControl = setPointCruiseControl;
+    }
+
+    public boolean isSpeedCruiseControl() {
+        return speedCruiseControl;
+    }
+
+    public void setSpeedCruiseControl(boolean speedCruiseControl) {
+        setCruiseControl(speedCruiseControl);
+        this.speedCruiseControl = speedCruiseControl;
     }
 
     public void setCruiseControl(boolean cruiseControl) {
@@ -334,6 +379,14 @@ public class CarData {
 
     public double getLastArrayTotalPower() {
         return getLastArray1Power() + getLastArray2Power() + getLastArray3Power();
+    }
+
+    public boolean isTestLayout() {
+        return testLayout;
+    }
+
+    public void setTestLayout(boolean testLayout) {
+        this.testLayout = testLayout;
     }
 
 

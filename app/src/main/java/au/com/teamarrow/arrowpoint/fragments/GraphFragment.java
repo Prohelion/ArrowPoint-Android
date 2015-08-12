@@ -1,29 +1,16 @@
 package au.com.teamarrow.arrowpoint.fragments;
 
-import com.androidplot.xy.BoundaryMode;
-import com.androidplot.xy.LineAndPointFormatter;
-import com.androidplot.xy.PointLabelFormatter;
-import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
 import com.example.arrowpoint.R;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
-import au.com.teamarrow.arrowpoint.CustomOnItemSelectedListener;
 import au.com.teamarrow.arrowpoint.utils.GraphHandler;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import java.util.Arrays;
+import android.widget.TextView;
 
 import au.com.teamarrow.canbus.model.CarData;
 
@@ -41,6 +28,8 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
 
     private static Spinner primary_Spinner;
     private static Spinner secondary_Spinner;
+    private static int previous_primary_index;
+    private static int previous_secondary_index;
 
     private static GraphHandler graph_handler_1;
     private static GraphHandler graph_handler_2;
@@ -66,17 +55,25 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
     @Override
     public void Update(View fragmentView, CarData carData) {
 
+        if (previous_primary_index != primary_Spinner.getSelectedItemPosition()
+                || previous_secondary_index != secondary_Spinner.getSelectedItemPosition()){
+            graph_handler_1.clearGraph();
+            graph_handler_2.clearGraph();
+        }
+
         //Update Graphs
         graph_handler_1.addData(graph1, carData, primary_Spinner.getSelectedItemPosition());
         graph_handler_2.addData(graph2, carData, secondary_Spinner.getSelectedItemPosition());
 
+        previous_primary_index = primary_Spinner.getSelectedItemPosition();
+        previous_secondary_index = secondary_Spinner.getSelectedItemPosition();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_graph,
+        View rootView = inflater.inflate(R.layout.fragment_graph_new,
                 container, false);
 
         // New instances of GraphHandler for each graph
@@ -84,14 +81,18 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
         graph_handler_2 = new GraphHandler();
 
         //Setup Spinners
-        secondary_Spinner = (Spinner) rootView.findViewById(R.id.secondarySpinner);
-        primary_Spinner = (Spinner) rootView.findViewById(R.id.primarySpinner);
+        secondary_Spinner = (Spinner) rootView.findViewById(R.id.spnSecondary);
+        primary_Spinner = (Spinner) rootView.findViewById(R.id.spnPrimary);
 
         //Setup Graphs
         graph1 = (XYPlot) rootView.findViewById(R.id.graph1);
         graph2 = (XYPlot) rootView.findViewById(R.id.graph2);
-        graph_handler_1.setupGraph(graph1, "Primary Graph");
-        graph_handler_2.setupGraph(graph2, "Secondary Graph");
+
+        int text_color = getResources().getColor(R.color.text_color);
+        int line_color = getResources().getColor(R.color.IntegralRed_color);
+
+        graph_handler_1.setupGraph(graph1, "Primary Graph",text_color ,line_color);
+        graph_handler_2.setupGraph(graph2, "Secondary Graph",text_color ,line_color);
 
         super.onCreate(savedInstanceState);
 

@@ -1,0 +1,361 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PowerDetailsFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background_color">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:background="@drawable/frame_bg"
+            android:padding="@dimen/margin_medium">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_size_power_details">
+
+                <TextView
+                    android:id="@+id/lblItemHeader"
+                    android:text="@string/itemHeader"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/lblArrayVoltageHeader"
+                    android:text="@string/voltageHeader"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/lblArrayCurrentHeader"
+                    android:text="@string/currentHeader"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/lblArrayPowerHeader"
+                    android:text="@string/powerHeader"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblArray1"
+                    android:text="@string/array1"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/txtArray1Voltage"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray1Current"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray1Power"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblArray2"
+                    android:text="@string/array2"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/txtArray2Voltage"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray2Current"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray2Power"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblArray3"
+                    android:text="@string/array3"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/txtArray3Voltage"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray3Current"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtArray3Power"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblController"
+                    android:text="@string/controller"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/txtControllerVoltage"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtControllerCurrent"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtControllerPower"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_size_power_details">
+
+                <TextView
+                    android:id="@+id/lblTotalArrayPower"
+                    android:text="@string/totalInputPowerHeader"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtTotalArrayPower"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:background="@drawable/frame_bg"
+            android:padding="@dimen/margin_medium">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/netPowerPositionHeader"
+                android:id="@+id/lblNetPowerPosition"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_power_details" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblBattery"
+
+
+                    android:text="@string/battery"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/txtBatteryVoltage"
+
+
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/txtBatteryCurrent"
+
+
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_color"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/txtBatteryPower"
+                    android:text="@string/zero"
+                    android:textSize="@dimen/text_size_power_details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</GridLayout>
