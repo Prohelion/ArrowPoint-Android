@@ -1,5 +1,8 @@
 package au.com.teamarrow.canbus.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ctuesley on 5/05/2015.
  */
@@ -43,7 +46,73 @@ public class CarData {
     private boolean horn = false;
     private boolean testLayout = false; // Only used to test the layout sizes and positioning
     private int msSinceLastPacket = 0;
-    private String alerts = new String();
+    private String alerts = null;
+    private ArrowMessage driverMessage = null;
+    private boolean driverMode = true;
+    private String sendMessage = null;
+    private int MAX_LIST_SIZE = 10;
+    private List<ArrowMessage> messageList = new ArrayList<ArrowMessage>();
+
+    public boolean isDriverMode() {
+        return driverMode;
+    }
+
+    public void setDriverMode(boolean driverMode) {
+        this.driverMode = driverMode;
+    }
+
+
+    public String getSendMessage() {
+        return sendMessage;
+    }
+
+    public void setSendMessage(String sendMessage) {
+        this.sendMessage = sendMessage;
+    }
+
+    public void addMessage(String sender, String message){
+
+        if (message.contains("-d")){ //Driver Message
+            message = message.replace("-d ", "");
+            driverMessage = new ArrowMessage(sender,message);
+            message = message.concat(" (Driver Message)");
+            messageList.add(new ArrowMessage(sender,message));
+        } else if (message.contains("-cd")){ //Clear Driver Message
+            driverMessage = null;
+        } else if (message.contains("-ca")){ // Clear all Messages
+            messageList.clear();
+            driverMessage = null;
+        } else {
+            messageList.add(new ArrowMessage(sender,message));
+        }
+
+        if (messageList.size() > MAX_LIST_SIZE) {
+            messageList.remove(0);
+        }
+
+    }
+
+    public String getMessages(){
+        String string = "";
+        for (int i = 0; i < messageList.size(); i ++){
+            string += messageList.get(messageList.size()-1-i).toString() + "\n";
+        }
+        return string;
+    }
+
+    public ArrowMessage getDriverMessage() {
+        if (driverMode) {
+            return driverMessage;
+        }
+        if (messageList.size() > 0) {
+            return messageList.get(messageList.size()-1);
+        }
+        return null;
+    }
+
+    public void setDriverMessage(ArrowMessage driverMessage) {
+        this.driverMessage = driverMessage;
+    }
 
     public int getMsSinceLastPacket() {
         return msSinceLastPacket;

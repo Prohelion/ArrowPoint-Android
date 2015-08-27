@@ -97,12 +97,12 @@ public class DatagramReceiver extends Thread {
                         carData.setMsSinceLastPacket(0);// reset LastPacket Timer
 
 						// Deserialize the packet
-						if ( simulate == false) {
+						                            if ( simulate == false) {
 
-							InputStream inputStream = new ByteArrayInputStream(packet.getData(),0,packet.getLength());
+                                InputStream inputStream = new ByteArrayInputStream(packet.getData(),0,packet.getLength());
 
-							UdpPacket udpPacket = udpDeserializer.deserialize(inputStream);
-							canPackets = canPacketSplitter.extractCanPackets(udpPacket);
+                                UdpPacket udpPacket = udpDeserializer.deserialize(inputStream);
+                                canPackets = canPacketSplitter.extractCanPackets(udpPacket);
 
 						} else {
 

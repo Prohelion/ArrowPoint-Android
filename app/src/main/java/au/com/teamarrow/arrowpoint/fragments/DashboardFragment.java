@@ -42,6 +42,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         textHelper.setImageVisibility(R.id.imSpeedCruise, carData.isSpeedCruiseControl());
         textHelper.setImageVisibility(R.id.imLeftBlinker, carData.isLeftBlinker());
         textHelper.setImageVisibility(R.id.imRightBlinker, carData.isRightBlinker());
+        textHelper.setVisibility(R.id.txtDriverMode, carData.isDriverMode());
 
         if (carData.isTestLayout()){ //Used for layout testing, see if text sizes and positions are correct
             setpointAcr.setProgress(95, true);
@@ -57,6 +58,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
             textHelper.setImageVisibility(R.id.imSpeedCruise, true);
             textHelper.setImageVisibility(R.id.imLeftBlinker, true);
             textHelper.setImageVisibility(R.id.imRightBlinker, true);
+            textHelper.setVisibility(R.id.txtDriverMode, true);
         }
 
     }

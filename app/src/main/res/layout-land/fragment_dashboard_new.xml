@@ -30,7 +30,7 @@
                     android:layout_height="@dimen/driver_message_height"
                     android:text="@string/message"
                     android:id="@+id/txtAlert"
-                    android:textColor="@color/IntegralRed_color"
+                    android:textColor="@color/Alert_color"
                     android:textSize="@dimen/text_size_medium"
                     android:gravity="center_horizontal"
                     android:textStyle="bold"/>
@@ -448,33 +448,40 @@
                         android:layout_height="fill_parent"
                         android:background="#00000000"
                         android:text="@string/percent"
-                        android:textColor="@color/frame_primary_color"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/setPointStroke"
                         android:gravity="center"
                         android:layout_gravity="right"
                         android:typeface="sans" />
                 </FrameLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/battery"
-                    android:id="@+id/lblBattery"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:textColor="@color/frame_secondary_color"
-                    android:textSize="@dimen/text_size_small" />
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/battery"
+                        android:id="@+id/lblBattery"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:textColor="@color/frame_secondary_color"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtDriverMode"
+                        android:textColor="@color/frame_secondary_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:text="@string/driverMode" />
+                </FrameLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_row="0"
-        android:layout_column="1"></FrameLayout>
 
 
 </GridLayout>

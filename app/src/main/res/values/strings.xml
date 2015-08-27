@@ -7,17 +7,23 @@
     <string name="title_section2">Power Detail</string>
     <string name="title_section3">Systems Detail</string>
     <string name="title_section4">Graph</string>
+    <string name="title_section5">Messages</string>
 
     <!-- Options -->
     <string name="action_settings">Settings</string>
     <string name="debug_mode">Simulate Data</string>
     <string name="test_layout">Test Layout</string>
+    <string name="driver_mode">Toggle Driver Mode</string>
     <string name="refresh">refresh</string>
     <string name="showDetail">Show Detail</string>
     <string name="highDetail">Hide Detail</string>
 
     <!-- Titles and Headings -->
-
+    <string name="messageHints">-d message driver, -cd clear driver message,\n-ca clear all</string>
+    <string name="driverMode">Driver Mode</string>
+    <string name="receivedmessages">Received Messages</string>
+    <string name="sendmessage">Send Message</string>
+    <string name="sendmessagebutton">Send</string>
     <string name="buspowerHeader">Bus Power</string>
     <string name="speedHeader">Speed</string>
     <string name="setpointHeader">Set Point</string>
@@ -62,7 +68,7 @@
     <string name="kw">kW</string>
     <string name="degree">\u2103</string>
     <string name="percent">%</string>
-    <string name="message">There is currently no message</string>
+    <string name="message"> </string>
 
     <!-- Graph and Spinners -->
 	<string name="Spinner_Prime_Prompt">Primary Data</string>

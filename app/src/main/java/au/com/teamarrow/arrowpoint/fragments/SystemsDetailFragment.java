@@ -31,10 +31,10 @@ public class SystemsDetailFragment extends UpdateablePlaceholderFragment {
 
         textHelper.setText(R.id.txtMotorTempDetail,carData.getLastMotorTemp(),"#0.0' \u2103'");
         textHelper.setText(R.id.txtControllerTemp,carData.getLastControllerTemp(),"#0.0' \u2103'");
-        textHelper.setText(R.id.txtMinBattery,(double)carData.getLastMinimumCellV()/1000,"#0.0' V'");
-        textHelper.setText(R.id.txtMaxBattery,(double)carData.getLastMaximumCellV()/1000,"#0.0' V'");
+        textHelper.setText(R.id.txtMinBattery,(double)carData.getLastMinimumCellV()/1000,"#0.000' V'");
+        textHelper.setText(R.id.txtMaxBattery,(double)carData.getLastMaximumCellV()/1000,"#0.000' V'");
         textHelper.setText(R.id.txtMaxBatteryTemp, (double) carData.getLastMaxCellTemp() / 10, "#0.0' \u2103'");
-        textHelper.setText(R.id.txt12VoltDetail,(double)carData.getLastTwelveVBusVolts()/1000, "#0.0' V'");
+        textHelper.setText(R.id.txt12VoltDetail,(double)carData.getLastTwelveVBusVolts()/1000, "#0.000' V'");
 
         if (carData.isIdle()) textHelper.setText(R.id.lblState,"Idle");
         if (carData.isReverse()) textHelper.setText(R.id.lblState,"Reverse");

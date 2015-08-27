@@ -6,31 +6,22 @@ import com.example.arrowpoint.R;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Field;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-import java.util.concurrent.locks.Lock;
-
 import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
+import au.com.teamarrow.canbus.comms.DriverMessageReceiver;
 import au.com.teamarrow.canbus.model.CarData;
 
 public class ArrowPoint extends Activity implements ActionBar.TabListener {
@@ -49,6 +40,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	boolean simulateMode = false;
 	public DatagramReceiver myDatagramReceiver = null;
+    public DriverMessageReceiver myDriverMessageReceiver = null;
 
 	Handler handler;
 
@@ -133,7 +125,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 			ArrowPointRulesEngine rulesEngine = new ArrowPointRulesEngine();
 
 			try {
-				carData.setAlerts(rulesEngine.checkRules(carData, simulateMode));
+                // Sets the alerts determined by the rules engine
+				carData.setAlerts(rulesEngine.getAlerts(carData, simulateMode));
 				lock.lock();
                 UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
@@ -166,7 +159,10 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
             myDatagramReceiver.kill();
 			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 			myDatagramReceiver.start();
-		} else if (id == R.id.test_layout){
+		}else if (id == R.id.driver_mode){
+            carData.setDriverMode(!carData.isDriverMode());
+        }
+        else if (id == R.id.test_layout){
             carData.setTestLayout(!carData.isTestLayout());
         }
 		return super.onOptionsItemSelected(item);
@@ -198,6 +194,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		super.onResume();
 		myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 		myDatagramReceiver.start();
+        myDriverMessageReceiver = new DriverMessageReceiver(carData);
+        myDriverMessageReceiver.start();
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
