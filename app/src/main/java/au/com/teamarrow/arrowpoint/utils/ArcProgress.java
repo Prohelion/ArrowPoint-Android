@@ -28,6 +28,7 @@ public class ArcProgress extends View {
     private float bottomTextSize;
     private String bottomText;
     private int progress = 0;
+    private int unfinished_progress = 0;
     private int max;
     private int color1;
     private int color2;
@@ -129,9 +130,14 @@ public class ArcProgress extends View {
         float finishedSweepAngle = progress / (float) getMax() * arcAngle;
         float finishedStartAngle = startAngle;
 
+        float unfinishedSweepAngle = unfinished_progress / (float) getMax() * arcAngle;
+        float unfinishedStartAngle = startAngle;
 
+
+        paint.setStrokeWidth((float)(1.0*strokeWidth));
         paint.setColor(unfinishedStrokeColor);
-        canvas.drawArc(rectF, startAngle, arcAngle, false, paint);
+        canvas.drawArc(rectF, unfinishedStartAngle, unfinishedSweepAngle, false, paint);
+        paint.setStrokeWidth((float)(0.95*strokeWidth));
         paint.setColor(finishedStrokeColor);
         canvas.drawArc(rectF, finishedStartAngle, finishedSweepAngle, false, paint);
         String text = String.valueOf(getProgress());
@@ -197,11 +203,28 @@ public class ArcProgress extends View {
         invalidate();
     }
 
-    public void setProgress(int progress, boolean secondaryColor) {
+    public int getUnfinished_progress() {
+        return unfinished_progress;
+    }
+
+    public void setUnfinished_progress(int unfinished_progress) {
+        this.unfinished_progress = unfinished_progress;
+        if (this.unfinished_progress > getMax()) {
+            this.unfinished_progress %= getMax();
+        }
+    }
+
+    public void setProgress(int progress, int unfinished_progress, boolean secondaryColor) {
         this.progress = progress;
         if (this.progress > getMax()) {
             this.progress %= getMax();
         }
+
+        this.unfinished_progress = unfinished_progress;
+        if (this.unfinished_progress > getMax()) {
+            this.unfinished_progress %= getMax();
+        }
+
         if (secondaryColor){
             finishedStrokeColor = color2;
         }else{
@@ -229,11 +252,9 @@ public class ArcProgress extends View {
         return finishedStrokeColor;
     }
 
-
     public int getUnfinishedStrokeColor() {
         return unfinishedStrokeColor;
     }
-
 
     public float getArcAngle() {
         return arcAngle;

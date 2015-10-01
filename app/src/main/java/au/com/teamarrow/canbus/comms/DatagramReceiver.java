@@ -95,7 +95,7 @@ public class DatagramReceiver extends Thread {
 					if (timeout == false || simulate == true) {
 
                         carData.setMsSinceLastPacket(0);// reset LastPacket Timer
-
+                        carData.setSecSinceLastPacket(0);// reset LastPacket Timer
 						// Deserialize the packet
 						                            if ( simulate == false) {
 
@@ -198,19 +198,30 @@ public class DatagramReceiver extends Thread {
 							case 1785: carData.setLastMaxCellTemp((int)canPackets.get(0).getTwoDataSegmentsAsInt(2));
 								break;
 
+                            case 1294: carData.setLastMaxSOMSetpoint((int)(100*canPackets.get(0).getDataSegmentTwoAsFloat()));
+                                break;
+
                             // Cruise control state (x508)
                             case 1288:
 
                                 switch ( canPackets.get(0).getDataSegmentAsInt(7) ) {
                                     case 0: carData.setSpeedCruiseControl(false);
                                         carData.setSetPointCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
                                         break;
                                     case 1: carData.setSpeedCruiseControl(true);
                                         carData.setSetPointCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
                                         break;
                                     case 2: carData.setSetPointCruiseControl(true);
                                         carData.setSpeedCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
                                         break;
+                                    case 3: carData.setSOMCruiseControl(true);
+                                        carData.setSpeedCruiseControl(false);
+                                        carData.setSetPointCruiseControl(false);
+                                        break;
+                                    // case 3 = Set Solar Only Mode
                                 }
 
                                 break;

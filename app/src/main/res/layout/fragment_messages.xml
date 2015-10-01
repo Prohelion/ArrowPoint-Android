@@ -42,16 +42,34 @@
                     android:layout_marginLeft="@dimen/margin_medium"
                     android:layout_marginRight="@dimen/margin_medium">
 
-                    <EditText
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/edtSend"
-                        android:background="@color/text_color"
-                        android:textColor="@color/background_color"
-                        android:textSize="@dimen/text_size_system_details"
-                        android:layout_margin="@dimen/margin_medium"
-                        android:hint="Add message"
-                        android:padding="@dimen/margin_small" />
+                        android:layout_height="fill_parent">
+
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:id="@+id/spnReciever"
+                            android:entries="@array/Reciever_Options"
+                            android:prompt="@string/messagereceiver"
+                            android:layout_weight="2"
+                            android:background="@drawable/draw_spinner"
+                            android:layout_margin="@dimen/margin_medium" />
+
+                        <EditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/edtSend"
+                            android:background="@color/text_color"
+                            android:textColor="@color/background_color"
+                            android:textSize="@dimen/text_size_system_details"
+                            android:layout_margin="@dimen/margin_medium"
+                            android:hint="Add message"
+                            android:padding="@dimen/margin_small"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
@@ -59,26 +77,35 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_medium">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sendmessagebutton"
-                        android:id="@+id/btnSendMessage"
-                        android:textColor="@color/text_color"
-                        android:background="@color/IntegralRed_color"
-                        android:textSize="@dimen/text_size_system_details"
-                        android:layout_gravity="right"
-                        android:onClick="send"
-                        android:layout_margin="@dimen/margin_medium" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/messageHints"
-                        android:id="@+id/txtMessageHints"
-                        android:textColor="@color/frame_secondary_color"
-                        android:textSize="@dimen/text_size_small"
-                        android:layout_gravity="center_vertical" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:id="@+id/spnMessage"
+                            android:entries="@array/Message_Options"
+                            android:prompt="@string/messagereceiver"
+                            android:layout_weight="1"
+                            android:background="@drawable/draw_spinner"
+                            android:layout_margin="@dimen/margin_medium" />
+
+                        <Button
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sendmessagebutton"
+                            android:id="@+id/btnSendMessage"
+                            android:textColor="@color/text_color"
+                            android:background="@drawable/draw_spinner"
+                            android:textSize="@dimen/text_size_system_details"
+                            android:onClick="send"
+                            android:layout_margin="@dimen/margin_medium"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
                 </FrameLayout>
 
             </LinearLayout>

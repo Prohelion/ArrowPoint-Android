@@ -16,12 +16,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.locks.ReentrantLock;
 
 
+import au.com.bytecode.opencsv.CSVReader;
 import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
 import au.com.teamarrow.canbus.comms.DriverMessageReceiver;
+import au.com.teamarrow.canbus.model.ArrowMessage;
 import au.com.teamarrow.canbus.model.CarData;
 
 public class ArrowPoint extends Activity implements ActionBar.TabListener {
@@ -100,10 +105,52 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 					.setTabListener(this));
 		}
 
+        readAlertsFile(carData);
+
 		super.onCreate(savedInstanceState);
 		handler.post(sendData);
 
 	}
+
+    public void readAlertsFile(CarData carData){
+        try {
+
+            InputStream file = this.getResources().openRawResource(R.raw.alerts);
+            CSVReader reader = new CSVReader(new InputStreamReader(file));
+            String [] nextLine;
+            reader.readNext(); //Skip the first line of the csv
+
+            while ((nextLine = reader.readNext()) != null) {
+                // nextLine[] is an array of values from each line int the csv
+                //carData.addMessage("", nextLine[0] +"="+nextLine[1]);
+                if (nextLine[0].equalsIgnoreCase("")){
+
+                }else if (nextLine[0].equalsIgnoreCase("MinimumCellV")){
+                    carData.setMinThreshMinimumCellV(Integer.valueOf(nextLine[1]));
+                    //carData.addMessage("", "MinCellV = " + carData.getMinThreshMinimumCellV());
+
+                }else if (nextLine[0].equalsIgnoreCase("MotorTemp")){
+                    carData.setMaxThreshMotorTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "MotorTemp = " + carData.getMaxThreshMotorTemp());
+
+                }else if (nextLine[0].equalsIgnoreCase("MaxCellTemp")){
+                    carData.setMaxThreshMaxCellTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "MaxCellTemp = " + carData.getMaxThreshMaxCellTemp());
+
+                }else if (nextLine[0].equalsIgnoreCase("ControllerTemp")){
+                    carData.setMaxThreshControllerTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "ControllerTemp = " + carData.getMaxThreshControllerTemp());
+                }
+
+            }
+
+
+
+        }catch(Exception e){
+            carData.setDriverMessage(new ArrowMessage("test","Didn't work"));
+            e.printStackTrace();
+        }
+    }
 
 
 	public CarData getCarData() {

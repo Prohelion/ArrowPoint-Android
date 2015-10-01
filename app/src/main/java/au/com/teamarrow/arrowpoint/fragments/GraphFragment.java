@@ -89,7 +89,7 @@ public class GraphFragment extends UpdateablePlaceholderFragment {
         graph2 = (XYPlot) rootView.findViewById(R.id.graph2);
 
         int text_color = getResources().getColor(R.color.text_color);
-        int line_color = getResources().getColor(R.color.IntegralRed_color);
+        int line_color = getResources().getColor(R.color.Alert_color);
 
         graph_handler_1.setupGraph(graph1, "Primary Graph",text_color ,line_color);
         graph_handler_2.setupGraph(graph2, "Secondary Graph",text_color ,line_color);

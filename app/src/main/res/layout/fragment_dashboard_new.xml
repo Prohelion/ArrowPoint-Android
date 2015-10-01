@@ -157,6 +157,14 @@
                         android:layout_gravity="bottom"
                         android:background="@drawable/cruisecontrol"
                         android:contentDescription="SpeedCruiseImage" />
+
+                    <ImageView
+                        android:layout_width="@dimen/text_size_medium"
+                        android:layout_height="@dimen/text_size_medium"
+                        android:id="@+id/imSOMCruise"
+                        android:layout_gravity="bottom"
+                        android:contentDescription="SOMCruiseImage"
+                        android:background="@drawable/solaronly" />
                 </LinearLayout>
 
             </LinearLayout>

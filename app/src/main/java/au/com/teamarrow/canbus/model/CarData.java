@@ -29,9 +29,17 @@ public class CarData {
     private int lastTwelveVBusVolts = (int) 0;
     private int lastMaxCellTemp = (int) 0;
     private int lastMotorPowerSetpoint = 0;
+    private int lastMaxSOMSetpoint = 100;
+
+    private int MinThreshMinimumCellV = 5;
+    private int MaxThreshMotorTemp = 80;
+    private int MaxThreshMaxCellTemp = 40;
+    private int MaxThreshControllerTemp = 50;
+
     private boolean cruiseControl = false;
     private boolean setPointCruiseControl = false;
     private boolean speedCruiseControl = false;
+    private boolean SOMCruiseControl = false;
     private int cruiseTargetSpeed = 0;
     private boolean leftBlinker = false;
     private boolean rightBlinker = false;
@@ -46,12 +54,56 @@ public class CarData {
     private boolean horn = false;
     private boolean testLayout = false; // Only used to test the layout sizes and positioning
     private int msSinceLastPacket = 0;
+    private int secSinceLastPacket = 0;
     private String alerts = null;
     private ArrowMessage driverMessage = null;
     private boolean driverMode = true;
     private String sendMessage = null;
     private int MAX_LIST_SIZE = 10;
     private List<ArrowMessage> messageList = new ArrayList<ArrowMessage>();
+
+
+    public int getMinThreshMinimumCellV() {
+        return MinThreshMinimumCellV;
+    }
+
+    public void setMinThreshMinimumCellV(int MinThreshMinimumCellV) {
+        this.MinThreshMinimumCellV = MinThreshMinimumCellV;
+    }
+
+    public int getMaxThreshMotorTemp() {
+        return MaxThreshMotorTemp;
+    }
+
+    public void setMaxThreshMotorTemp(int MaxThreshMotorTemp) {
+        this.MaxThreshMotorTemp = MaxThreshMotorTemp;
+    }
+
+    public int getMaxThreshMaxCellTemp() {
+        return MaxThreshMaxCellTemp;
+    }
+
+    public void setMaxThreshMaxCellTemp(int MaxThreshMaxCellTemp) {
+        this.MaxThreshMaxCellTemp = MaxThreshMaxCellTemp;
+    }
+
+    public int getMaxThreshControllerTemp() {
+        return MaxThreshControllerTemp;
+    }
+
+    public void setMaxThreshControllerTemp(int MaxThreshControllerTemp) {
+        this.MaxThreshControllerTemp = MaxThreshControllerTemp;
+    }
+
+
+
+    public int getLastMaxSOMSetpoint() {
+        return lastMaxSOMSetpoint;
+    }
+
+    public void setLastMaxSOMSetpoint(int lastMaxSOMSetpoint) {
+        this.lastMaxSOMSetpoint = lastMaxSOMSetpoint;
+    }
 
     public boolean isDriverMode() {
         return driverMode;
@@ -72,16 +124,16 @@ public class CarData {
 
     public void addMessage(String sender, String message){
 
-        if (message.contains("-d")){ //Driver Message
-            message = message.replace("-d ", "");
-            driverMessage = new ArrowMessage(sender,message);
-            message = message.concat(" (Driver Message)");
-            messageList.add(new ArrowMessage(sender,message));
-        } else if (message.contains("-cd")){ //Clear Driver Message
-            driverMessage = null;
-        } else if (message.contains("-ca")){ // Clear all Messages
+        if (message.contains("-ca")){ // Clear all Messages
             messageList.clear();
             driverMessage = null;
+        } else if (message.contains("-cd")){ //Clear Driver Message
+            driverMessage = null;
+        } else if (message.contains("-d")){ //Driver Message
+            message = message.replace("-d ", "");
+            driverMessage = new ArrowMessage(sender,message);
+            //message = message.concat(" (Driver Message)");
+            messageList.add(new ArrowMessage(sender,message));
         } else {
             messageList.add(new ArrowMessage(sender,message));
         }
@@ -121,10 +173,24 @@ public class CarData {
     public void setMsSinceLastPacket(int msSinceLastPacket) {
         this.msSinceLastPacket = msSinceLastPacket;
 
+
         // Prevents the counter becoming too big
-        if (this.msSinceLastPacket > 10000){
-            this.msSinceLastPacket = 9000;
+        if (this.msSinceLastPacket > 1000){
+            addSecSinceLastPacket();
+            this.msSinceLastPacket = 0;
         }
+    }
+
+    public int getSecSinceLastPacket() {
+        return secSinceLastPacket;
+    }
+
+    public void setSecSinceLastPacket(int secSinceLastPacket) {
+        this.secSinceLastPacket = secSinceLastPacket;
+    }
+
+    public void addSecSinceLastPacket() {
+        this.secSinceLastPacket += 1;
     }
 
     public String getAlerts() {
@@ -150,6 +216,14 @@ public class CarData {
 
     public void setBrakes(boolean brakes) {
         this.brakes = brakes;
+    }
+
+    public boolean isSOMCruiseControl() {
+        return SOMCruiseControl;
+    }
+
+    public void setSOMCruiseControl(boolean SOMCruiseControl) {
+        this.SOMCruiseControl = SOMCruiseControl;
     }
 
     public boolean isCruiseControl() {

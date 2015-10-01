@@ -19,9 +19,10 @@
     <string name="highDetail">Hide Detail</string>
 
     <!-- Titles and Headings -->
-    <string name="messageHints">-d message driver, -cd clear driver message,\n-ca clear all</string>
+    <string name="messageHints">-d message driver</string>
     <string name="driverMode">Driver Mode</string>
     <string name="receivedmessages">Received Messages</string>
+    <string name="messagereceiver">Message Receiver</string>
     <string name="sendmessage">Send Message</string>
     <string name="sendmessagebutton">Send</string>
     <string name="buspowerHeader">Bus Power</string>
@@ -73,6 +74,21 @@
     <!-- Graph and Spinners -->
 	<string name="Spinner_Prime_Prompt">Primary Data</string>
 	<string name="Spinner_Sec_Prompt">Secondary Data</string>
+
+    <string-array name="Reciever_Options">
+        <item>Team</item>
+        <item>Arrow1</item>
+        <item>Lead</item>
+        <item>Chase</item>
+    </string-array>
+
+    <string-array name="Message_Options">
+        <item>Typed Message</item>
+        <item>Comms check?</item>
+        <item>Lost comms</item>
+        <item>Target = </item>
+        <item>BOX BOX BOX</item>
+    </string-array>
 
 	<string-array name="Prime_Options">
         <item>Vehicle Speed</item>

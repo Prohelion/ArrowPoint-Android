@@ -52,9 +52,13 @@
 
 	<style name = "Widget.AppCompat.Base.Spinner.spinner_style" >
 		<item name="android:background">@drawable/draw_spinner</item>
-        <item name="android:textColor">@color/text_color</item>
-		<item name="android:popupBackground">#cccccc</item>
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
+		<item name="android:popupBackground">#ffffffff</item>
 	</style>
+
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
 
     <style name="WhiteTheme">
         <item name="background_color">#ffffffff</item >

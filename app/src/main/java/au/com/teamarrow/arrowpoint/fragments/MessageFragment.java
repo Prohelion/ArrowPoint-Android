@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.arrowpoint.R;
 
@@ -18,8 +19,14 @@ import au.com.teamarrow.canbus.model.CarData;
 public class MessageFragment extends UpdateablePlaceholderFragment{
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private String sendMessage = null;
+    private String typedMessage = null;
+    private String reciever = null;
+    private String message = null;
     private static boolean sendBtnPressed = false;
+
+
+    private static Spinner reciever_spinner;
+    private static Spinner message_spinner;
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -42,8 +49,34 @@ public class MessageFragment extends UpdateablePlaceholderFragment{
 
         if (sendBtnPressed) {
             EditText sendView = (EditText) fragmentView.findViewById(R.id.edtSend);
-            sendMessage = sendView.getText().toString();
-            carData.setSendMessage(sendMessage);
+            typedMessage = sendView.getText().toString();
+
+            switch (reciever_spinner.getSelectedItemPosition()){
+                case 0: reciever = "Team";
+                    break;
+                case 1: reciever = "Arrow1";
+                    break;
+                case 2: reciever = "Lead";
+                    break;
+                case 3: reciever = "Chase";
+                    break;
+            }
+
+            switch (message_spinner.getSelectedItemPosition()){
+                case 0: message = typedMessage;
+                    break;
+                case 1: message = "Comms check?";
+                    break;
+                case 2: message = "Lost comms";
+                    break;
+                case 3: message = "Target = "+ typedMessage;
+                    break;
+                case 4: message = "BOX BOX BOX";
+                    break;
+            }
+
+            carData.setSendMessage("-d "+ reciever + ", " + message);
+
             sendView.setText("");
             sendBtnPressed = false;
         }
@@ -57,6 +90,9 @@ public class MessageFragment extends UpdateablePlaceholderFragment{
         final View rootView = inflater.inflate(R.layout.fragment_messages,
                 container, false);
 
+            reciever_spinner = (Spinner) rootView.findViewById(R.id.spnReciever);
+
+            message_spinner = (Spinner) rootView.findViewById(R.id.spnMessage);
 
             final Button button = (Button) rootView.findViewById(R.id.btnSendMessage);
             button.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +100,8 @@ public class MessageFragment extends UpdateablePlaceholderFragment{
                     sendBtnPressed = true;
                 }
             });
+
+
         return rootView;
 
 

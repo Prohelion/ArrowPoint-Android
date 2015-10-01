@@ -24,8 +24,9 @@ public class ArrowPointRulesEngine {
        // Add warning rules in order of priority
             // 1st priority
 
-        if (carData.getMsSinceLastPacket() > 1000){
-            alertList.add("No Data");
+        if (carData.getSecSinceLastPacket() >= 1){
+            int time = (carData.getSecSinceLastPacket());
+            alertList.add("No Data - "+time+" sec ");
         }
 
         if(carData.getDriverMessage() != null && carData.getDriverMessage().getSecondsSince() < 30){;
@@ -45,7 +46,7 @@ public class ArrowPointRulesEngine {
             alertList.add("Motor Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMotorTemp())+"\u2103");
         }
 
-        if (carData.getLastMaxCellTemp()/ 10 > 40) {
+        if ((carData.getLastMaxCellTemp()/ 10) > 40) {
             alertList.add("Battery Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMaxCellTemp()/ 10)+"\u2103");
         }
 

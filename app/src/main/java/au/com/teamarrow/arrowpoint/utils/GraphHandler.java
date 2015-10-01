@@ -1,10 +1,14 @@
 package au.com.teamarrow.arrowpoint.utils;
 
         import android.graphics.Color;
+        import android.graphics.PointF;
 
         import com.androidplot.xy.SimpleXYSeries;
         import com.androidplot.xy.*;
         import com.example.arrowpoint.R;
+
+        import java.text.DecimalFormat;
+        import java.text.NumberFormat;
 
         import au.com.teamarrow.canbus.model.CarData;
 
@@ -30,13 +34,19 @@ public class GraphHandler{
     private SimpleXYSeries series = null;
     private int currentItem = 0;
 
+    private PointF minXY;
+    private PointF maxXY;
+
 
     public void setupGraph(XYPlot graph, String label,int text_color, int line_color){
 
         // Add series to graph
         series = new SimpleXYSeries(label);
         series.useImplicitXVals();
-        graph.addSeries(series, new LineAndPointFormatter(line_color, null, null, null));
+
+        LineAndPointFormatter lineAndPointFormatter = new LineAndPointFormatter(line_color, null, null, null);
+        lineAndPointFormatter.getLinePaint().setStrokeWidth(5);
+        graph.addSeries(series, lineAndPointFormatter);
 
          int color = R.color.text_color;
         // Layout And Styling
@@ -52,16 +62,17 @@ public class GraphHandler{
         graph.getGraphWidget().getRangeGridLinePaint().setColor(text_color);
         graph.getGraphWidget().getRangeOriginLabelPaint().setColor(text_color);
         graph.getGraphWidget().getRangeOriginLinePaint().setColor(text_color);
+        graph.setRangeValueFormat(new DecimalFormat("#.#"));
         graph.getGraphWidget().getRangeLabelPaint().setColor(line_color);
+        graph.getGraphWidget().getRangeLabelPaint().setTextSize(15);
         graph.getRangeLabelWidget().getLabelPaint().setColor(text_color);
         graph.getTitleWidget().getLabelPaint().setColor(text_color);
 
 
-
-        graph.setRangeBoundaries(0, 120, BoundaryMode.FIXED);
+        //graph.setRangeBoundaries(0, BoundaryMode.AUTO, 120, BoundaryMode.AUTO);
+        setScale(graph, 0, 120, 1);
         graph.setDomainBoundaries(0, MAX_X_Values, BoundaryMode.FIXED);
         graph.setDomainStepValue(5);
-        graph.setRangeStepValue(13);
         graph.setRangeLabel("Initial Title");
         graph.getRangeLabelWidget().pack();
         resetGraph(graph, "Vehicle Speed", "Velocity (Km/h)");
@@ -69,15 +80,18 @@ public class GraphHandler{
     }
 
 
-    private void setScale(XYPlot graph, int minY, int maxY, int stepVal) {
+    private void setScale(XYPlot graph, int minY, int maxY, double stepVal) {
 
-        graph.setRangeBoundaries(minY, maxY, BoundaryMode.FIXED);
-        graph.setRangeStepValue(stepVal);
-
+        graph.setRangeBoundaries( minY, BoundaryMode.AUTO, maxY , BoundaryMode.AUTO);
+        //graph.setRangeStepValue(stepVal);
+        //graph.setRangeStepValue(10);
+        graph.setRangeStep(XYStepMode.INCREMENT_BY_VAL, stepVal);
     }
 
 
     public void addData(XYPlot graph, CarData carData,int itemIndex) {
+
+
 
         double lastValue = 0;
 
@@ -90,68 +104,70 @@ public class GraphHandler{
         if (itemIndex == VEHICLE_SPEED) {
             if (currentItem != itemIndex) {
                 resetGraph(graph, "Vehicle Speed", "Velocity (Km/h)");
-                setScale(graph, 0, 120, 13);
+                setScale(graph, 0, 120, 2);
+                series.addLast(null, carData.getLastSpeed() - 1);
             }
             lastValue = carData.getLastSpeed();
 
         } else if (itemIndex == BUS_POWER) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Bus Power", "Watts (W)");
-                setScale(graph, -5, 5, 11);
+                resetGraph(graph, "Bus Power", "Power (KW)");
+                setScale(graph, -5, 5, 0.5);
+                series.addLast(null, carData.getLastBusPower() - 0.1);
             }
             lastValue = carData.getLastBusPower();
 
         } else if (itemIndex == ARRAY_POWER) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Array Power", "Watts (W)");
-                setScale(graph, 0, 800, 9);
+                resetGraph(graph, "Array Power", "Power (W)");
+                setScale(graph, 0, 1200, 10);
             }
-            lastValue = carData.getLastArrayTotalPower();
+            lastValue = (int)carData.getLastArrayTotalPower();
 
         } else if (itemIndex == MOTOR_TEMP) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Motor Temp", "Celsius (C)");
-                setScale(graph, 0, 100, 11);
+                resetGraph(graph, "Motor Temp", "Temperature (C)");
+                setScale(graph, 0, 100, 0.1);
             }
-            lastValue = carData.getLastMotorTemp() / 10;
+            lastValue = carData.getLastMotorTemp();
 
         } else if (itemIndex == MAX_CELL_TEMP) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Maximum Cell Temp", "Celsius (C)");
-                setScale(graph, 0, 100, 11);
+                resetGraph(graph, "Maximum Cell Temp", "Temperature (C)");
+                setScale(graph, 0, 100, 0.1);
             }
-            lastValue = carData.getLastMaxCellTemp() / 10;
+            lastValue = (carData.getLastMaxCellTemp() * 0.10);
 
         } else if (itemIndex == CONTROLLER_TEMP) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Controller Temp", "Celsius (C)");
-                setScale(graph, 0, 100, 11);
+                resetGraph(graph, "Controller Temp", "Temperature (C)");
+                setScale(graph, 0, 100, 0.1);
             }
-            lastValue = carData.getLastControllerTemp() / 10;
+            lastValue = carData.getLastControllerTemp();
 
         } else if (itemIndex == MIN_CELL_VOLTAGE) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Minimum Cell Voltage", "Volts (V)");
-                setScale(graph, 0, 5, 6);
+                resetGraph(graph, "Minimum Cell Voltage", "Voltage (V)");
+                setScale(graph, 0, 5, 0.05);
             }
-            lastValue = carData.getLastMinimumCellV() / 1000;
+            lastValue = (carData.getLastMinimumCellV() * 0.001);
 
         } else if (itemIndex == MAX_CELL_VOLTAGE) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Maximum Cell Voltage", "Volts (V)");
-                setScale(graph, 0, 5, 6);
+                resetGraph(graph, "Maximum Cell Voltage", "Voltage (V)");
+                setScale(graph, 0, 5, 0.05);
             }
-            lastValue = carData.getLastMaximumCellV() / 1000;
+            lastValue = (carData.getLastMaximumCellV() * 0.001);
         }else if (itemIndex == BATTERY_VOLTAGE) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Battery Voltage", "Volts (V)");
-                setScale(graph, 0, 200, 5);
+                resetGraph(graph, "Battery Voltage", "Voltage (V)");
+                setScale(graph, 0, 200, 1);
             }
-            lastValue = carData.getLastBatteryVolts();
+            lastValue = (int)carData.getLastBatteryVolts();
         }else if (itemIndex == BATTERY_AMPS) {
             if (currentItem != itemIndex) {
-                resetGraph(graph, "Battery Current", "Amps (A)");
-                setScale(graph, -60, 70, 14);
+                resetGraph(graph, "Battery Current", "Current (A)");
+                setScale(graph, -60, 70, 2);
             }
             lastValue = carData.getLastBatteryAmps();
         }

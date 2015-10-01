@@ -37,6 +37,7 @@ dependencies {
     compile files('libs/android-support-v13.jar')
     compile 'com.jjoe64:graphview:4.0.0'
     compile 'com.androidplot:androidplot-core:0.6.1'
+    compile 'net.sf.opencsv:opencsv:2.3'
 }
 
 

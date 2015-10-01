@@ -29,23 +29,30 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
 
         TextHelper textHelper = new TextHelper(fragmentView);
         ArcProgress setpointAcr = (ArcProgress) fragmentView.findViewById(R.id.arc_progress);
-        setpointAcr.setProgress(carData.getLastMotorPowerSetpoint(), carData.isRegen());
+        setpointAcr.setProgress(carData.getLastMotorPowerSetpoint(),carData.getLastMaxSOMSetpoint(), carData.isRegen());
         textHelper.setText(R.id.txtSpeed, carData.getLastSpeed());
         textHelper.setText(R.id.txtPower, carData.getLastBusPower());
         textHelper.setText(R.id.txtState, carData.getDriveMode());
         textHelper.setText(R.id.txtAlert, carData.getAlerts());
         textHelper.setText(R.id.txtMotorTemp, carData.getLastMotorTemp());
-        textHelper.setText(R.id.txtMaxBatteryTemp, (double)(carData.getLastMaxCellTemp() / 10));
+        textHelper.setText(R.id.txtMaxBatteryTemp, (double) carData.getLastMaxCellTemp() / 10, "#0.00");
         textHelper.setProgressBar(R.id.pbBattery, R.id.txtBattery, (int) carData.getLastSOC());
         textHelper.setText(R.id.txtSetpoint, carData.getLastMotorPowerSetpoint());
         textHelper.setImageVisibility(R.id.imSPCruise, carData.isSetPointCruiseControl());
         textHelper.setImageVisibility(R.id.imSpeedCruise, carData.isSpeedCruiseControl());
+        if (carData.getLastMaxSOMSetpoint() < 100 ||carData.isSOMCruiseControl()){
+            textHelper.setImageVisibility(R.id.imSOMCruise, true);
+        } else {
+            textHelper.setImageVisibility(R.id.imSOMCruise, false);
+        }
         textHelper.setImageVisibility(R.id.imLeftBlinker, carData.isLeftBlinker());
         textHelper.setImageVisibility(R.id.imRightBlinker, carData.isRightBlinker());
         textHelper.setVisibility(R.id.txtDriverMode, carData.isDriverMode());
 
+
+
         if (carData.isTestLayout()){ //Used for layout testing, see if text sizes and positions are correct
-            setpointAcr.setProgress(95, true);
+            setpointAcr.setProgress(80,90, true);
             textHelper.setText(R.id.txtSpeed, 89);
             textHelper.setText(R.id.txtPower, -6.03);
             textHelper.setText(R.id.txtState, "N");
@@ -56,6 +63,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
             textHelper.setText(R.id.txtSetpoint, 95);
             textHelper.setImageVisibility(R.id.imSPCruise, true);
             textHelper.setImageVisibility(R.id.imSpeedCruise, true);
+            textHelper.setImageVisibility(R.id.imSOMCruise, true);
             textHelper.setImageVisibility(R.id.imLeftBlinker, true);
             textHelper.setImageVisibility(R.id.imRightBlinker, true);
             textHelper.setVisibility(R.id.txtDriverMode, true);

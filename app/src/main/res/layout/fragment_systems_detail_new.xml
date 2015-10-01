@@ -263,7 +263,7 @@
                     android:text="@string/message"
                     android:id="@+id/txtAlerts"
                     android:textSize="@dimen/text_size_small"
-                    android:textColor="@color/IntegralRed_color" />
+                    android:textColor="@color/Alert_color" />
             </FrameLayout>
 
         </LinearLayout>
