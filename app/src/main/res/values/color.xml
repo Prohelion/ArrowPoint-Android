@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Version: 2
-Organized by: Willie Tsang
-
--->
 <resources>
+
+    <!-- ArrowPoint App Colours -->
+        <!-- Colour set 1
+        <color name="background_color">#ffffffff</color>
+        <color name="frame_border_color">#000000</color>
+        <color name="frame_primary_color">#ffffffff</color>
+        <color name="frame_secondary_color">#ffffffff</color>
+        <color name="table_color">#ffffffff</color>
+        <color name="text_color">#000000</color>
+        <color name="driver_message_color">#FF0000</color>-->
+
+
+        <!-- Colour set 1-->
+        <color name="background_color">#ff141414</color>
+        <color name="frame_border_color">#D3D3D3</color>
+        <color name="frame_primary_color">#000000</color>
+        <color name="frame_secondary_color">#808080</color>
+        <color name="table_color">#ff141414</color>
+        <color name="text_color">#ffffffff</color>
+        <color name="IntegralRed_color">#D82030</color>
+        <color name="ClenergyGreen_color">#ff43b02a</color>
+        <color name="Alert_color">#FFFF00</color>
+
+
 
     <!-- Android style -->
     <color name="android_green">#A4C639</color>

@@ -29,7 +29,7 @@ public class DatagramReceiver extends Thread {
 	private CarData carData;
 
 	private boolean simulate;
-	private int[] SIMULATE_IDS = { 770,771,773,1281,785,789,793 };
+	private int[] SIMULATE_IDS = { 770,771,773,1281,785,789,793, 776, 508 };
 
 
 	public DatagramReceiver(CarData carData, boolean simulate) {
@@ -86,21 +86,26 @@ public class DatagramReceiver extends Thread {
 
 				try {
 					socket.receive(packet);
-				} catch (SocketTimeoutException ex) { timeout = true; };
+				} catch (SocketTimeoutException ex) {
+                    carData.setMsSinceLastPacket(carData.getMsSinceLastPacket()+100); // Add 100ms to the LastPacket Timer
+                    timeout = true; };
 
 				try {
 
 					if (timeout == false || simulate == true) {
 
+                        carData.setMsSinceLastPacket(0);// reset LastPacket Timer
+                        carData.setSecSinceLastPacket(0);// reset LastPacket Timer
 						// Deserialize the packet
-						if ( simulate == false) {
+						                            if ( simulate == false) {
 
-							InputStream inputStream = new ByteArrayInputStream(packet.getData(),0,packet.getLength());
+                                InputStream inputStream = new ByteArrayInputStream(packet.getData(),0,packet.getLength());
 
-							UdpPacket udpPacket = udpDeserializer.deserialize(inputStream);
-							canPackets = canPacketSplitter.extractCanPackets(udpPacket);
+                                UdpPacket udpPacket = udpDeserializer.deserialize(inputStream);
+                                canPackets = canPacketSplitter.extractCanPackets(udpPacket);
 
 						} else {
+
 							// Dummy up at list of can packets to keep the logic flowing
 							canPackets = new ArrayList<CanPacket>();
 
@@ -157,8 +162,8 @@ public class DatagramReceiver extends Thread {
 							case 776:   carData.setRegen(canPackets.get(0).getBit(2,0) !=0);
 								carData.setBrakes(canPackets.get(0).getBit(0,4) !=0);
 								carData.setHorn(canPackets.get(0).getBit(2,2) != 0);
-								carData.setLeftBlinker(canPackets.get(0).getBit(3,1) != 0);
-								carData.setRightBlinker(canPackets.get(0).getBit(3,2) != 0);
+								carData.setLeftBlinker(canPackets.get(0).getBit(3,2) != 0);
+								carData.setRightBlinker(canPackets.get(0).getBit(3,1) != 0);
 
 								// todo: Should this be state of charge or throttle position?
 								if (canPackets.get(0).getBit(2,7) != 0) {
@@ -193,6 +198,33 @@ public class DatagramReceiver extends Thread {
 							case 1785: carData.setLastMaxCellTemp((int)canPackets.get(0).getTwoDataSegmentsAsInt(2));
 								break;
 
+                            case 1294: carData.setLastMaxSOMSetpoint((int)(100*canPackets.get(0).getDataSegmentTwoAsFloat()));
+                                break;
+
+                            // Cruise control state (x508)
+                            case 1288:
+
+                                switch ( canPackets.get(0).getDataSegmentAsInt(7) ) {
+                                    case 0: carData.setSpeedCruiseControl(false);
+                                        carData.setSetPointCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
+                                        break;
+                                    case 1: carData.setSpeedCruiseControl(true);
+                                        carData.setSetPointCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
+                                        break;
+                                    case 2: carData.setSetPointCruiseControl(true);
+                                        carData.setSpeedCruiseControl(false);
+                                        carData.setSOMCruiseControl(false);
+                                        break;
+                                    case 3: carData.setSOMCruiseControl(true);
+                                        carData.setSpeedCruiseControl(false);
+                                        carData.setSetPointCruiseControl(false);
+                                        break;
+                                    // case 3 = Set Solar Only Mode
+                                }
+
+                                break;
 						}
 
 					} else {

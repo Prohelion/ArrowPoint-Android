@@ -16,7 +16,6 @@ public class SystemsDetailFragment extends UpdateablePlaceholderFragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
-
 	public SystemsDetailFragment() {
 	}
 
@@ -28,22 +27,26 @@ public class SystemsDetailFragment extends UpdateablePlaceholderFragment {
 
 		TextHelper textHelper = new TextHelper(fragmentView);
 
-		textHelper.setText(R.id.txtMotorTempDetail,carData.getLastMotorTemp(),"#0.0' c'");
-		textHelper.setText(R.id.txtControllerTemp,carData.getLastControllerTemp(),"#0.0' c'");
-		textHelper.setText(R.id.txtMinBattery,(double)carData.getLastMinimumCellV()/1000,"#0.0' v'");
-		textHelper.setText(R.id.txtMaxBattery,(double)carData.getLastMaximumCellV()/1000,"#0.0' v'");
-		textHelper.setText(R.id.txtMaxBatteryTemp, (double) carData.getLastMaxCellTemp() / 10, "#0.0' c'");
-		textHelper.setText(R.id.txt12VoltDetail,(double)carData.getLastTwelveVBusVolts()/1000, "#0.0 ' v'");
+        // Set the text helper colour
 
-		if (carData.isIdle()) textHelper.setText(R.id.lblState,"Idle");
-		if (carData.isReverse()) textHelper.setText(R.id.lblState,"Reverse");
-		if (carData.isNeutral()) textHelper.setText(R.id.lblState,"Neutral");
-		if (carData.isDrive()) textHelper.setText(R.id.lblState,"Drive");
+        textHelper.setText(R.id.txtMotorTempDetail,carData.getLastMotorTemp(),"#0.0' \u2103'");
+        textHelper.setText(R.id.txtControllerTemp,carData.getLastControllerTemp(),"#0.0' \u2103'");
+        textHelper.setText(R.id.txtMinBattery,(double)carData.getLastMinimumCellV()/1000,"#0.000' V'");
+        textHelper.setText(R.id.txtMaxBattery,(double)carData.getLastMaximumCellV()/1000,"#0.000' V'");
+        textHelper.setText(R.id.txtMaxBatteryTemp, (double) carData.getLastMaxCellTemp() / 10, "#0.0' \u2103'");
+        textHelper.setText(R.id.txt12VoltDetail,(double)carData.getLastTwelveVBusVolts()/1000, "#0.000' V'");
 
-		textHelper.setColourStatus(R.id.lblState, carData.isIdle() || carData.isReverse() || carData.isNeutral() || carData.isDrive());
-		textHelper.setColourStatus(R.id.lblRegen, carData.isRegen());
-		textHelper.setColourStatus(R.id.lblBrakes, carData.isBrakes());
-		textHelper.setColourStatus(R.id.lblHorn, carData.isHorn());
+        if (carData.isIdle()) textHelper.setText(R.id.lblState,"Idle");
+        if (carData.isReverse()) textHelper.setText(R.id.lblState,"Reverse");
+        if (carData.isNeutral()) textHelper.setText(R.id.lblState,"Neutral");
+        if (carData.isDrive()) textHelper.setText(R.id.lblState,"Drive");
+
+        textHelper.setColourStatus(R.id.lblState, carData.isIdle() || carData.isReverse() || carData.isNeutral() || carData.isDrive());
+        textHelper.setColourStatus(R.id.lblRegen, carData.isRegen());
+        textHelper.setColourStatus(R.id.lblBrakes, carData.isBrakes());
+        textHelper.setColourStatus(R.id.lblHorn, carData.isHorn());
+
+        textHelper.setText(R.id.txtAlerts,carData.getAlerts());
 
 	}
 
@@ -65,8 +68,10 @@ public class SystemsDetailFragment extends UpdateablePlaceholderFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_systems_detail,
+		View rootView = inflater.inflate(R.layout.fragment_systems_detail_new,
 				container, false);
+
+
 		return rootView;
 	}
 

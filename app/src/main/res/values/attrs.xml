@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="background_color" format="color" />
+    <attr name="frame_border_color" format="color" />
+    <attr name="frame_primary_color" format="color" />
+    <attr name="frame_secondary_color" format="color" />
+    <attr name="table_color" format="color" />
+    <attr name="text_color" format="color" />
+    <attr name="driver_message_color" format="color" />
+
+    <declare-styleable name="ArcProgress">
+
+        <attr name="arc_progress" format="integer"/>
+        <attr name="arc_angle" format="float"/>
+        <attr name="arc_radius" format="float"/>
+        <attr name="arc_stroke_width" format="dimension"/>
+        <attr name="arc_max" format="integer"/>
+
+        <attr name="arc_unfinished_color" format="color"/>
+        <attr name="arc_finished_color" format="color"/>
+        <attr name="arc_color1" format="color"/>
+        <attr name="arc_color2" format="color"/>
+
+        <attr name="arc_bottom_text" format="string"/>
+        <attr name="arc_bottom_text_size" format="dimension"/>
+    </declare-styleable>
+
+</resources>

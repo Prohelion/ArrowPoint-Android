@@ -1,5 +1,8 @@
 package au.com.teamarrow.canbus.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ctuesley on 5/05/2015.
  */
@@ -26,7 +29,17 @@ public class CarData {
     private int lastTwelveVBusVolts = (int) 0;
     private int lastMaxCellTemp = (int) 0;
     private int lastMotorPowerSetpoint = 0;
+    private int lastMaxSOMSetpoint = 100;
+
+    private int MinThreshMinimumCellV = 5;
+    private int MaxThreshMotorTemp = 80;
+    private int MaxThreshMaxCellTemp = 40;
+    private int MaxThreshControllerTemp = 50;
+
     private boolean cruiseControl = false;
+    private boolean setPointCruiseControl = false;
+    private boolean speedCruiseControl = false;
+    private boolean SOMCruiseControl = false;
     private int cruiseTargetSpeed = 0;
     private boolean leftBlinker = false;
     private boolean rightBlinker = false;
@@ -39,13 +52,162 @@ public class CarData {
     private boolean regen = false;
     private boolean brakes = false;
     private boolean horn = false;
+    private boolean testLayout = false; // Only used to test the layout sizes and positioning
+    private int msSinceLastPacket = 0;
+    private int secSinceLastPacket = 0;
+    private String alerts = null;
+    private ArrowMessage driverMessage = null;
+    private boolean driverMode = true;
+    private String sendMessage = null;
+    private int MAX_LIST_SIZE = 10;
+    private List<ArrowMessage> messageList = new ArrayList<ArrowMessage>();
+
+
+    public int getMinThreshMinimumCellV() {
+        return MinThreshMinimumCellV;
+    }
+
+    public void setMinThreshMinimumCellV(int MinThreshMinimumCellV) {
+        this.MinThreshMinimumCellV = MinThreshMinimumCellV;
+    }
+
+    public int getMaxThreshMotorTemp() {
+        return MaxThreshMotorTemp;
+    }
+
+    public void setMaxThreshMotorTemp(int MaxThreshMotorTemp) {
+        this.MaxThreshMotorTemp = MaxThreshMotorTemp;
+    }
+
+    public int getMaxThreshMaxCellTemp() {
+        return MaxThreshMaxCellTemp;
+    }
+
+    public void setMaxThreshMaxCellTemp(int MaxThreshMaxCellTemp) {
+        this.MaxThreshMaxCellTemp = MaxThreshMaxCellTemp;
+    }
+
+    public int getMaxThreshControllerTemp() {
+        return MaxThreshControllerTemp;
+    }
+
+    public void setMaxThreshControllerTemp(int MaxThreshControllerTemp) {
+        this.MaxThreshControllerTemp = MaxThreshControllerTemp;
+    }
+
+
+
+    public int getLastMaxSOMSetpoint() {
+        return lastMaxSOMSetpoint;
+    }
+
+    public void setLastMaxSOMSetpoint(int lastMaxSOMSetpoint) {
+        this.lastMaxSOMSetpoint = lastMaxSOMSetpoint;
+    }
+
+    public boolean isDriverMode() {
+        return driverMode;
+    }
+
+    public void setDriverMode(boolean driverMode) {
+        this.driverMode = driverMode;
+    }
+
+
+    public String getSendMessage() {
+        return sendMessage;
+    }
+
+    public void setSendMessage(String sendMessage) {
+        this.sendMessage = sendMessage;
+    }
+
+    public void addMessage(String sender, String message){
+
+        if (message.contains("-ca")){ // Clear all Messages
+            messageList.clear();
+            driverMessage = null;
+        } else if (message.contains("-cd")){ //Clear Driver Message
+            driverMessage = null;
+        } else if (message.contains("-d")){ //Driver Message
+            message = message.replace("-d ", "");
+            driverMessage = new ArrowMessage(sender,message);
+            //message = message.concat(" (Driver Message)");
+            messageList.add(new ArrowMessage(sender,message));
+        } else {
+            messageList.add(new ArrowMessage(sender,message));
+        }
+
+        if (messageList.size() > MAX_LIST_SIZE) {
+            messageList.remove(0);
+        }
+
+    }
+
+    public String getMessages(){
+        String string = "";
+        for (int i = 0; i < messageList.size(); i ++){
+            string += messageList.get(messageList.size()-1-i).toString() + "\n";
+        }
+        return string;
+    }
+
+    public ArrowMessage getDriverMessage() {
+        if (driverMode) {
+            return driverMessage;
+        }
+        if (messageList.size() > 0) {
+            return messageList.get(messageList.size()-1);
+        }
+        return null;
+    }
+
+    public void setDriverMessage(ArrowMessage driverMessage) {
+        this.driverMessage = driverMessage;
+    }
+
+    public int getMsSinceLastPacket() {
+        return msSinceLastPacket;
+    }
+
+    public void setMsSinceLastPacket(int msSinceLastPacket) {
+        this.msSinceLastPacket = msSinceLastPacket;
+
+
+        // Prevents the counter becoming too big
+        if (this.msSinceLastPacket > 1000){
+            addSecSinceLastPacket();
+            this.msSinceLastPacket = 0;
+        }
+    }
+
+    public int getSecSinceLastPacket() {
+        return secSinceLastPacket;
+    }
+
+    public void setSecSinceLastPacket(int secSinceLastPacket) {
+        this.secSinceLastPacket = secSinceLastPacket;
+    }
+
+    public void addSecSinceLastPacket() {
+        this.secSinceLastPacket += 1;
+    }
+
+    public String getAlerts() {
+        return alerts;
+    }
+
+    public void setAlerts(String Alerts) {
+        alerts = Alerts;
+    }
+
 
     public String getDriveMode() {
         if (idle) return "Idle";
-        if (reverse) return "R";
-        if (neutral) return "N";
-        if (drive) return "D";
-        return "ERROR";
+        else if (reverse) return "R";
+        else if (neutral) return "N";
+        else if (drive) return "D";
+        else return "None";
     }
 
     public boolean isBrakes() {
@@ -56,8 +218,34 @@ public class CarData {
         this.brakes = brakes;
     }
 
+    public boolean isSOMCruiseControl() {
+        return SOMCruiseControl;
+    }
+
+    public void setSOMCruiseControl(boolean SOMCruiseControl) {
+        this.SOMCruiseControl = SOMCruiseControl;
+    }
+
     public boolean isCruiseControl() {
         return cruiseControl;
+    }
+
+    public boolean isSetPointCruiseControl() {
+        return setPointCruiseControl;
+    }
+
+    public void setSetPointCruiseControl(boolean setPointCruiseControl) {
+        setCruiseControl(setPointCruiseControl);
+        this.setPointCruiseControl = setPointCruiseControl;
+    }
+
+    public boolean isSpeedCruiseControl() {
+        return speedCruiseControl;
+    }
+
+    public void setSpeedCruiseControl(boolean speedCruiseControl) {
+        setCruiseControl(speedCruiseControl);
+        this.speedCruiseControl = speedCruiseControl;
     }
 
     public void setCruiseControl(boolean cruiseControl) {
@@ -334,6 +522,14 @@ public class CarData {
 
     public double getLastArrayTotalPower() {
         return getLastArray1Power() + getLastArray2Power() + getLastArray3Power();
+    }
+
+    public boolean isTestLayout() {
+        return testLayout;
+    }
+
+    public void setTestLayout(boolean testLayout) {
+        this.testLayout = testLayout;
     }
 
 

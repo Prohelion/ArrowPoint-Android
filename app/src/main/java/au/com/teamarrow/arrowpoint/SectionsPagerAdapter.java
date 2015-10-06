@@ -9,11 +9,11 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 import au.com.teamarrow.arrowpoint.fragments.DashboardFragment;
+import au.com.teamarrow.arrowpoint.fragments.MessageFragment;
 import au.com.teamarrow.arrowpoint.fragments.SystemsDetailFragment;
 import au.com.teamarrow.arrowpoint.fragments.PowerDetailFragment;
 import au.com.teamarrow.arrowpoint.fragments.GraphFragment;
 import au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment;
-import au.com.teamarrow.arrowpoint.fragments.QuickstatsFragment;
 
 
 /**
@@ -38,10 +38,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0: return new DashboardFragment();
-            //case 1: return new QuickstatsFragment();
             case 1: return new PowerDetailFragment();
             case 2: return new SystemsDetailFragment();
             case 3: return new GraphFragment();
+            case 4: return new MessageFragment();
 
         }
 
@@ -51,7 +51,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 4 total pages.
-        return 4;
+        return 5;
     }
 
     @Override
@@ -60,13 +60,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return context.getResources().getString(R.string.title_section1).toUpperCase(l);
-            //case 1:
-            //    return context.getResources().getString(R.string.title_section2).toUpperCase(l);
             case 1:
-                return context.getResources().getString(R.string.title_section3).toUpperCase(l);
+                return context.getResources().getString(R.string.title_section2).toUpperCase(l);
             case 2:
-                return context.getResources().getString(R.string.title_section4).toUpperCase(l);
+                return context.getResources().getString(R.string.title_section3).toUpperCase(l);
             case 3:
+                return context.getResources().getString(R.string.title_section4).toUpperCase(l);
+            case 4:
                 return context.getResources().getString(R.string.title_section5).toUpperCase(l);
         }
         return null;

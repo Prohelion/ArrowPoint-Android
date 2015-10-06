@@ -6,29 +6,27 @@ import com.example.arrowpoint.R;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Field;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-import java.util.concurrent.locks.Lock;
-
+import au.com.bytecode.opencsv.CSVReader;
 import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
+import au.com.teamarrow.canbus.comms.DriverMessageReceiver;
+import au.com.teamarrow.canbus.model.ArrowMessage;
 import au.com.teamarrow.canbus.model.CarData;
 
 public class ArrowPoint extends Activity implements ActionBar.TabListener {
@@ -41,11 +39,13 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	 * {@link android.support.v13.app.FragmentStatePagerAdapter}.
 	 */
 
+
 	private static int REFRESH_MILLI = 100;
 
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	boolean simulateMode = false;
 	public DatagramReceiver myDatagramReceiver = null;
+    public DriverMessageReceiver myDriverMessageReceiver = null;
 
 	Handler handler;
 
@@ -53,6 +53,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 	int defaultTextColour = 0;
 	int currentTab = 0;
+    boolean currentTheme = false;
 
 
 	/**
@@ -72,6 +73,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -103,10 +105,52 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 					.setTabListener(this));
 		}
 
+        readAlertsFile(carData);
+
 		super.onCreate(savedInstanceState);
 		handler.post(sendData);
 
 	}
+
+    public void readAlertsFile(CarData carData){
+        try {
+
+            InputStream file = this.getResources().openRawResource(R.raw.alerts);
+            CSVReader reader = new CSVReader(new InputStreamReader(file));
+            String [] nextLine;
+            reader.readNext(); //Skip the first line of the csv
+
+            while ((nextLine = reader.readNext()) != null) {
+                // nextLine[] is an array of values from each line int the csv
+                //carData.addMessage("", nextLine[0] +"="+nextLine[1]);
+                if (nextLine[0].equalsIgnoreCase("")){
+
+                }else if (nextLine[0].equalsIgnoreCase("MinimumCellV")){
+                    carData.setMinThreshMinimumCellV(Integer.valueOf(nextLine[1]));
+                    //carData.addMessage("", "MinCellV = " + carData.getMinThreshMinimumCellV());
+
+                }else if (nextLine[0].equalsIgnoreCase("MotorTemp")){
+                    carData.setMaxThreshMotorTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "MotorTemp = " + carData.getMaxThreshMotorTemp());
+
+                }else if (nextLine[0].equalsIgnoreCase("MaxCellTemp")){
+                    carData.setMaxThreshMaxCellTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "MaxCellTemp = " + carData.getMaxThreshMaxCellTemp());
+
+                }else if (nextLine[0].equalsIgnoreCase("ControllerTemp")){
+                    carData.setMaxThreshControllerTemp(Integer.valueOf(nextLine[2]));
+                    //carData.addMessage("", "ControllerTemp = " + carData.getMaxThreshControllerTemp());
+                }
+
+            }
+
+
+
+        }catch(Exception e){
+            carData.setDriverMessage(new ArrowMessage("test","Didn't work"));
+            e.printStackTrace();
+        }
+    }
 
 
 	public CarData getCarData() {
@@ -128,11 +172,12 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 			ArrowPointRulesEngine rulesEngine = new ArrowPointRulesEngine();
 
 			try {
-				//carData.setMessage(rulesEngine.checkRules(carData));
-				//lock.lock();
-				UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
+                // Sets the alerts determined by the rules engine
+				carData.setAlerts(rulesEngine.getAlerts(carData, simulateMode));
+				lock.lock();
+                UpdateablePlaceholderFragment activeFragment = (UpdateablePlaceholderFragment)mSectionsPagerAdapter.getItem(currentTab);
 				if (activeFragment != null) activeFragment.Update(getWindow().getDecorView(),carData);
-				//lock.unlock();
+				lock.unlock();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -158,9 +203,15 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		int id = item.getItemId();
 		if (id == R.id.debug_mode) {
 			simulateMode = !simulateMode;
+            myDatagramReceiver.kill();
 			myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 			myDatagramReceiver.start();
-		}
+		}else if (id == R.id.driver_mode){
+            carData.setDriverMode(!carData.isDriverMode());
+        }
+        else if (id == R.id.test_layout){
+            carData.setTestLayout(!carData.isTestLayout());
+        }
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -190,6 +241,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		super.onResume();
 		myDatagramReceiver = new DatagramReceiver(carData,simulateMode);
 		myDatagramReceiver.start();
+        myDriverMessageReceiver = new DriverMessageReceiver(carData);
+        myDriverMessageReceiver.start();
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
@@ -199,23 +252,6 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		myDatagramReceiver.kill();
 
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-	}
-
-
-
-	private void  setColourStatus(TextView textView, boolean status) {
-
-		// Run this once and once only to get the origional colour
-		if (defaultTextColour == 0) defaultTextColour = textView.getCurrentTextColor();
-
-		if ( status ) {
-			textView.setTypeface(Typeface.DEFAULT_BOLD);
-			textView.setTextColor(Color.RED);
-		} else {
-			textView.setTypeface(Typeface.DEFAULT);
-			textView.setTextColor(defaultTextColour);
-		}
-
 	}
 
 

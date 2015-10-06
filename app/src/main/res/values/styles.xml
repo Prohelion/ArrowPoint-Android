@@ -52,14 +52,35 @@
 
 	<style name = "Widget.AppCompat.Base.Spinner.spinner_style" >
 		<item name="android:background">@drawable/draw_spinner</item>
-		<item name="android:layout_height">75dp</item>
-		<item name="android:layout_width">150dp</item>
-		<item name="android:textColor">#ffffff</item>
-		<item name="android:layout_gravity">center</item>
-		<item name="android:popupBackground">#cccccc</item>
-		<item name="android:padding">10dp</item>
-
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
+		<item name="android:popupBackground">#ffffffff</item>
 	</style>
+
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="WhiteTheme">
+        <item name="background_color">#ffffffff</item >
+        <item  name="frame_border_color">#000000</item >
+        <item  name="frame_primary_color">#ffffffff</item >
+        <item  name="frame_secondary_color">#ffffffff</item >
+        <item  name="table_color">#ffffffff</item >
+        <item  name="text_color">#000000</item >
+        <item  name="driver_message_color">#FF0000</item >
+    </style>
+
+    <style name="DarkTheme">
+        <item  name="background_color">#ff141414</item >
+        <item  name="frame_border_color">#D3D3D3</item >
+        <item  name="frame_primary_color">#000000</item >
+        <item  name="frame_secondary_color">#808080</item >
+        <item  name="table_color">#ff141414</item >
+        <item  name="text_color">#ffffffff</item >
+        <item  name="driver_message_color">#FF0000</item >
+    </style>
+
+
 
 
 </resources>
