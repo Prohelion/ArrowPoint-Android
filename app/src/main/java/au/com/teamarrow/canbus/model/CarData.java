@@ -21,19 +21,19 @@ public class CarData {
     private double lastBusAmps = (double) 0.0;
     private double lastBusVolts = (double) 0.0;
     private double lastBatteryAmps = (double) 0.0;
-    private double lastBatteryVolts = (double) 0.0;
+    private double lastBatteryVolts = (double) -1.0;
     private double lastMotorTemp = (double) 0.0;
     private double lastControllerTemp = (double) 0.0;
-    private int lastMinimumCellV = (int) 0;
+    private int lastMinimumCellV = (int) -1;
     private int lastMaximumCellV = (int) 0;
-    private int lastTwelveVBusVolts = (int) 0;
+    private int lastTwelveVBusVolts = (int) -1;
     private int lastMaxCellTemp = (int) 0;
     private int lastMotorPowerSetpoint = 0;
     private int lastMaxSOMSetpoint = 100;
 
-    private int MinThreshMinimumCellV = 5;
-    private int MaxThreshMotorTemp = 80;
-    private int MaxThreshMaxCellTemp = 40;
+    private double MinThreshMinimumCellV = (double)2.9;
+    private int MaxThreshMotorTemp = 100;
+    private int MaxThreshMaxCellTemp = 60;
     private int MaxThreshControllerTemp = 50;
 
     private boolean cruiseControl = false;
@@ -63,11 +63,11 @@ public class CarData {
     private List<ArrowMessage> messageList = new ArrayList<ArrowMessage>();
 
 
-    public int getMinThreshMinimumCellV() {
+    public double getMinThreshMinimumCellV() {
         return MinThreshMinimumCellV;
     }
 
-    public void setMinThreshMinimumCellV(int MinThreshMinimumCellV) {
+    public void setMinThreshMinimumCellV(double MinThreshMinimumCellV) {
         this.MinThreshMinimumCellV = MinThreshMinimumCellV;
     }
 

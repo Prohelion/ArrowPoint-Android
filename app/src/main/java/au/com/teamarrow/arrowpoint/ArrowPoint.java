@@ -105,7 +105,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 					.setTabListener(this));
 		}
 
-        readAlertsFile(carData);
+        //readAlertsFile(carData); //removed for the race
 
 		super.onCreate(savedInstanceState);
 		handler.post(sendData);
@@ -147,7 +147,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 
 
         }catch(Exception e){
-            carData.setDriverMessage(new ArrowMessage("test","Didn't work"));
+
             e.printStackTrace();
         }
     }

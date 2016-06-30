@@ -1,5 +1,5 @@
 Data,Min Threshold,Max Threshold
-MinimumCellV,5,-
-MotorTemp,-,80
-MaxCellTemp,-,40
+MinimumCellV,2.9,-
+MotorTemp,-,100
+MaxCellTemp,-,60
 ControllerTemp,-,50

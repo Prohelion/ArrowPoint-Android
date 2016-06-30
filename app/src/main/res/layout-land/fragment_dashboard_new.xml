@@ -485,6 +485,33 @@
                         android:text="@string/driverMode" />
                 </FrameLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/txtSpeed2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/zero"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textColor="@color/text_color"
+                        android:height="@dimen/text_size_large"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/kph"
+                        android:id="@+id/lblSpeedKmh2"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:gravity="bottom" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

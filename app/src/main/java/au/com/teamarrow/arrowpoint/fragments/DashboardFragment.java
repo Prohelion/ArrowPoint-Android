@@ -31,6 +31,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         ArcProgress setpointAcr = (ArcProgress) fragmentView.findViewById(R.id.arc_progress);
         setpointAcr.setProgress(carData.getLastMotorPowerSetpoint(),carData.getLastMaxSOMSetpoint(), carData.isRegen());
         textHelper.setText(R.id.txtSpeed, carData.getLastSpeed());
+        textHelper.setText(R.id.txtSpeed2, carData.getLastSpeed());
         textHelper.setText(R.id.txtPower, carData.getLastBusPower());
         textHelper.setText(R.id.txtState, carData.getDriveMode());
         textHelper.setText(R.id.txtAlert, carData.getAlerts());
@@ -54,6 +55,7 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         if (carData.isTestLayout()){ //Used for layout testing, see if text sizes and positions are correct
             setpointAcr.setProgress(80,90, true);
             textHelper.setText(R.id.txtSpeed, 89);
+            textHelper.setText(R.id.txtSpeed2, 89);
             textHelper.setText(R.id.txtPower, -6.03);
             textHelper.setText(R.id.txtState, "N");
             textHelper.setText(R.id.txtAlert, "Layout Test");

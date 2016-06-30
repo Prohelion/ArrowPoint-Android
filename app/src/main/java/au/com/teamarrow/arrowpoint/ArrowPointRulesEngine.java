@@ -38,15 +38,23 @@ public class ArrowPointRulesEngine {
             alertList.add("Simulated Data");
         }
 
-        if (carData.getLastMinimumCellV() < 5) {
+        if (carData.getLastBatteryVolts() < 100 && carData.getLastBatteryVolts() != -1) {
+            alertList.add("Check Battery!");
+        }
+
+        if (carData.getLastTwelveVBusVolts() < 12 && carData.getLastTwelveVBusVolts() != -1) {
+            alertList.add("ESTOP NOW! 12V System @ "+new DecimalFormat("#0.00").format(carData.getLastTwelveVBusVolts())+"V");
+        }
+
+        if (carData.getLastMinimumCellV() < carData.getMinThreshMinimumCellV() && carData.getLastMinimumCellV() != -1) {
             alertList.add("Min Cell Voltage @ "+new DecimalFormat("#0.00").format(carData.getLastMinimumCellV())+"V");
         }
 
-        if (carData.getLastMotorTemp() > 80) {
+        if (carData.getLastMotorTemp() > carData.getMaxThreshMotorTemp()) {
             alertList.add("Motor Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMotorTemp())+"\u2103");
         }
 
-        if ((carData.getLastMaxCellTemp()/ 10) > 40) {
+        if ((carData.getLastMaxCellTemp()/ 10) > carData.getMaxThreshMaxCellTemp()) {
             alertList.add("Battery Temp @ "+new DecimalFormat("#0.0").format(carData.getLastMaxCellTemp()/ 10)+"\u2103");
         }
 
