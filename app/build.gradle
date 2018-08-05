@@ -19,7 +19,7 @@ android {
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.example.arrowpoint"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 27
     }
     buildTypes {

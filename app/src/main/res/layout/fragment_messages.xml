@@ -100,7 +100,6 @@
                             android:textColor="@color/text_color"
                             android:background="@drawable/draw_spinner"
                             android:textSize="@dimen/text_size_system_details"
-                            android:onClick="send"
                             android:layout_margin="@dimen/margin_medium"
                             android:layout_weight="1" />
 

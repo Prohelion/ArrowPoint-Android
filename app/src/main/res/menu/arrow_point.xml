@@ -1,25 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.arrowpoint.ArrowPoint" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.arrowpoint.ArrowPoint">
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_settings"/>
     <item
         android:id="@+id/debug_mode"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/debug_mode"/>
     <item
         android:id="@+id/driver_mode"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/driver_mode"/>
     <item
         android:id="@+id/test_layout"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/test_layout"/>
 </menu>
