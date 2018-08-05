@@ -116,11 +116,11 @@
                 android:layout_height="@dimen/text_size_medium"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/margin_medium"
-                style="@style/Widget.AppCompat.Base.Spinner.spinner_style" />
+                style="@style/CustomSpinnerStyle" />
 
             <Spinner
                 android:id="@+id/spnSecondary"
-                style = "@style/Widget.AppCompat.Base.Spinner.spinner_style"
+                style = "@style/CustomSpinnerStyle"
 
                 android:entries="@array/Prime_Options"
                 android:prompt="@string/Spinner_Sec_Prompt"

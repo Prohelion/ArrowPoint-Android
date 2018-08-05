@@ -2,13 +2,11 @@ package au.com.teamarrow.arrowpoint.utils;
 
         import android.graphics.Color;
         import android.graphics.PointF;
-
         import com.androidplot.xy.SimpleXYSeries;
         import com.androidplot.xy.*;
         import com.example.arrowpoint.R;
 
         import java.text.DecimalFormat;
-        import java.text.NumberFormat;
 
         import au.com.teamarrow.canbus.model.CarData;
 
@@ -18,16 +16,16 @@ package au.com.teamarrow.arrowpoint.utils;
 public class GraphHandler{
 
     //Spinner Index
-    static final int VEHICLE_SPEED = 0;
-    static final int BUS_POWER = 1;
-    static final int ARRAY_POWER = 2;
-    static final int MOTOR_TEMP = 3;
-    static final int MAX_CELL_TEMP = 4;
-    static final int CONTROLLER_TEMP = 5;
-    static final int MIN_CELL_VOLTAGE = 6;
-    static final int MAX_CELL_VOLTAGE = 7;
-    static final int BATTERY_VOLTAGE = 8;
-    static final int BATTERY_AMPS = 9;
+    private static final int VEHICLE_SPEED = 0;
+    private static final int BUS_POWER = 1;
+    private static final int ARRAY_POWER = 2;
+    private static final int MOTOR_TEMP = 3;
+    private static final int MAX_CELL_TEMP = 4;
+    private static final int CONTROLLER_TEMP = 5;
+    private static final int MIN_CELL_VOLTAGE = 6;
+    private static final int MAX_CELL_VOLTAGE = 7;
+    private static final int BATTERY_VOLTAGE = 8;
+    private static final int BATTERY_AMPS = 9;
 
     // Private Variables
     private static int MAX_X_Values = 500;
@@ -85,6 +83,7 @@ public class GraphHandler{
         graph.setRangeBoundaries( minY, BoundaryMode.AUTO, maxY , BoundaryMode.AUTO);
         //graph.setRangeStepValue(stepVal);
         //graph.setRangeStepValue(10);
+
         graph.setRangeStep(XYStepMode.INCREMENT_BY_VAL, stepVal);
     }
 

@@ -50,7 +50,7 @@
 		<item name="android:shadowColor" >#000000</item>
 	</style>
 
-	<style name = "Widget.AppCompat.Base.Spinner.spinner_style" >
+	<style name = "CustomSpinnerStyle" >
 		<item name="android:background">@drawable/draw_spinner</item>
         <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
 		<item name="android:popupBackground">#ffffffff</item>
