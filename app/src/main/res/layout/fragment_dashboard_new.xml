@@ -5,8 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
-    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment">
-
+    tools:context="au.com.teamarrow.arrowpoint.fragments.DashboardFragment">
 
     <LinearLayout
         android:orientation="vertical"

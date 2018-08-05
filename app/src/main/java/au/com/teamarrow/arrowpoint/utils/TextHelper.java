@@ -26,7 +26,6 @@ public class TextHelper {
     private int highlightColour = Color.RED;
     private int normalColour  = Color.WHITE;
 
-
     public TextHelper(View myView) {
         this.myView = myView;
     }
@@ -34,42 +33,53 @@ public class TextHelper {
     public void setText(int view, String text) {
 
         TextView textView = (TextView) myView.findViewById(view);
+        if (textView == null) return;
 
-        if (textView != null) textView.setText(text);
+        textView.setText(text);
     }
 
     public void setText(int view, Integer number) {
 
         TextView textView = (TextView) myView.findViewById(view);
+        if (textView == null) return;
 
-        if (textView != null) textView.setText(number.toString());
+        textView.setText(number.toString());
     }
 
     public void setText(int view, Double number, String format) {
         NumberFormat formatterWithDecimal = new DecimalFormat(format);
         TextView textView = (TextView) myView.findViewById(view);
+        if (textView == null) return;
 
-        if (textView != null) textView.setText(formatterWithDecimal.format(number));
+        textView.setText(formatterWithDecimal.format(number));
     }
 
     public void setText(int view, Double number) {
+
         setText(view, number, "#0.00");
     }
 
     public void setProgressBar(int viewBar, int viewTxt, Integer value ) {
-        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
 
-        if  (progressBar != null) { progressBar.setProgress(value); setText(viewTxt, value + "%"); }
+        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
+        if (progressBar == null) return;
+
+        progressBar.setProgress(value);
+        setText(viewTxt, value + "%");
     }
 
     public void setProgressBar(int viewBar, Integer value ) {
-        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
 
-        if  (progressBar != null) { progressBar.setProgress(value); }
+        ProgressBar progressBar = (ProgressBar) myView.findViewById(viewBar);
+        if (progressBar == null) return;
+
+        progressBar.setProgress(value);
     }
 
     public void setFlicker(int view, boolean isOn ) {
+
         TextView textView = (TextView) myView.findViewById(view);
+        if (textView == null) return;
 
         if  (!isOn) {
             textView.setVisibility(View.INVISIBLE);
@@ -84,7 +94,9 @@ public class TextHelper {
     }
 
     public void setVisibility(int view, boolean isVisible ) {
+
         TextView textView = (TextView) myView.findViewById(view);
+        if (textView == null) return;
 
         if  (isVisible) {
             textView.setVisibility(View.VISIBLE);
@@ -94,7 +106,9 @@ public class TextHelper {
     }
 
     public void setImageVisibility(int view, boolean isVisible ) {
+
         ImageView imageView = (ImageView) myView.findViewById(view);
+        if (imageView == null) return;
 
         if  (isVisible) {
             imageView.setVisibility(View.VISIBLE);
@@ -103,13 +117,9 @@ public class TextHelper {
         }
     }
 
-
-
-
-
     public void setColourStatus(int view, boolean status) {
-        TextView textView = (TextView) myView.findViewById(view);
 
+        TextView textView = (TextView) myView.findViewById(view);
         if (textView == null) return;
 
         // Run this once and once only to get the origional colour
@@ -127,12 +137,11 @@ public class TextHelper {
     }
 
     public void setColour(int view, int colour) {
-        TextView textView = (TextView) myView.findViewById(view);
 
+        TextView textView = (TextView) myView.findViewById(view);
         if (textView == null) return;
 
         textView.setTextColor(colour);
-
     }
 
 }

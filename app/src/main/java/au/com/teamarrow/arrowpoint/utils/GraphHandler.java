@@ -48,31 +48,35 @@ public class GraphHandler{
 
          int color = R.color.text_color;
         // Layout And Styling
-        graph.getLayoutManager().remove(graph.getLegendWidget());
+        /*
+
+        @todo: This has all be commented out as it should be driven from the fragment_graph_new files not via code
+               also it is broken with the latest version of the code
+
+        graph.getLayoutManager().remove(graph.getLegend());
         graph.getLayoutManager().remove(graph.getDomainLabelWidget());
-        graph.getGraphWidget().getBackgroundPaint().setColor(Color.TRANSPARENT);
+        graph.getGraph().getBackgroundPaint().setColor(Color.TRANSPARENT);
         graph.setBorderStyle(XYPlot.BorderStyle.NONE, null, null);
-        graph.getGraphWidget().getGridBackgroundPaint().setColor(Color.TRANSPARENT);
+        graph.getGraph().getGridBackgroundPaint().setColor(Color.TRANSPARENT);
         graph.getGraphWidget().getDomainLabelPaint().setColor(Color.TRANSPARENT);
         graph.getGraphWidget().getDomainOriginLabelPaint().setColor(text_color);
         graph.getGraphWidget().getDomainOriginLinePaint().setColor(text_color);
         graph.getGraphWidget().getDomainGridLinePaint().setColor(text_color);
-        graph.getGraphWidget().getRangeGridLinePaint().setColor(text_color);
-        graph.getGraphWidget().getRangeOriginLabelPaint().setColor(text_color);
-        graph.getGraphWidget().getRangeOriginLinePaint().setColor(text_color);
+        graph.getGraph().getRangeOriginLinePaint().setColor(text_color);
+        //graph.getGraph().getRangegetRangeOriginLabelPaint().setColor(text_color);
         graph.setRangeValueFormat(new DecimalFormat("#.#"));
-        graph.getGraphWidget().getRangeLabelPaint().setColor(line_color);
+        graph.getGraph().getRangeOriginLabelPaint().setColor(line_color);
         graph.getGraphWidget().getRangeLabelPaint().setTextSize(15);
         graph.getRangeLabelWidget().getLabelPaint().setColor(text_color);
         graph.getTitleWidget().getLabelPaint().setColor(text_color);
-
+*/
 
         //graph.setRangeBoundaries(0, BoundaryMode.AUTO, 120, BoundaryMode.AUTO);
         setScale(graph, 0, 120, 1);
         graph.setDomainBoundaries(0, MAX_X_Values, BoundaryMode.FIXED);
         graph.setDomainStepValue(5);
         graph.setRangeLabel("Initial Title");
-        graph.getRangeLabelWidget().pack();
+        //graph.getRangeLabelWidget().pack();
         resetGraph(graph, "Vehicle Speed", "Velocity (Km/h)");
 
     }
@@ -81,10 +85,7 @@ public class GraphHandler{
     private void setScale(XYPlot graph, int minY, int maxY, double stepVal) {
 
         graph.setRangeBoundaries( minY, BoundaryMode.AUTO, maxY , BoundaryMode.AUTO);
-        //graph.setRangeStepValue(stepVal);
-        //graph.setRangeStepValue(10);
-
-        graph.setRangeStep(XYStepMode.INCREMENT_BY_VAL, stepVal);
+        graph.setRangeStep(StepMode.INCREMENT_BY_VAL,stepVal);
     }
 
 

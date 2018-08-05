@@ -1,8 +1,9 @@
 <GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ap="http://schemas.android.com/apk/res-auto"
     android:id="@+id/GraphTableMaster"
-    tools:context="com.example.arrowpoint.ArrowPoint$PlaceholderFragment"
+    tools:context="au.com.teamarrow.arrowpoint.fragments.GraphFragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -31,17 +32,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
 
-                    androidPlot.titleWidget.labelPaint.textSize="@dimen/text_size_small"
-                    androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
-                    androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
-                    androidPlot.graphWidget.marginTop="10dp"
-                    androidPlot.graphWidget.marginLeft="10dp"
-                    androidPlot.graphWidget.marginBottom="0dp"
-                    androidPlot.graphWidget.marginRight="25dp"
-                    androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
-                    androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
-                    androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
-                    androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"
+                    ap:title="A Simple XY Plot"
+                    ap:rangeTitle="range"
+                    ap:domainTitle="domain"
+                    ap:lineLabels="left|bottom"
+                    ap:lineLabelRotationBottom="-45"/>
                     />
             </FrameLayout>
 
@@ -56,17 +51,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
 
-                    androidPlot.titleWidget.labelPaint.textSize="@dimen/text_size_small"
-                    androidPlot.domainLabelWidget.labelPaint.textSize="@dimen/domain_label_font_size"
-                    androidPlot.rangeLabelWidget.labelPaint.textSize="@dimen/range_label_font_size"
-                    androidPlot.graphWidget.marginTop="10dp"
-                    androidPlot.graphWidget.marginLeft="10dp"
-                    androidPlot.graphWidget.marginBottom="0dp"
-                    androidPlot.graphWidget.marginRight="25dp"
-                    androidPlot.graphWidget.rangeLabelPaint.textSize="@dimen/range_tick_label_font_size"
-                    androidPlot.graphWidget.rangeOriginLabelPaint.textSize="@dimen/range_tick_label_font_size"
-                    androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
-                    androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size" />
+                    ap:title="A Simple XY Plot"
+                    ap:rangeTitle="range"
+                    ap:domainTitle="domain"
+                    ap:lineLabels="left|bottom"
+                    ap:lineLabelRotationBottom="-45"/>
             </FrameLayout>
         </LinearLayout>
 

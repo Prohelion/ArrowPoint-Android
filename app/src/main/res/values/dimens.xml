@@ -16,7 +16,6 @@
     <dimen name="driver_message_height">40dp</dimen>
     <dimen name="setPointStroke">20dp</dimen>
 
-
     <!--Graph Dimensions-->
     <dimen name="pie_segment_label_font_size">10dp</dimen>
     <dimen name="title_font_size">15dp</dimen>
@@ -26,8 +25,5 @@
     <dimen name="domain_tick_label_font_size">10dp</dimen>
     <dimen name="legend_text_font_size">10dp</dimen>
     <dimen name="line_size">2dp</dimen>
-
-
-
 
 </resources>

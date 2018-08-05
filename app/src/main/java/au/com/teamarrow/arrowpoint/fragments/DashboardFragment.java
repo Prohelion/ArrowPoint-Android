@@ -28,8 +28,13 @@ public class DashboardFragment extends UpdateablePlaceholderFragment {
         // **************** Dashboard Detail ***************
 
         TextHelper textHelper = new TextHelper(fragmentView);
+
+        // Performing a null check as it seems sometimes the object does not exist
+        // may be due to race conditions at startup
         ArcProgress setpointAcr = (ArcProgress) fragmentView.findViewById(R.id.arc_progress);
-        setpointAcr.setProgress(carData.getLastMotorPowerSetpoint(),carData.getLastMaxSOMSetpoint(), carData.isRegen());
+        if (setpointAcr != null)
+            setpointAcr.setProgress(carData.getLastMotorPowerSetpoint(),carData.getLastMaxSOMSetpoint(), carData.isRegen());
+
         textHelper.setText(R.id.txtSpeed, carData.getLastSpeed());
         textHelper.setText(R.id.txtSpeed2, carData.getLastSpeed());
         textHelper.setText(R.id.txtPower, carData.getLastBusPower());

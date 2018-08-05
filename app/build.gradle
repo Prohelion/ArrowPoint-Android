@@ -36,8 +36,7 @@ dependencies {
     implementation 'com.android.support:support-v13:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.jjoe64:graphview:4.2.2'
-    // @todo: this is not the latest version
-    implementation 'com.androidplot:androidplot-core:0.6.1'
+    implementation 'com.androidplot:androidplot-core:1.5.5'
     implementation 'net.sf.opencsv:opencsv:2.3'
 }
 
