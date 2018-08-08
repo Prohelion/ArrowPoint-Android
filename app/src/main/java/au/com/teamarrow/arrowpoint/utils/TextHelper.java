@@ -1,7 +1,5 @@
 package au.com.teamarrow.arrowpoint.utils;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
@@ -11,9 +9,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.example.arrowpoint.R;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 

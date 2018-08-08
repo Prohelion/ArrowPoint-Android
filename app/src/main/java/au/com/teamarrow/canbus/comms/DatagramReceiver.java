@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import android.os.Handler;
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.canbus.model.CarData;
 import au.com.teamarrow.canbus.model.UdpPacket;
@@ -40,7 +39,7 @@ public class DatagramReceiver extends Thread {
 
 	private double smartSimulateDouble(double valueIn, double currentValue, double lowRange, double highRange, double variation) {
 
-		if ( simulate == false) return valueIn;
+		if (!simulate) return valueIn;
 
 		double potentialSize = (highRange - lowRange) * variation;
 		double randomNum = (float) (Math.random()*potentialSize) - (potentialSize / 2);
@@ -92,12 +91,13 @@ public class DatagramReceiver extends Thread {
 
 				try {
 
-					if (timeout == false || simulate == true) {
+					if (!timeout || simulate) {
 
                         carData.setMsSinceLastPacket(0);// reset LastPacket Timer
                         carData.setSecSinceLastPacket(0);// reset LastPacket Timer
+
 						// Deserialize the packet
-						                            if ( simulate == false) {
+						if (!simulate) {
 
                                 InputStream inputStream = new ByteArrayInputStream(packet.getData(),0,packet.getLength());
 

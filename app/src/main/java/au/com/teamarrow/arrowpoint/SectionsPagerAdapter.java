@@ -9,6 +9,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 import au.com.teamarrow.arrowpoint.fragments.DashboardFragment;
+import au.com.teamarrow.arrowpoint.fragments.GPSTrackingFragment;
 import au.com.teamarrow.arrowpoint.fragments.MessageFragment;
 import au.com.teamarrow.arrowpoint.fragments.SystemsDetailFragment;
 import au.com.teamarrow.arrowpoint.fragments.PowerDetailFragment;
@@ -42,6 +43,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 2: return new SystemsDetailFragment();
             case 3: return new GraphFragment();
             case 4: return new MessageFragment();
+            case 5: return new GPSTrackingFragment();
 
         }
 
@@ -51,7 +53,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 4 total pages.
-        return 5;
+        return 6;
     }
 
     @Override
@@ -68,6 +70,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return context.getResources().getString(R.string.title_section4).toUpperCase(l);
             case 4:
                 return context.getResources().getString(R.string.title_section5).toUpperCase(l);
+            case 5:
+                return context.getResources().getString(R.string.title_section6).toUpperCase(l);
         }
         return null;
     }

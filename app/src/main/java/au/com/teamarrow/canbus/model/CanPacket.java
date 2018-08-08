@@ -136,34 +136,29 @@ public class CanPacket {
 
    
     public int getDataSegmentOneAsInt() {
-        int intbits = (data[0] & 0xFF) 
+        return (data[0] & 0xFF)
             | ((data[1] & 0xFF) << 8) 
             | ((data[2] & 0xFF) << 16) 
             | ((data[3] & 0xFF) << 24);
-        return intbits;
     }
     
    
     public int getDataSegmentTwoAsInt() {
-        int intbits = (data[4] & 0xFF) 
+        return (data[4] & 0xFF)
             | ((data[5] & 0xFF) << 8) 
             | ((data[6] & 0xFF) << 16) 
             | ((data[7] & 0xFF) << 24);
-        return intbits;
     }
     
     
     public int getTwoDataSegmentsAsInt(int bytePosition) {
-    	int intbits = (data[bytePosition] & 0xFF)| ((data[bytePosition + 1] & 0xFF) << 8)  ; 
-        return intbits;
+    	return (data[bytePosition] & 0xFF)| ((data[bytePosition + 1] & 0xFF) << 8)  ;
     }
     
     public int getDataSegmentAsInt(int bytePosition) {
-    	int intbits = (data[bytePosition] & 0xFF); 
-        return intbits;
+    	return (data[bytePosition] & 0xFF);
     }
-    
-    
+
     public byte getBit(int bytePosition, int bitPosition)
     {
        return (byte) ((data[bytePosition] >> bitPosition) & 1);

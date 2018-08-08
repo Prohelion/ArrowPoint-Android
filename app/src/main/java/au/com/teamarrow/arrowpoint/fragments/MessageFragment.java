@@ -19,14 +19,13 @@ import au.com.teamarrow.canbus.model.CarData;
 public class MessageFragment extends UpdateablePlaceholderFragment{
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private static boolean sendBtnPressed = false;
+
     private String typedMessage = null;
     private String reciever = null;
     private String message = null;
-    private static boolean sendBtnPressed = false;
-
-
-    private static Spinner reciever_spinner;
-    private static Spinner message_spinner;
+    private Spinner reciever_spinner;
+    private Spinner message_spinner;
 
     /**
      * Returns a new instance of this fragment for the given section number.

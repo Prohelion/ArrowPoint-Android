@@ -128,18 +128,14 @@ public class ArcProgress extends View {
         super.onDraw(canvas);
         float startAngle = 270 - arcAngle / 2f;
         float finishedSweepAngle = progress / (float) getMax() * arcAngle;
-        float finishedStartAngle = startAngle;
-
         float unfinishedSweepAngle = unfinished_progress / (float) getMax() * arcAngle;
-        float unfinishedStartAngle = startAngle;
-
 
         paint.setStrokeWidth((float)(1.0*strokeWidth));
         paint.setColor(unfinishedStrokeColor);
-        canvas.drawArc(rectF, unfinishedStartAngle, unfinishedSweepAngle, false, paint);
+        canvas.drawArc(rectF, startAngle, unfinishedSweepAngle, false, paint);
         paint.setStrokeWidth((float)(0.95*strokeWidth));
         paint.setColor(finishedStrokeColor);
-        canvas.drawArc(rectF, finishedStartAngle, finishedSweepAngle, false, paint);
+        canvas.drawArc(rectF, startAngle, finishedSweepAngle, false, paint);
         String text = String.valueOf(getProgress());
 
         if (!TextUtils.isEmpty(getBottomText())) {

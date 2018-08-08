@@ -3,8 +3,6 @@ package au.com.teamarrow.arrowpoint;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import au.com.teamarrow.canbus.model.ArrowMessage;
 import au.com.teamarrow.canbus.model.CarData;
 
 /**

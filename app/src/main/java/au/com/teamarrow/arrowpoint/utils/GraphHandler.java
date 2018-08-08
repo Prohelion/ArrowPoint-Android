@@ -1,14 +1,10 @@
 package au.com.teamarrow.arrowpoint.utils;
 
-        import android.graphics.Color;
-        import android.graphics.PointF;
-        import com.androidplot.xy.SimpleXYSeries;
-        import com.androidplot.xy.*;
-        import com.example.arrowpoint.R;
-
-        import java.text.DecimalFormat;
-
-        import au.com.teamarrow.canbus.model.CarData;
+import android.graphics.PointF;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.*;
+import com.example.arrowpoint.R;
+import au.com.teamarrow.canbus.model.CarData;
 
 /**
  * Created by Admin on 3/05/2015.

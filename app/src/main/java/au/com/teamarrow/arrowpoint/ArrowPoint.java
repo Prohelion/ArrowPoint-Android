@@ -6,6 +6,7 @@ import com.example.arrowpoint.R;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,18 +16,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.locks.ReentrantLock;
-
-
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.teamarrow.arrowpoint.fragments.UpdateablePlaceholderFragment;
+import au.com.teamarrow.arrowpoint.gps.GPSReceiver;
+import au.com.teamarrow.arrowpoint.gps.LocationService;
 import au.com.teamarrow.canbus.comms.DatagramReceiver;
 import au.com.teamarrow.canbus.comms.DriverMessageReceiver;
-import au.com.teamarrow.canbus.model.ArrowMessage;
 import au.com.teamarrow.canbus.model.CarData;
 
 public class ArrowPoint extends Activity implements ActionBar.TabListener {
@@ -47,9 +45,10 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 	public DatagramReceiver myDatagramReceiver = null;
     public DriverMessageReceiver myDriverMessageReceiver = null;
 
-	Handler handler;
+	private Handler handler;
 
-	CarData carData;
+	private CarData carData;
+	private GPSReceiver gpsReceiver;
 
 	int defaultTextColour = 0;
 	int currentTab = 0;
@@ -110,6 +109,8 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		super.onCreate(savedInstanceState);
 		handler.post(sendData);
 
+
+
 	}
 
     public void readAlertsFile(CarData carData){
@@ -143,11 +144,7 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
                 }
 
             }
-
-
-
         }catch(Exception e){
-
             e.printStackTrace();
         }
     }
@@ -222,8 +219,6 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		// the ViewPager.
 		currentTab = tab.getPosition();
 		mViewPager.setCurrentItem(currentTab);
-
-
 	}
 
 	@Override
@@ -244,6 +239,9 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
         myDriverMessageReceiver = new DriverMessageReceiver(carData);
         myDriverMessageReceiver.start();
 
+		// Start the GPS tracking service
+		gpsReceiver = new GPSReceiver(this, carData);
+		startService(new Intent(this, LocationService.class));
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
@@ -251,9 +249,11 @@ public class ArrowPoint extends Activity implements ActionBar.TabListener {
 		super.onPause();
 		myDatagramReceiver.kill();
 
+		// Start the GPS tracking service
+		gpsReceiver = null;
+		stopService(new Intent(this, LocationService.class));
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
-
 
 	public void onVelocityClicked(View view){
 		Toast.makeText(ArrowPoint.this, "Velocity Added", Toast.LENGTH_SHORT).show();

@@ -2,16 +2,12 @@ package au.com.teamarrow.arrowpoint.fragments;
 
 import com.androidplot.xy.XYPlot;
 import com.example.arrowpoint.R;
-
 import au.com.teamarrow.arrowpoint.utils.GraphHandler;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import au.com.teamarrow.canbus.model.CarData;
 
 

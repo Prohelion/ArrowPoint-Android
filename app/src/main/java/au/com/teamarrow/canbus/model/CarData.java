@@ -31,6 +31,9 @@ public class CarData {
     private int lastMotorPowerSetpoint = 0;
     private int lastMaxSOMSetpoint = 100;
 
+    private double latitude = (double) 0;
+    private double longitude = (double) 0;
+
     private double MinThreshMinimumCellV = (double)2.9;
     private int MaxThreshMotorTemp = 100;
     private int MaxThreshMaxCellTemp = 60;
@@ -94,8 +97,6 @@ public class CarData {
     public void setMaxThreshControllerTemp(int MaxThreshControllerTemp) {
         this.MaxThreshControllerTemp = MaxThreshControllerTemp;
     }
-
-
 
     public int getLastMaxSOMSetpoint() {
         return lastMaxSOMSetpoint;
@@ -530,6 +531,30 @@ public class CarData {
 
     public void setTestLayout(boolean testLayout) {
         this.testLayout = testLayout;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public List<ArrowMessage> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<ArrowMessage> messageList) {
+        this.messageList = messageList;
     }
 
 

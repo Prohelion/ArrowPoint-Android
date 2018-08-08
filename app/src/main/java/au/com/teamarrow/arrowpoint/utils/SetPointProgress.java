@@ -127,13 +127,11 @@ public class SetPointProgress extends View {
         super.onDraw(canvas);
         float startAngle = 270 - arcAngle / 2f;
         float finishedSweepAngle = progress / (float) getMax() * arcAngle;
-        float finishedStartAngle = startAngle;
-
 
         paint.setColor(unfinishedStrokeColor);
         canvas.drawArc(rectF, startAngle, arcAngle, false, paint);
         paint.setColor(finishedStrokeColor);
-        canvas.drawArc(rectF, finishedStartAngle, finishedSweepAngle, false, paint);
+        canvas.drawArc(rectF, startAngle, finishedSweepAngle, false, paint);
 
         String text = String.valueOf(getProgress());
 

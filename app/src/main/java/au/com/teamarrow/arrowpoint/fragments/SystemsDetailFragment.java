@@ -1,14 +1,10 @@
 package au.com.teamarrow.arrowpoint.fragments;
 
 import com.example.arrowpoint.R;
-
-
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import au.com.teamarrow.arrowpoint.utils.TextHelper;
 import au.com.teamarrow.canbus.model.CarData;
 
@@ -68,11 +64,8 @@ public class SystemsDetailFragment extends UpdateablePlaceholderFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_systems_detail_new,
+		return inflater.inflate(R.layout.fragment_systems_detail_new,
 				container, false);
-
-
-		return rootView;
 	}
 
 
