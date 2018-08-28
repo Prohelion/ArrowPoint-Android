@@ -41,6 +41,7 @@ Thumbs.db
 .idea/datasources.xml
 .idea/dataSources.ids
 .idea/caches/*
+.idea/misc.xml
 
 # App files
 app/app.iml
