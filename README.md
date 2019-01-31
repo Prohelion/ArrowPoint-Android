@@ -7,6 +7,9 @@ and has been used in racing environments since 2015.  TeamArrow continue to use 
 
 Examples of the software in use can be seen here - https://www.youtube.com/watch?reload=9&v=lWkXEb8v1tk
 
+If you are interested in contributing to the solution, please see our contribution file here
+https://github.com/Prohelion/ArrowPoint-Tablet/blob/master/CONTRIBUTING.md
+
 The application provides
 
 - A driver centric dashboard with speed and battery information
