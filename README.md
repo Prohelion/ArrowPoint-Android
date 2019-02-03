@@ -7,6 +7,9 @@ and has been used in racing environments since 2015.  TeamArrow continue to use 
 
 Examples of the software in use can be seen here - https://www.youtube.com/watch?reload=9&v=lWkXEb8v1tk
 
+Documentation for the Prohelion ArrowPoint Tablet Application can be found on the Prohelion Wiki which is located here
+https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/291373363/ArrowPoint+Tablet
+
 If you are interested in contributing to the solution, please see our contribution file here
 https://github.com/Prohelion/ArrowPoint-Tablet/blob/master/CONTRIBUTING.md
 
