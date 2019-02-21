@@ -15,14 +15,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="au.com.teamarrow.arrowpoint.ArrowPoint"
+            android:name="com.prohelion.arrowpoint.ArrowPoint"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:enabled="true" android:name="au.com.teamarrow.arrowpoint.gps.LocationService" />
+        <service android:enabled="true" android:name="com.prohelion.arrowpoint.gps.LocationService" />
     </application>
 
 </manifest>

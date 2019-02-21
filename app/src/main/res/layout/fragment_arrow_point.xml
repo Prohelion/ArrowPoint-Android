@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="au.com.teamarrow.arrowpoint.fragments.PlaceholderFragment" >
+    tools:context="com.prohelion.arrowpoint.fragments.PlaceholderFragment" >
 
     <TextView
         android:id="@+id/section_label"

@@ -4,19 +4,19 @@ android {
     signingConfigs {
         release {
             keyAlias 'Tablet'
-            keyPassword 'teamarrow'
-            storeFile file('Arrow_androidKey.jks')
-            storePassword 'teamarrow'
+            keyPassword 'prohelion'
+            storeFile file('Prohelion_androidKey.jks')
+            storePassword 'prohelion'
         }
         config {
             keyAlias 'Tablet'
-            keyPassword 'teamarrow'
-            storeFile file('Arrow_androidKey.jks')
-            storePassword 'teamarrow'
+            keyPassword 'prohelion'
+            storeFile file('Prohelion_androidKey.jks')
+            storePassword 'prohelion'
         }
     }
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.example.arrowpoint"
         minSdkVersion 19
@@ -27,7 +27,7 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
 }

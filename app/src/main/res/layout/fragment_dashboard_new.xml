@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
-    tools:context="au.com.teamarrow.arrowpoint.fragments.DashboardFragment">
+    tools:context="com.prohelion.arrowpoint.fragments.DashboardFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -501,7 +501,7 @@
 
     </LinearLayout>
 
-    <au.com.teamarrow.arrowpoint.utils.ArcProgress
+    <com.prohelion.arrowpoint.utils.ArcProgress
         android:id="@+id/arc_progress"
         android:background="@android:color/transparent"
         android:layout_height="fill_parent"
