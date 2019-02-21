@@ -1,5 +1,5 @@
-# ArrowPoint-Tablet
-The ArrowPoint Tablet Solution is a Android tablet based platform designed to receive and display telemetry information from an WiFi access point in real time.
+# ArrowPoint-Android
+The ArrowPoint Android App Solution is a Android tablet or phone based platform designed to receive and display telemetry information from an WiFi access point in real time.
 
 The out of the box implementation is designed for use in Solar or Electric racing cars that use technology from 
 Prohelion (www.prohelion.com) or Tritium (www.tritium.com.au).  This solution was origionally developed by TeamArrow (www.teamarrow.com.au)
@@ -7,11 +7,11 @@ and has been used in racing environments since 2015.  TeamArrow continue to use 
 
 Examples of the software in use can be seen here - https://www.youtube.com/watch?reload=9&v=lWkXEb8v1tk
 
-Documentation for the Prohelion ArrowPoint Tablet Application can be found on the Prohelion Wiki which is located here
-https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/291373363/ArrowPoint+Tablet
+Documentation for the Prohelion ArrowPoint App can be found on the Prohelion Wiki which is located here
+https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/303530265/ArrowPoint+Android
 
 If you are interested in contributing to the solution, please see our contribution file here
-https://github.com/Prohelion/ArrowPoint-Tablet/blob/master/CONTRIBUTING.md
+https://github.com/Prohelion/ArrowPoint-Android/blob/master/CONTRIBUTING.md
 
 The application provides
 

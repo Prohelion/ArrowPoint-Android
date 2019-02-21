@@ -1,9 +1,9 @@
 ## Contributing
 
-First off, thank you for considering contributing to the Prohelion ArrowPoint Tablet tools. Prohelion is made up of former 
+First off, thank you for considering contributing to the Prohelion ArrowPoint Android tools. Prohelion is made up of former 
 and current electric vehicle racers from around the world and we have always enjoyed the support of the community in the events 
 we have been involved with.  By open sourcing our software we are hoping to support other teams based on our
-learnings and experience, by contributing to the code we apprecite you helping as well.
+learnings and experience, by contributing to the code we appreciate you helping as well.
 
 ### Where do I go from here?
 
@@ -63,10 +63,10 @@ checks as the rest of the project.
 ### Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
-up to date with the Prohelion ArrowPoint-Tablet master branch:
+up to date with the Prohelion ArrowPoint-Android master branch:
 
 ```sh
-git remote add upstream git@github.com:Prohelion/ArrowPoint-Tablet.git
+git remote add upstream git@github.com:Prohelion/ArrowPoint-Android.git
 git checkout master
 git pull upstream master
 ```
@@ -120,17 +120,17 @@ Maintainers need to do the following to push out a release:
 
   ```sh
   git checkout master
-  git fetch ArrowPoint-Tablet
-  git rebase ArrowPoint-Tablet/master
+  git fetch ArrowPoint-Android
+  git rebase ArrowPoint-Android/master
   # If the release is 2.1.x then this should be: 2-1-stable
   git checkout -b N-N-stable
-  git push ArrowPoint-Tablet N-N-stable:N-N-stable
+  git push ArrowPoint-Android N-N-stable:N-N-stable
   ```
-[search the issue tracker]: https://github.com/Prohelion/ArrowPoint-Tablet/issues?q=something
-[new issue]: https://github.com/Prohelion/ArrowPoint-Tablet/issues/new
+[search the issue tracker]: https://github.com/Prohelion/ArrowPoint-Android/issues?q=something
+[new issue]: https://github.com/Prohelion/ArrowPoint-Android/issues/new
 [fork the Prohelion software]: https://help.github.com/articles/fork-a-repo
-[searching all issues]: https://github.com/Prohelion/ArrowPoint-Tablet/issues?q=
-[master template]: https://github.com/Prohelion/ArrowPoint-Tablet/blob/master/tasks/bug_report_template.rb
+[searching all issues]: https://github.com/Prohelion/ArrowPoint-Android/issues?q=
+[master template]: https://github.com/Prohelion/ArrowPoint-Android/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
