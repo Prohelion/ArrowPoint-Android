@@ -7,8 +7,8 @@ and has been used in racing environments since 2015.  TeamArrow continue to use 
 
 Examples of the software in use can be seen here - https://www.youtube.com/watch?reload=9&v=lWkXEb8v1tk
 
-Documentation for the Prohelion ArrowPoint App can be found on the Prohelion Wiki which is located here
-https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/303530265/ArrowPoint+Android
+Documentation for the Prohelion ArrowPoint App can be found on the Prohelion Documentation site which is located here
+https://docs.prohelion.com
 
 If you are interested in contributing to the solution, please see our contribution file here
 https://github.com/Prohelion/ArrowPoint-Android/blob/master/CONTRIBUTING.md
